@@ -1,0 +1,626 @@
+<!doctype html>
+<!--
+  Streamline Safety & Medical Solutions - Homepage concept 3: "Three paths and tabbed services"
+  Pitch concept by CADS. Not production code. Built for porting to WordPress / Elementor.
+
+  PLACEHOLDERS IN THIS FILE
+  - assets/placeholder-wide.svg (full-width band under the hero): genuine photo of the team at an
+    event or training session, to be supplied by the client. The live site's photos appear to be
+    AI-generated, so none are used (see reference/images.md).
+
+  TEXT TAKEN FROM IMAGES ON THE LIVE SITE (not live HTML text there - confirm with client)
+  - "Working With You, Not Simply For You." and the paragraph beneath it (image why-choose-us.png)
+  - Mathew Stones' quote, "We truly care about the people..." (image footer-homepage.png)
+  - "Mathew and Tom bring over 15 years of ambulance experience between them, with even more
+    expertise across our wider team." (image why-choose-us.png - use approved)
+
+  No statistics, reviews, response times or accreditations have been invented. All other copy
+  is from reference/content.md.
+
+  INTERACTION
+  - Services are tabs when JS runs. With JS off the tab bar stays hidden and all four service
+    panels show one after another, each with its own h3, so nothing is lost.
+
+  Structure: top bar > header > hero (three paths) > photo band > services (tabs) > approach
+  > contact > footer.
+  Global tokens and base type sit on .sms-page (map to Elementor Site Settings). Every other
+  selector is scoped to its section root.
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Streamline Safety &amp; Medical Solutions | Concept 3</title>
+<meta name="description" content="Clinician-led event medical cover, first aid training and safety consultancy, based in Swadlincote and working across Derbyshire, Nottinghamshire, Leicestershire, Staffordshire and beyond">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap">
+<style>
+/* ---------- Page root: tokens and base ---------- */
+.sms-page {
+  --sms-navy: #061e35;
+  --sms-navy-2: #0b3152;
+  --sms-green: #407f36;
+  --sms-green-on-navy: #82d06e;
+  --sms-pale: #f4f8f3;
+  --sms-white: #ffffff;
+  --sms-ink-soft: #405365;
+  --sms-line: #d9e2e7;
+  --sms-on-navy-soft: rgba(255, 255, 255, 0.82);
+  --sms-font: "Montserrat", Arial, sans-serif;
+  --sms-step--1: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --sms-step-0: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --sms-step-1: clamp(1.125rem, 1.06rem + 0.3vw, 1.3125rem);
+  --sms-step-2: clamp(1.5rem, 1.25rem + 1.1vw, 2.125rem);
+  --sms-step-3: clamp(2.125rem, 1.3rem + 3.6vw, 4rem);
+  --sms-gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --sms-section: clamp(4rem, 2.8rem + 5vw, 7.5rem);
+  --sms-max: 76rem;
+  --sms-radius: 0.375rem;
+  margin: 0;
+  background: var(--sms-white);
+  color: var(--sms-navy);
+  font-family: var(--sms-font);
+  font-size: var(--sms-step-0);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.sms-page *,
+.sms-page *::before,
+.sms-page *::after { box-sizing: border-box; }
+.sms-page a:focus-visible,
+.sms-page button:focus-visible,
+.sms-page summary:focus-visible { outline: 3px solid var(--sms-green); outline-offset: 3px; }
+.sms-page .sms-skip { position: absolute; left: -999px; top: 0; padding: 0.75rem 1rem; background: var(--sms-navy); color: var(--sms-white); z-index: 10; }
+.sms-page .sms-skip:focus { left: 1rem; top: 1rem; }
+
+.sms-topbar .sms-topbar__inner,
+.sms-header .sms-header__inner,
+.sms-hero .sms-hero__inner,
+.sms-band .sms-band__inner,
+.sms-services .sms-services__inner,
+.sms-approach .sms-approach__inner,
+.sms-contact .sms-contact__inner,
+.sms-footer .sms-footer__inner {
+  width: 100%;
+  max-width: var(--sms-max);
+  margin: 0 auto;
+  padding-left: var(--sms-gutter);
+  padding-right: var(--sms-gutter);
+}
+
+/* ---------- Top bar ---------- */
+.sms-topbar { background: var(--sms-navy); color: var(--sms-on-navy-soft); font-size: var(--sms-step--1); }
+.sms-topbar .sms-topbar__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1.5rem; padding-top: 0.55rem; padding-bottom: 0.55rem; }
+.sms-topbar .sms-topbar__text { display: none; min-width: 0; }
+.sms-topbar .sms-topbar__links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; min-width: 0; }
+.sms-topbar .sms-topbar__link { color: var(--sms-white); text-decoration: none; overflow-wrap: anywhere; }
+.sms-topbar .sms-topbar__link:hover { color: var(--sms-green-on-navy); text-decoration: underline; }
+@media (min-width: 48em) {
+  .sms-topbar .sms-topbar__text { display: block; }
+}
+
+/* ---------- Header ---------- */
+.sms-header { border-bottom: 1px solid var(--sms-line); background: var(--sms-white); }
+.sms-header .sms-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 4.75rem; }
+.sms-header .sms-header__logo { display: block; flex: 0 0 auto; min-width: 0; line-height: 0; }
+.sms-header .sms-header__logo-img { display: block; width: clamp(10.5rem, 8rem + 8vw, 14rem); height: auto; }
+.sms-header .sms-header__nav { display: none; min-width: 0; }
+.sms-header .sms-header__list { display: flex; gap: clamp(1rem, 0.5rem + 1.2vw, 2.25rem); margin: 0; padding: 0; list-style: none; }
+.sms-header .sms-header__item { min-width: 0; }
+.sms-header .sms-header__link { padding: 0.4rem 0; border-bottom: 2px solid transparent; color: var(--sms-navy); font-size: var(--sms-step--1); font-weight: 500; text-decoration: none; }
+.sms-header .sms-header__link:hover { border-bottom-color: var(--sms-green); }
+.sms-header .sms-header__menu { position: relative; min-width: 0; }
+.sms-header .sms-header__summary { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.9rem; border: 1px solid var(--sms-line); border-radius: var(--sms-radius); cursor: pointer; font-size: var(--sms-step--1); font-weight: 600; list-style: none; }
+.sms-header .sms-header__summary::-webkit-details-marker { display: none; }
+.sms-header .sms-header__bars { display: block; width: 1.1rem; height: 2px; background: var(--sms-navy); box-shadow: 0 -5px 0 var(--sms-navy), 0 5px 0 var(--sms-navy); }
+.sms-header .sms-header__panel { position: absolute; right: 0; top: calc(100% + 0.5rem); z-index: 5; width: min(18rem, calc(100vw - 2rem)); padding: 0.5rem; border: 1px solid var(--sms-line); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: 0 12px 30px rgba(6, 30, 53, 0.12); }
+.sms-header .sms-header__panel-list { margin: 0; padding: 0; list-style: none; }
+.sms-header .sms-header__panel-link { display: block; padding: 0.7rem 0.8rem; border-radius: 0.35rem; color: var(--sms-navy); font-weight: 500; text-decoration: none; }
+.sms-header .sms-header__panel-link:hover { background: var(--sms-pale); }
+@media (min-width: 56em) {
+  .sms-header .sms-header__nav { display: block; }
+  .sms-header .sms-header__menu { display: none; }
+}
+
+/* ---------- Hero (three paths) ---------- */
+.sms-hero { padding: clamp(3rem, 2rem + 4vw, 6rem) 0 clamp(2.5rem, 2rem + 2vw, 4rem); }
+.sms-hero .sms-hero__top { display: grid; gap: 1.5rem clamp(2rem, 1rem + 4vw, 5rem); margin-bottom: clamp(2.5rem, 2rem + 2vw, 4rem); }
+.sms-hero .sms-hero__title { min-width: 0; max-width: 18ch; margin: 0; font-size: var(--sms-step-3); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; animation: sms-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.sms-hero .sms-hero__side { min-width: 0; }
+.sms-hero .sms-hero__area { margin-bottom: 1rem; font-weight: 600; line-height: 1.5; }
+.sms-hero .sms-hero__body { color: var(--sms-ink-soft); }
+.sms-hero .sms-hero__body p { margin: 0; }
+.sms-hero .sms-hero__paths { display: grid; gap: 1px; margin: 0; padding: 0; border: 1px solid var(--sms-line); background: var(--sms-line); list-style: none; }
+.sms-hero .sms-hero__path { min-width: 0; background: var(--sms-white); }
+.sms-hero .sms-hero__path-link { display: flex; flex-direction: column; gap: 0.75rem; height: 100%; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem); color: var(--sms-navy); text-decoration: none; }
+.sms-hero .sms-hero__path-link:hover { background: var(--sms-pale); }
+.sms-hero .sms-hero__path-label { color: var(--sms-green); font-size: var(--sms-step--1); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.sms-hero .sms-hero__path-cta { font-size: var(--sms-step-1); font-weight: 700; line-height: 1.35; }
+.sms-hero .sms-hero__path-arrow { display: inline-block; margin-top: auto; color: var(--sms-green); font-size: 1.25rem; transition: transform 0.2s ease; }
+.sms-hero .sms-hero__path-link:hover .sms-hero__path-arrow { transform: translateX(6px); }
+@media (min-width: 48em) {
+  .sms-hero .sms-hero__paths { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 60em) {
+  .sms-hero .sms-hero__top { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: end; }
+}
+@keyframes sms-rise { from { transform: translateY(14px); } to { transform: none; } }
+
+/* ---------- Photo band ---------- */
+.sms-band { padding-bottom: var(--sms-section); }
+.sms-band .sms-band__media { margin: 0; }
+.sms-band .sms-band__img { display: block; width: 100%; height: auto; border-radius: var(--sms-radius); }
+
+/* ---------- Services (tabs) ---------- */
+.sms-services { padding: var(--sms-section) 0; background: var(--sms-pale); }
+.sms-services .sms-services__head { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem); }
+.sms-services .sms-services__title { margin: 0; font-size: var(--sms-step-2); font-weight: 700; line-height: 1.2; }
+.sms-services .sms-services__intro { max-width: 38rem; color: var(--sms-ink-soft); }
+.sms-services .sms-services__intro p { margin: 0; }
+.sms-services .sms-services__tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem; padding: 0; }
+.sms-services .sms-services__tabs[hidden] { display: none; }
+.sms-services .sms-services__tab { flex: 0 1 auto; min-width: 0; padding: 0.7rem 1.1rem; border: 1px solid var(--sms-line); border-radius: 999px; background: var(--sms-white); color: var(--sms-navy); cursor: pointer; font: inherit; font-size: var(--sms-step--1); font-weight: 600; line-height: 1.3; text-align: left; }
+.sms-services .sms-services__tab:hover { border-color: var(--sms-navy); }
+.sms-services .sms-services__tab[aria-selected="true"] { border-color: var(--sms-navy); background: var(--sms-navy); color: var(--sms-white); }
+.sms-services .sms-services__panels { display: grid; gap: 1rem; }
+.sms-services .sms-services__panel { display: grid; gap: 1.5rem clamp(2rem, 1rem + 4vw, 4.5rem); min-width: 0; padding: clamp(1.5rem, 1rem + 2vw, 3rem); border: 1px solid var(--sms-line); border-radius: var(--sms-radius); background: var(--sms-white); }
+.sms-services .sms-services__panel[hidden] { display: none; }
+.sms-services .sms-services__main { min-width: 0; }
+.sms-services .sms-services__name { margin: 0 0 1rem; font-size: var(--sms-step-1); font-weight: 700; line-height: 1.3; }
+.sms-services .sms-services__desc { color: var(--sms-ink-soft); }
+.sms-services .sms-services__desc p { margin: 0 0 1rem; }
+.sms-services .sms-services__link { display: inline-block; margin-top: 0.5rem; padding: 0.8rem 1.25rem; border-radius: var(--sms-radius); background: var(--sms-green); color: var(--sms-white); font-size: var(--sms-step--1); font-weight: 600; text-decoration: none; transition: transform 0.2s ease; }
+.sms-services .sms-services__link:hover { transform: translateY(-2px); }
+.sms-services .sms-services__aside { min-width: 0; }
+.sms-services .sms-services__list-title { margin-bottom: 0.75rem; font-size: var(--sms-step--1); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.sms-services .sms-services__list { margin: 0; padding: 0; list-style: none; font-size: var(--sms-step--1); }
+.sms-services .sms-services__list-item { position: relative; min-width: 0; padding: 0.55rem 0 0.55rem 1.5rem; border-top: 1px solid var(--sms-line); }
+.sms-services .sms-services__list-item::before { content: ""; position: absolute; left: 0.1rem; top: 0.95rem; width: 0.55rem; height: 0.3rem; border-left: 2px solid var(--sms-green); border-bottom: 2px solid var(--sms-green); transform: rotate(-45deg); }
+@media (min-width: 52em) {
+  .sms-services .sms-services__head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; }
+  .sms-services .sms-services__panel { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+}
+
+/* ---------- Approach ---------- */
+.sms-approach { padding: var(--sms-section) 0; }
+.sms-approach .sms-approach__inner { display: grid; gap: clamp(2.5rem, 1.5rem + 4vw, 5rem); }
+.sms-approach .sms-approach__main { min-width: 0; }
+.sms-approach .sms-approach__title { margin: 0 0 1.25rem; font-size: var(--sms-step-2); font-weight: 700; line-height: 1.2; }
+.sms-approach .sms-approach__accent { color: var(--sms-green); }
+.sms-approach .sms-approach__body { max-width: 36rem; color: var(--sms-ink-soft); }
+.sms-approach .sms-approach__body p { margin: 0 0 1rem; }
+.sms-approach .sms-approach__claim { max-width: 36rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sms-line); font-weight: 600; }
+.sms-approach .sms-approach__claim p { margin: 0; }
+.sms-approach .sms-approach__side { min-width: 0; }
+.sms-approach .sms-approach__quote { margin: 0 0 2.5rem; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-navy); color: var(--sms-white); }
+.sms-approach .sms-approach__quote-label { margin-bottom: 1rem; color: var(--sms-green-on-navy); font-size: var(--sms-step--1); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.sms-approach .sms-approach__quote-text { margin: 0; font-size: var(--sms-step-1); font-weight: 500; line-height: 1.55; }
+.sms-approach .sms-approach__quote-text p { margin: 0; }
+.sms-approach .sms-approach__cite { display: block; margin-top: 1.25rem; color: var(--sms-on-navy-soft); font-size: var(--sms-step--1); font-style: normal; }
+.sms-approach .sms-approach__who-title { margin: 0 0 1rem; font-size: var(--sms-step-0); font-weight: 700; }
+.sms-approach .sms-approach__who { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.sms-approach .sms-approach__who-item { min-width: 0; padding: 0.35rem 0.8rem; border: 1px solid var(--sms-line); border-radius: 999px; font-size: var(--sms-step--1); }
+@media (min-width: 52em) {
+  .sms-approach .sms-approach__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+/* ---------- Contact ---------- */
+.sms-contact { padding: 0 0 var(--sms-section); }
+.sms-contact .sms-contact__box { display: grid; gap: 2rem; padding-top: clamp(2.5rem, 2rem + 2vw, 4rem); border-top: 2px solid var(--sms-navy); }
+.sms-contact .sms-contact__copy { min-width: 0; }
+.sms-contact .sms-contact__title { margin: 0 0 0.75rem; font-size: var(--sms-step-2); font-weight: 700; line-height: 1.2; }
+.sms-contact .sms-contact__text { color: var(--sms-ink-soft); }
+.sms-contact .sms-contact__text p { margin: 0 0 1rem; }
+.sms-contact .sms-contact__lines { display: grid; gap: 1rem; min-width: 0; margin: 0; padding: 0; list-style: none; }
+.sms-contact .sms-contact__line-item { min-width: 0; }
+.sms-contact .sms-contact__label { color: var(--sms-ink-soft); font-size: var(--sms-step--1); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.sms-contact .sms-contact__line { color: var(--sms-navy); font-size: clamp(1.25rem, 0.9rem + 1.8vw, 2.125rem); font-weight: 700; line-height: 1.3; text-decoration: none; overflow-wrap: anywhere; }
+.sms-contact .sms-contact__line:hover { color: var(--sms-green); }
+@media (min-width: 52em) {
+  .sms-contact .sms-contact__box { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+/* ---------- Footer ---------- */
+.sms-footer { padding: clamp(3rem, 2rem + 3vw, 4.5rem) 0 2.5rem; background: var(--sms-navy); color: var(--sms-on-navy-soft); font-size: var(--sms-step--1); }
+.sms-footer .sms-footer__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
+.sms-footer .sms-footer__logo { display: block; width: clamp(10.5rem, 8rem + 8vw, 13rem); height: auto; }
+.sms-footer .sms-footer__badges { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; min-width: 0; }
+.sms-footer .sms-footer__badge-link { display: inline-block; min-width: 0; line-height: 0; }
+.sms-footer .sms-footer__badge { display: block; height: auto; border-radius: 0.25rem; background: var(--sms-white); }
+.sms-footer .sms-footer__badge--qualsafe { width: 4.5rem; padding: 0.3rem; }
+.sms-footer .sms-footer__badge--ate { width: 8rem; }
+.sms-footer .sms-footer__cols { display: grid; gap: 2rem; padding: 2rem 0; }
+.sms-footer .sms-footer__col { min-width: 0; }
+.sms-footer .sms-footer__heading { margin: 0 0 1rem; color: var(--sms-white); font-size: var(--sms-step--1); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.sms-footer .sms-footer__list { margin: 0; padding: 0; list-style: none; }
+.sms-footer .sms-footer__list-item { margin-bottom: 0.45rem; }
+.sms-footer .sms-footer__link { color: var(--sms-on-navy-soft); text-decoration: none; }
+.sms-footer .sms-footer__link:hover { color: var(--sms-green-on-navy); text-decoration: underline; }
+.sms-footer .sms-footer__company { line-height: 1.7; }
+.sms-footer .sms-footer__company p { margin: 0; }
+@media (min-width: 48em) {
+  .sms-footer .sms-footer__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- Flex and grid children: allow shrinking ---------- */
+.sms-topbar .sms-topbar__link,
+.sms-header .sms-header__bars,
+.sms-hero .sms-hero__path-label,
+.sms-hero .sms-hero__path-cta,
+.sms-hero .sms-hero__path-arrow,
+.sms-services .sms-services__title,
+.sms-services .sms-services__intro,
+.sms-footer .sms-footer__logo,
+.sms-footer .sms-footer__badge { min-width: 0; }
+
+/* ---------- Scroll reveal (progressive) ---------- */
+@supports (animation-timeline: view()) {
+  @keyframes sms-reveal {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+  .sms-band .sms-band__media,
+  .sms-services .sms-services__panels,
+  .sms-approach .sms-approach__main,
+  .sms-approach .sms-approach__side,
+  .sms-contact .sms-contact__box,
+  .sms-footer .sms-footer__inner {
+    animation: sms-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .sms-hero .sms-hero__title,
+  .sms-band .sms-band__media,
+  .sms-services .sms-services__panels,
+  .sms-approach .sms-approach__main,
+  .sms-approach .sms-approach__side,
+  .sms-contact .sms-contact__box,
+  .sms-footer .sms-footer__inner {
+    animation: none;
+    animation-timeline: none;
+  }
+  .sms-hero .sms-hero__path-arrow,
+  .sms-services .sms-services__link { transition: none; }
+}
+</style>
+</head>
+<body class="sms-page">
+<a class="sms-skip" href="#main">Skip to content</a>
+
+<div class="sms-topbar">
+  <div class="sms-topbar__inner">
+    <div class="sms-topbar__text">Protecting People. Supporting Business.</div>
+    <div class="sms-topbar__links">
+      <a class="sms-topbar__link" href="tel:01283358789">01283 358789</a>
+      <a class="sms-topbar__link" href="mailto:hello@streamlinesms.co.uk">hello@streamlinesms.co.uk</a>
+    </div>
+  </div>
+</div>
+
+<header class="sms-header">
+  <div class="sms-header__inner">
+    <a class="sms-header__logo" href="concept-3.html" aria-label="Streamline Safety &amp; Medical Solutions home">
+      <img class="sms-header__logo-img" src="assets/streamline-s-m-sol-logo-blue-long.png" alt="Streamline Safety &amp; Medical Solutions" width="2500" height="443">
+    </a>
+    <nav class="sms-header__nav" aria-label="Main">
+      <ul class="sms-header__list">
+        <li class="sms-header__item"><a class="sms-header__link" href="#services">Our Services</a></li>
+        <li class="sms-header__item"><a class="sms-header__link" href="#approach">About Us</a></li>
+        <li class="sms-header__item"><a class="sms-header__link" href="https://www.streamlinesms.co.uk/recruitment">Recruitment</a></li>
+        <li class="sms-header__item"><a class="sms-header__link" href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <details class="sms-header__menu">
+      <summary class="sms-header__summary"><span class="sms-header__bars" aria-hidden="true"></span>Menu</summary>
+      <nav class="sms-header__panel" aria-label="Mobile">
+        <ul class="sms-header__panel-list">
+          <li><a class="sms-header__panel-link" href="#services">Our Services</a></li>
+          <li><a class="sms-header__panel-link" href="#approach">About Us</a></li>
+          <li><a class="sms-header__panel-link" href="https://www.streamlinesms.co.uk/recruitment">Recruitment</a></li>
+          <li><a class="sms-header__panel-link" href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="sms-hero" aria-labelledby="sms-hero-title">
+  <div class="sms-hero__inner">
+    <div class="sms-hero__top">
+      <h1 class="sms-hero__title" id="sms-hero-title">Clinician-Led Medical Cover, First Aid Training &amp; Safety Consultancy</h1>
+      <div class="sms-hero__side">
+        <div class="sms-hero__area">Based in Swadlincote and serving Derbyshire, Staffordshire, Leicestershire, Nottinghamshire and the wider UK.</div>
+        <div class="sms-hero__body"><p>Our experienced frontline clinicians help organisations stay compliant, reduce risk and protect the people who matter most.</p></div>
+      </div>
+    </div>
+    <ul class="sms-hero__paths">
+      <li class="sms-hero__path">
+        <a class="sms-hero__path-link" href="https://www.streamlinesms.co.uk/medical-training">
+          <span class="sms-hero__path-label">Medical Training</span>
+          <span class="sms-hero__path-cta">Book your next training session</span>
+          <span class="sms-hero__path-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li class="sms-hero__path">
+        <a class="sms-hero__path-link" href="https://www.streamlinesms.co.uk/event-medical-cover">
+          <span class="sms-hero__path-label">Event Medical Cover</span>
+          <span class="sms-hero__path-cta">Book us for your medical cover</span>
+          <span class="sms-hero__path-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li class="sms-hero__path">
+        <a class="sms-hero__path-link" href="https://www.streamlinesms.co.uk/risk-needs-consultancy">
+          <span class="sms-hero__path-label">Risk &amp; Needs Consultancy</span>
+          <span class="sms-hero__path-cta">Book a free consultation for your business</span>
+          <span class="sms-hero__path-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="sms-band">
+  <div class="sms-band__inner">
+    <figure class="sms-band__media">
+      <img class="sms-band__img" src="assets/placeholder-wide.svg" alt="Placeholder for a genuine photo of the Streamline team at an event or training session" width="1600" height="640" loading="lazy">
+    </figure>
+  </div>
+</div>
+
+<section class="sms-services" id="services" aria-labelledby="sms-services-title">
+  <div class="sms-services__inner">
+    <div class="sms-services__head">
+      <h2 class="sms-services__title" id="sms-services-title">What We Provide</h2>
+      <div class="sms-services__intro"><p>Streamline Safety &amp; Medical Solutions provides professional event medical cover, accredited first aid training and practical safety consultancy for businesses, workplaces, construction sites and events across the East Midlands and throughout the UK.</p></div>
+    </div>
+
+    <div class="sms-services__tabs" role="tablist" aria-label="Our services" hidden>
+      <button class="sms-services__tab" type="button" role="tab" id="sms-tab-cover" aria-controls="sms-panel-cover" aria-selected="true">Event Medical Cover</button>
+      <button class="sms-services__tab" type="button" role="tab" id="sms-tab-training" aria-controls="sms-panel-training" aria-selected="false" tabindex="-1">Medical Training</button>
+      <button class="sms-services__tab" type="button" role="tab" id="sms-tab-consultancy" aria-controls="sms-panel-consultancy" aria-selected="false" tabindex="-1">Risk &amp; Needs Consultancy</button>
+      <button class="sms-services__tab" type="button" role="tab" id="sms-tab-careers" aria-controls="sms-panel-careers" aria-selected="false" tabindex="-1">Pre-Hospital Career Support</button>
+    </div>
+
+    <div class="sms-services__panels">
+      <div class="sms-services__panel" id="sms-panel-cover" data-sms-panel>
+        <div class="sms-services__main">
+          <h3 class="sms-services__name">Event Medical Cover</h3>
+          <div class="sms-services__desc">
+            <p>We deliver high-quality medical support across a wide range of events and environments, from community gatherings and sporting events to concerts, public events and planned workplace operations.</p>
+            <p>Our services are flexible, scalable and tailored to the specific risks, audience profile, venue layout and operational needs of your event. Whether you require a small first aid presence or a more structured medical plan, we provide professional, reliable and safe support designed around your event.</p>
+          </div>
+          <a class="sms-services__link" href="https://www.streamlinesms.co.uk/event-medical-cover">Book us for your medical cover</a>
+        </div>
+        <div class="sms-services__aside">
+          <div class="sms-services__list-title">What events can Streamline cover?</div>
+          <ul class="sms-services__list">
+            <li class="sms-services__list-item">Community events, village fetes and charity events</li>
+            <li class="sms-services__list-item">Business showcases and corporate events</li>
+            <li class="sms-services__list-item">Sports and combat-sports events</li>
+            <li class="sms-services__list-item">School events and private functions</li>
+            <li class="sms-services__list-item">Small festivals and outdoor activities</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sms-services__panel" id="sms-panel-training" data-sms-panel>
+        <div class="sms-services__main">
+          <h3 class="sms-services__name">Medical Training</h3>
+          <div class="sms-services__desc">
+            <p>Our courses are practical, scenario-based, and designed around real-world environments, helping learners build confidence, competence, and the ability to respond effectively.</p>
+            <p>Streamline Safety &amp; Medical Solutions is a Qualsafe Registered Centre &ndash; Centre No. 908578, allowing us to deliver nationally recognised, regulated qualifications alongside bespoke in-house training.</p>
+          </div>
+          <a class="sms-services__link" href="https://www.streamlinesms.co.uk/medical-training">Book your next training session</a>
+        </div>
+        <div class="sms-services__aside">
+          <div class="sms-services__list-title">Courses</div>
+          <ul class="sms-services__list">
+            <li class="sms-services__list-item">Emergency First Aid at Work</li>
+            <li class="sms-services__list-item">First Aid at Work and requalification</li>
+            <li class="sms-services__list-item">Paediatric and emergency paediatric first aid</li>
+            <li class="sms-services__list-item">CPR, AED and basic life support</li>
+            <li class="sms-services__list-item">FREC 3</li>
+            <li class="sms-services__list-item">FREC 4</li>
+            <li class="sms-services__list-item">Bespoke workplace medical training</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sms-services__panel" id="sms-panel-consultancy" data-sms-panel>
+        <div class="sms-services__main">
+          <h3 class="sms-services__name">Risk &amp; Needs Consultancy</h3>
+          <div class="sms-services__desc">
+            <p>In pre-hospital care, the first step is always to assess for danger. Before treatment begins, we look at the environment, identify risks, protect people from harm, and make sure the right support is in place.</p>
+            <p>Our Risk &amp; Needs Consultancy applies that same practical, safety-first mindset to workplaces, events and public environments. Led by IOSH-qualified health and safety advisors with real-world medical and operational experience, we help you identify hazards, understand your responsibilities, and put proportionate plans, people and equipment in place before problems occur.</p>
+          </div>
+          <a class="sms-services__link" href="https://www.streamlinesms.co.uk/risk-needs-consultancy">Book a free consultation for your business</a>
+        </div>
+        <div class="sms-services__aside">
+          <div class="sms-services__list-title">Our consultancy services</div>
+          <ul class="sms-services__list">
+            <li class="sms-services__list-item">First Aid Needs Assessment</li>
+            <li class="sms-services__list-item">Risk Assessment Writing</li>
+            <li class="sms-services__list-item">Gap Assessment</li>
+            <li class="sms-services__list-item">Event Medical Plans</li>
+            <li class="sms-services__list-item">Safe System of Work (SSoW) Advice</li>
+            <li class="sms-services__list-item">Fire Safety Assessment</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sms-services__panel" id="sms-panel-careers" data-sms-panel>
+        <div class="sms-services__main">
+          <h3 class="sms-services__name">Pre-Hospital Career Support</h3>
+          <div class="sms-services__desc">
+            <p>Take your next step in a pre-hospital career with tailored interview preparation, mock assessments and honest, practical feedback. Whether you&rsquo;re entering the sector or preparing for your next role, Streamline helps you build confidence and present your skills and experience at their best.</p>
+            <p>For aspiring ECAs, Technicians, newly qualified paramedics and people exploring ambulance support roles, with guidance tailored to your experience and career goals.</p>
+          </div>
+          <a class="sms-services__link" href="https://www.streamlinesms.co.uk/pre-hospital-career-support">Explore career support</a>
+        </div>
+        <div class="sms-services__aside">
+          <div class="sms-services__list-title">Your next step. Our practical support.</div>
+          <ul class="sms-services__list">
+            <li class="sms-services__list-item">Interview preparation</li>
+            <li class="sms-services__list-item">Mock assessments</li>
+            <li class="sms-services__list-item">Feedback &amp; development</li>
+            <li class="sms-services__list-item">Career direction</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sms-approach" id="approach" aria-labelledby="sms-approach-title">
+  <div class="sms-approach__inner">
+    <div class="sms-approach__main">
+      <h2 class="sms-approach__title" id="sms-approach-title">Working With You, Not Simply For <span class="sms-approach__accent">You.</span></h2>
+      <div class="sms-approach__body">
+        <p>At Streamline Safety &amp; Medical Solutions, we are passionate about working alongside our clients to provide support that is fair, proportionate and genuinely tailored to their needs. We believe in honest advice, practical solutions and professional communication that helps you make the right decisions with confidence.</p>
+        <p>If you need four first aiders trained, we will not try to sell you more than you need. Our approach is simple: clear guidance, realistic recommendations and support that is never over-sold.</p>
+      </div>
+      <div class="sms-approach__claim"><p>Mathew and Tom bring over 15 years of ambulance experience between them, with even more expertise across our wider team.</p></div>
+    </div>
+    <div class="sms-approach__side">
+      <figure class="sms-approach__quote">
+        <div class="sms-approach__quote-label">A personal message from Mathew</div>
+        <blockquote class="sms-approach__quote-text"><p>&ldquo;We truly care about the people and organisations we support. We will always communicate fairly, recommend proportionately and focus on what is genuinely right for you &mdash; not what is easiest to sell. That is what makes us different.&rdquo;</p></blockquote>
+        <figcaption class="sms-approach__cite">Mathew Stones, Director</figcaption>
+      </figure>
+      <h3 class="sms-approach__who-title">Who does Streamline work with?</h3>
+      <ul class="sms-approach__who">
+        <li class="sms-approach__who-item">Individuals</li>
+        <li class="sms-approach__who-item">Businesses</li>
+        <li class="sms-approach__who-item">Schools</li>
+        <li class="sms-approach__who-item">Nurseries</li>
+        <li class="sms-approach__who-item">Care providers</li>
+        <li class="sms-approach__who-item">Construction and industrial workplaces</li>
+        <li class="sms-approach__who-item">Charities</li>
+        <li class="sms-approach__who-item">Community groups</li>
+        <li class="sms-approach__who-item">Sports clubs</li>
+        <li class="sms-approach__who-item">Security providers</li>
+        <li class="sms-approach__who-item">Event organisers</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sms-contact" id="contact" aria-labelledby="sms-contact-title">
+  <div class="sms-contact__inner">
+    <div class="sms-contact__box">
+      <div class="sms-contact__copy">
+        <h2 class="sms-contact__title" id="sms-contact-title">Have any questions? We&rsquo;re here to help.</h2>
+        <div class="sms-contact__text">
+          <p>We offer an initial discussion to understand your requirements. Our risk and needs consultancy service also includes a free initial consultation before any chargeable work is agreed.</p>
+        </div>
+      </div>
+      <ul class="sms-contact__lines">
+        <li class="sms-contact__line-item">
+          <div class="sms-contact__label">Telephone</div>
+          <a class="sms-contact__line" href="tel:01283358789">01283 358789</a>
+        </li>
+        <li class="sms-contact__line-item">
+          <div class="sms-contact__label">Email</div>
+          <a class="sms-contact__line" href="mailto:hello@streamlinesms.co.uk">hello@streamlinesms.co.uk</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="sms-footer">
+  <div class="sms-footer__inner">
+    <div class="sms-footer__top">
+      <img class="sms-footer__logo" src="assets/streamline-s-m-sol-logo-white-long.png" alt="Streamline Safety &amp; Medical Solutions" width="2500" height="443" loading="lazy">
+      <div class="sms-footer__badges">
+        <img class="sms-footer__badge sms-footer__badge--qualsafe" src="assets/whatsapp-image-2026-07-20-at-12.27.35.jpeg" alt="Qualsafe registered centre" width="1000" height="982" loading="lazy">
+        <a class="sms-footer__badge-link" href="https://www.addtoevent.co.uk/suppliers/streamline-safety-medical-solutions"><img class="sms-footer__badge sms-footer__badge--ate" src="assets/featured-landscape-purple-medium.png" alt="Add To Event Featured Supplier" width="188" height="53" loading="lazy"></a>
+      </div>
+    </div>
+    <div class="sms-footer__cols">
+      <div class="sms-footer__col">
+        <h2 class="sms-footer__heading">Our Services</h2>
+        <ul class="sms-footer__list">
+          <li class="sms-footer__list-item"><a class="sms-footer__link" href="https://www.streamlinesms.co.uk/event-medical-cover">Event Medical Cover</a></li>
+          <li class="sms-footer__list-item"><a class="sms-footer__link" href="https://www.streamlinesms.co.uk/medical-training">Medical Training</a></li>
+          <li class="sms-footer__list-item"><a class="sms-footer__link" href="https://www.streamlinesms.co.uk/risk-needs-consultancy">Risk &amp; Needs Consultancy</a></li>
+          <li class="sms-footer__list-item"><a class="sms-footer__link" href="https://www.streamlinesms.co.uk/pre-hospital-career-support">Pre-Hospital Career Support</a></li>
+        </ul>
+      </div>
+      <div class="sms-footer__col">
+        <h2 class="sms-footer__heading">Explore Our Site</h2>
+        <ul class="sms-footer__list">
+          <li class="sms-footer__list-item"><a class="sms-footer__link" href="https://www.streamlinesms.co.uk/recruitment">Recruitment</a></li>
+          <li class="sms-footer__list-item"><a class="sms-footer__link" href="https://www.streamlinesms.co.uk/aboutus">About Us</a></li>
+          <li class="sms-footer__list-item"><a class="sms-footer__link" href="https://www.streamlinesms.co.uk/contact-us">Contact Us</a></li>
+          <li class="sms-footer__list-item"><a class="sms-footer__link" href="https://www.streamlinesms.co.uk/privacy-policy">Our Privacy Policy</a></li>
+          <li class="sms-footer__list-item"><a class="sms-footer__link" href="https://www.streamlinesms.co.uk/staff-portal">Staff Portal</a></li>
+        </ul>
+      </div>
+      <div class="sms-footer__col">
+        <h2 class="sms-footer__heading">Company</h2>
+        <div class="sms-footer__company">
+          <p>Streamline Safety &amp; Medical Solutions Ltd</p>
+          <p>Registered in England &amp; Wales</p>
+          <p>Company No. 17203554</p>
+          <p>Registered Office: 8 Cobblestone Drive, Swadlincote, Derbyshire, DE11 0FL</p>
+          <p>T: <a class="sms-footer__link" href="tel:01283358789">01283 358789</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.querySelector('.sms-services');
+  if (!root) return;
+  var tablist = root.querySelector('[role="tablist"]');
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+  var panels = Array.prototype.slice.call(root.querySelectorAll('[data-sms-panel]'));
+  if (!tablist || !tabs.length) return;
+
+  panels.forEach(function (panel, i) {
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', tabs[i].id);
+    panel.setAttribute('tabindex', '0');
+  });
+
+  function select(index, focus) {
+    tabs.forEach(function (tab, i) {
+      var on = i === index;
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
+      panels[i].hidden = !on;
+    });
+    if (focus) tabs[index].focus();
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(i, false); });
+    tab.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+      if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+      if (e.key === 'Home') next = 0;
+      if (e.key === 'End') next = tabs.length - 1;
+      if (next !== null) { e.preventDefault(); select(next, true); }
+    });
+  });
+
+  tablist.hidden = false;
+  select(0, false);
+})();
+</script>
+</body>
+</html>
