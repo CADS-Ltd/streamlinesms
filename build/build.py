@@ -19,7 +19,7 @@ import dark  # noqa: E402
 import importlib  # noqa: E402
 
 CONCEPTS = {}
-for _n in (1, 2, 3, 4, 5, 6, 7, 8, 9):
+for _n in range(1, 13):
     try:
         CONCEPTS[_n] = importlib.import_module("concept%d" % _n)
     except ImportError:
@@ -94,6 +94,9 @@ INDEX_DESC = {
     7: ("Spotlight", "Concept 4's layouts and motion in Streamline's own colours: white and pale green with navy photo heroes. Move a light across the hero, flip the site diagram, and scroll the services past a pinned photo."),
     8: ("Studio", "Concept 5's layouts and motion in Streamline's own colours. A big centred headline over a self-sweeping photo comparison, tilting service tiles, a course-length picker and navy diagram panels."),
     9: ("Heartbeat", "Concept 6's layouts and motion in Streamline's own colours, with the green top bar. A green heartbeat line, the which-service chooser, a navy rail of event types and stacking navy cards."),
+    10: ("Horizon", "New elements with the same calm, cinematic feel, in Streamline's own colours. A slow film strip of photos, a big service list with a photo that follows the pointer, the mission lighting up word by word, a where-we-work map and a booking journey that scrolls sideways."),
+    11: ("Contour", "New elements, same feel, Streamline's own colours. Fanned photo cards that spread out, service panels that open up, flip cards, a bespoke-training topic explorer and a get-your-quote-ready checklist."),
+    12: ("Signal", "New elements, same feel, Streamline's own colours. A calm radar sweep behind the headline, a needs-assessment grid that lights up as you scroll, a five-step consultation stepper and a career journey line."),
     6: ("Pulse", "Dark navy with green light. A heartbeat line across the hero, a which-service-do-you-need chooser, a swipeable rail of event types and cards that stack as you scroll."),
 }
 
@@ -155,7 +158,7 @@ def build_index():
   <div class="sms-index__inner">
     <img class="sms-index__logo" src="assets/streamline-s-m-sol-logo-blue-long.png" alt="Streamline Safety &amp; Medical Solutions" width="2500" height="443">
     <h1 class="sms-index__title">Website concepts</h1>
-    <div class="sms-index__intro"><p>Nine directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo and wording are the same throughout; the layout, mood and how strongly the brand comes through are what change.</p><p>Concepts 1 to 3 are light and friendly. Concepts 4 to 6 are dark and cinematic, built around interactive pieces you can try: move a light, flip a diagram, drag a comparison, pick a course. Concepts 7 to 9 keep those layouts and interactive pieces in Streamline&rsquo;s own colour scheme.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
+    <div class="sms-index__intro"><p>Twelve directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo and wording are the same throughout; the layout, mood and how strongly the brand comes through are what change.</p><p>Concepts 1 to 3 are light and friendly. Concepts 4 to 6 are dark and cinematic, built around interactive pieces you can try: move a light, flip a diagram, drag a comparison, pick a course. Concepts 7 to 9 keep those layouts and interactive pieces in Streamline&rsquo;s own colour scheme. Concepts 10 to 12 keep the same calm, cinematic feel with all-new interactive pieces, also in Streamline&rsquo;s own colours.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
     <ul class="sms-index__list">%s</ul>
     <div class="sms-index__note"><p>Pitch concepts by CADS. Not for indexing.</p></div>
   </div>

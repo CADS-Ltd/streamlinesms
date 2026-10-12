@@ -2,10 +2,10 @@
 
 These are pitch concepts by CADS for Streamline Safety & Medical Solutions Ltd (https://www.streamlinesms.co.uk). They are not production code, but are built to port to WordPress/Elementor.
 
-- `index.html`: links to the nine concepts and every page in each
-- `concept-1.html` to `concept-9.html`: the homepages
+- `index.html`: links to the twelve concepts and every page in each
+- `concept-1.html` to `concept-12.html`: the homepages
 - `concept-N/`: the eight inner pages for each concept: `event-medical-cover`, `medical-training`, `risk-needs-consultancy`, `pre-hospital-career-support`, `recruitment`, `about`, `contact` and `book` (the interactive booking demo)
-- `build/`: the generator. All 81 pages are built from one content file, so the wording is identical in every concept
+- `build/`: the generator. All 108 pages are built from one content file, so the wording is identical in every concept
 - `reference/`: raw HTML of the live site, its CSS, `brand.md`, `content.md` and `images.md`
 - `assets/`: logo, logo shield, badges, every image downloaded from the live site, and `assets/photos/` (the crops used in the designs; see below)
 
@@ -24,7 +24,33 @@ python3 build/build.py
 | `build/booking.py` | The booking wizard: markup, CSS and script |
 | `build/dark.py` | The shared dark theme for concepts 4 to 6, plus the radio-button switch helpers used by their interactive pieces |
 | `build/light.py` | The light theme for concepts 7 to 9: Streamline's original colours, plus navy "islands" for the photo heroes, panels and footer |
-| `build/concept1.py` to `concept9.py` | Each concept's theme: colours, fonts and highlight style, page hero, call-to-action band, footer colours, homepage layout and any interactive pieces added to inner pages |
+| `build/concept1.py` to `concept12.py` | Each concept's theme: colours, fonts and highlight style, page hero, call-to-action band, footer colours, homepage layout and any interactive pieces added to inner pages |
+
+## Round 6: concepts 10, 11 and 12 (same feel, new elements, original colours)
+
+The brief this time: the feel of the Pristine Motors concepts J and K, but not their elements. So these three keep the mood (light display type, generous space, calm and precise motion, explainers you can play with) but none of the round 4 to 5 pieces come back: no inspection light, photo sweep, ring, tilting tiles, course picker, heartbeat line or service chooser. All three use Streamline's original colours, like concepts 7 to 9.
+
+- **Concept 10, Horizon** (Montserrat):
+  - a slow film strip of photos drifting under the hero, which pauses on hover
+  - a big typographic service list where a photo follows the pointer from row to row (on touch screens each row shows a small photo instead)
+  - the mission statement lighting up word by word as you scroll
+  - a where-we-work map that pulses out from Swadlincote, from the FAQ "Which areas do you cover?"
+  - the booking information as a journey that scrolls sideways while you scroll down (on phones, and in browsers without scroll-driven animation, it is a swipeable row)
+  - inner pages: the sideways journey replaces the booking block on Event Medical Cover, the word-by-word mission and vision replace the quote cards on About, and Contact gets the map
+- **Concept 11, Contour** (Outfit). Every interactive piece is HTML and CSS only, so the whole concept works without JavaScript:
+  - a fan of photo cards that deals in and spreads out on hover
+  - service panels that open up when you pick one; on phones they become an accordion
+  - "What to expect" flip cards that turn over
+  - a bespoke training explorer that shows the real example topics for care homes, sports clubs, schools and workplaces
+  - a "What information is needed for a quote?" checklist with a progress bar and an all-ready message; nothing is saved or sent
+  - inner pages: Medical Training gets the flip cards and explorer (in place of the four expectation cards), and Event Medical Cover gets the checklist (in place of the booking block)
+- **Concept 12, Signal** (Urbanist):
+  - a slow radar sweep with blips behind the navy hero and call-to-action
+  - a first aid needs assessment grid of the eight factors from the consultancy page, which lights up one by one under a scanning beam as you scroll
+  - a five-step consultation stepper with a progress line
+  - a career journey where you pick your starting point (the seven groups the live site lists) above the four-step support line
+  - inner pages: Risk & Needs Consultancy gets the grid and stepper (in place of the steps block), and Pre-Hospital Career Support gets the journey (in place of the intro and steps)
+- Short interface labels such as "Turn over", "Your starting point", "Choose a service to open it up" and "Tick off what you already know" are CADS labels, not claims. Maps and diagrams are marked "Illustration, not to scale".
 
 ## Round 5: concepts 7, 8 and 9 (round 4 layouts in the original colours)
 
@@ -75,7 +101,7 @@ Mathew asked for a site that is lighter, warmer and less corporate, with the Str
 - **Bigger photos.** Hero photo areas are larger. Concept 3's hero is a full-width photo, like Nexus.
 - **Detail is still there, but tidier.** The live site's FAQs are kept word for word in collapsible sections on each service page, so nothing is lost.
 
-## How the nine concepts differ
+## How the twelve concepts differ
 
 1. **Concept 1, editorial split.** White and airy. Split heroes pair the headline with a rounded photo frame on a soft green blob, with floating labels. Key words get a soft green highlight. Homepage services alternate photo and text in a numbered zig-zag. A bobbing green card carries the 15 years line. Call-to-action panels are pale green with three round team photos.
 2. **Concept 2, centred statement.** Light and friendly. Pale-green centred heroes with floating bubbles lead into a wide photo collage, with a round second photo and labels. Key words are in green, a strip of four icon cards explains why to choose Streamline, and services are photo cards that zoom on hover. Call-to-action bands are solid green, and the footer is light.
@@ -89,7 +115,11 @@ Mathew asked for a site that is lighter, warmer and less corporate, with the Str
 8. **Concept 8, Studio.** Concept 5 in the original colours: pale-green and white, green pill buttons, a white floating header and navy diagram and call-to-action panels.
 9. **Concept 9, Heartbeat.** Concept 6 in the original colours: green top bar, white sections, a green heartbeat line, a navy event-types band and navy stacking cards.
 
-All nine use the same logo, the same copy and the site's own navy `#061E35` and green `#407F36`. On the dark concepts, green text uses the site's lighter tint (`#82D06E` or close to it) for contrast. Neutrals and tints are taken from the live site's own CSS.
+10. **Concept 10, Horizon.** Calm and typographic: a film strip of photos, a big service list with a photo that follows the pointer, a word-by-word mission, a pulsing area map and a sideways booking journey.
+11. **Concept 11, Contour.** Layered and tactile: fanned photo cards, service panels that open up, flip cards, a bespoke topic explorer and a quote checklist. Works fully without JavaScript.
+12. **Concept 12, Signal.** Precise and calm: a radar sweep on navy, a needs-assessment grid that scans as you scroll, a consultation stepper and a career journey picker.
+
+All twelve use the same logo, the same copy and the site's own navy `#061E35` and green `#407F36`. On the dark concepts, green text uses the site's lighter tint (`#82D06E` or close to it) for contrast. Neutrals and tints are taken from the live site's own CSS.
 
 ## Placeholders used
 
@@ -207,7 +237,7 @@ These are questions only. Nothing here has been added to the designs.
 
 None found. The only phone number anywhere on the site, in the visible text and in the page code, is the landline **01283 358789**.
 
-## Accessibility and build checks (all 81 pages plus the index)
+## Accessibility and build checks (all 108 pages plus the index)
 
 - **Contrast (WCAG AA):** every text/background pair as rendered was measured in Chromium at 375px, 800px and 1440px, with FAQ panels open. All pass.
   - The tightest pairs are green on the pale panel (4.54:1) and green on white or white on green (4.88:1).
