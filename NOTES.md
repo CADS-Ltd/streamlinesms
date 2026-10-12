@@ -4,10 +4,10 @@ These are pitch concepts by CADS for Streamline Safety & Medical Solutions Ltd (
 
 - `index.html`: links to the three concepts and every page in each
 - `concept-1.html`, `concept-2.html`, `concept-3.html`: the homepages
-- `concept-N/`: the seven inner pages for each concept: `event-medical-cover`, `medical-training`, `risk-needs-consultancy`, `pre-hospital-career-support`, `recruitment`, `about` and `contact`
-- `build/`: the generator. All 24 pages are built from one content file, so the wording is identical in every concept
+- `concept-N/`: the eight inner pages for each concept: `event-medical-cover`, `medical-training`, `risk-needs-consultancy`, `pre-hospital-career-support`, `recruitment`, `about`, `contact` and `book` (the interactive booking demo)
+- `build/`: the generator. All 27 pages are built from one content file, so the wording is identical in every concept
 - `reference/`: raw HTML of the live site, its CSS, `brand.md`, `content.md` and `images.md`
-- `assets/`: logo, logo shield, badges, photo placeholders, and every image downloaded from the live site (most are reference only and not used; see below)
+- `assets/`: logo, logo shield, badges, every image downloaded from the live site, and `assets/photos/` (the crops used in the designs; see below)
 
 ## Editing and rebuilding
 
@@ -20,8 +20,22 @@ python3 build/build.py
 | File | Holds |
 |---|---|
 | `build/content.py` | All page copy, taken from the live site. FAQs are read straight from the saved pages in `reference/` |
-| `build/common.py` | Header, footer, shared sections (intro, cards, steps, FAQ, people, contact form and others), base CSS and motion rules |
+| `build/common.py` | Header, footer, shared sections (intro, cards, steps, FAQ, people, contact form and others), icons, base CSS and motion rules |
+| `build/booking.py` | The booking wizard: markup, CSS and script |
 | `build/concept1.py`, `concept2.py`, `concept3.py` | Each concept's theme: colours and highlight style, page hero, call-to-action band, footer colours and homepage layout |
+
+## Round 3: friendlier, photos, motion, less text, booking demo
+
+- **Photos instead of placeholders.** Every placeholder is replaced with a crop of the client's own images from the live site (see "Images used"). Most of these images appear to be AI-generated, so they are stand-ins to show the layout with real Streamline imagery. Replace them with genuine photos before launch. Stock photography was offered as the alternative.
+- **Friendlier.** Rounded photo frames, soft green blobs and tints, pill buttons, line icons on every card and list, and small floating labels on the hero photos.
+- **Animated.** Hero photos and headlines rise in. Sections, cards and timeline steps reveal as you scroll, with a staggered order. Photos drift gently (parallax), hero labels float, a scrolling strip shows the service areas, and buttons, cards and photos respond on hover. The process steps draw a growing line. All of this is turned off for visitors who ask for reduced motion.
+- **Less reading per section.** Each block shows its first sentence. The rest sits behind "Read more". Lists became icon chips, steps became a timeline, and long FAQ lists show five questions, with "Show all" and a live search. No copy was removed; it is all one click away.
+- **Interactive booking demo (`book.html` in each concept).** A four-step form: choose a service, answer questions for that service, add your details, then check and send. It has a progress bar, a live summary panel, friendly validation, and a confirmation screen with a demo reference number. Service buttons across the site open it with that service already chosen (`book.html?service=event`, `training`, `consultancy` or `careers`). Extras show what is possible:
+  - a notice when the event date is less than a month away, based on the live FAQ's advice to phone directly for an event within one month
+  - a "what would you like covered" box that appears only when Bespoke Course is chosen
+  - a plus/minus learner counter and an attendance slider
+  - Without JavaScript it falls back to one long form, and the send button stays disabled. Nothing is sent or stored in any case. On the live site this would connect to a form plugin and email the team.
+- **Short labels.** Chip and hero labels are shortened versions of sentences on the live pages (mostly FAQ answers), for example the industries list on the consultancy page. "Demo form: nothing is sent" is a CADS label for the demo.
 
 ## Round 2: changes from Mathew's feedback (12 October)
 
@@ -35,23 +49,21 @@ Mathew asked for a site that is lighter, warmer and less corporate, with the Str
 
 ## How the three concepts differ
 
-1. **Concept 1, editorial split.** White and airy. Split heroes pair the headline with a large portrait photo, and key words get a soft green highlight underneath. Homepage services are a numbered list, and call-to-action panels are pale green.
-2. **Concept 2, centred statement.** Light and friendly. Pale-green centred heroes have the logo shield behind them and a wide photo overlapping below. Key words are in green, services are cards topped with photos, call-to-action bands are solid green, and the footer is light.
-3. **Concept 3, bold brand.** The most branded option and the closest to Nexus. A green top bar sits above full-width photo heroes with headlines boxed in navy and solid green, plus angled green edges. Three booking panels overlap the hero, and homepage services are in tabs.
+1. **Concept 1, editorial split.** White and airy. Split heroes pair the headline with a rounded photo frame on a soft green blob, with floating labels. Key words get a soft green highlight. Homepage services alternate photo and text in a numbered zig-zag. A bobbing green card carries the 15 years line. Call-to-action panels are pale green with three round team photos.
+2. **Concept 2, centred statement.** Light and friendly. Pale-green centred heroes with floating bubbles lead into a wide photo collage, with a round second photo and labels. Key words are in green, a strip of four icon cards explains why to choose Streamline, and services are photo cards that zoom on hover. Call-to-action bands are solid green, and the footer is light.
+3. **Concept 3, bold brand.** The most branded option and the closest to Nexus. A green top bar sits above split heroes with an angled photo, headlines boxed in navy and solid green, and a white intro card. Three "Find out more" panels lead to the services, which sit in tabs with photos. The approach section pairs "Working With You, Not Simply For You" with a festival photo and Mathew's quote.
 
 All three use the same logo, the same copy and the site's own navy `#061E35` and green `#407F36`. Neutrals and tints are taken from the live site's own CSS.
 
 ## Placeholders used
 
-No number, statistic or contact placeholders were needed. The real phone number, email and address are used throughout. Each page lists its own placeholders in a comment block at the top.
+No placeholder images, numbers or contact details remain. The real phone number, email and address are used throughout. Each page lists its photos and notes in a comment block at the top.
 
-| Placeholder | Where | What should go there |
+| Item | Where | What is needed |
 |---|---|---|
-| `assets/placeholder-portrait.svg` | Concept 1 page heroes (all pages except Contact). About page director portraits in all three concepts. Concept 2 homepage directors | Genuine photos: directors in uniform, team at events, training, assessments, interview practice. Each page's comment says which |
-| `assets/placeholder-wide.svg` | Concept 2 page heroes (all pages except Contact) | Wide genuine photo matching the page topic |
-| `assets/placeholder-landscape.svg` | Concept 2 homepage service cards (x3) | One genuine photo per service |
-| `assets/placeholder-hero.svg` | Concept 3 page heroes (all pages except Contact) | Full-width genuine hero photo matching the page topic |
-| Contact form | Contact page, all three concepts | Not connected. Shows a "concept only" message. To be wired to a WordPress form plugin (for example Gravity Forms or Elementor Forms) |
+| Photos in `assets/photos/` | Every page | Genuine photos to replace the stand-ins. Most source images appear to be AI-generated (see below) |
+| Contact form | Contact pages | Not connected. Shows a "concept only" message. To be wired to a WordPress form plugin (for example Gravity Forms or Elementor Forms) |
+| Booking demo | `book.html` pages | Not connected. Shows how a booking form could work. To be rebuilt in the chosen form plugin (multi-step forms and conditional fields are supported by Gravity Forms and Elementor Pro Forms) |
 
 ### Copy taken from images on the live site
 
@@ -69,11 +81,13 @@ These lines appear on the live site, but only as text inside images. Confirm the
 ### Content notes
 
 - **Typo left out:** the Event Medical Cover strapline "Expert medical teams. Precession solutions." is omitted, because it contains the typo. Ask the client whether they want it back, corrected to "Precision".
-- **Links:** buttons that say "book" or "register interest" go to the concept's own Contact page. The training catalogue goes to the client's Google Drive file. The privacy policy and staff portal go to the live site.
+- **Links:** buttons that say "book", "request" or "register interest" open the concept's booking demo with the right service chosen. The training catalogue goes to the client's Google Drive file. The privacy policy and staff portal go to the live site.
 
 ## Images used, with source URLs
 
-Only the logo, the shield cut from it, the two badges and the CADS placeholders are used. Most of the site's photos look AI-generated or AI-composited, and the rest are graphics with text baked in, so none of them are used. The full assessment of all 51 downloaded images is in `reference/images.md`.
+The logo, the shield cut from it, the two badges, and eleven photos cropped from the client's own site images. Crops remove navy fades and baked-in text. No stock and no new AI images were added. The full assessment of all 51 downloaded images is in `reference/images.md`.
+
+**Important:** most of these source photos appear to be AI-generated or AI-composited (garbled lettering on uniforms, lanyards and signs). They show the layouts with Streamline's own imagery, but they should be replaced with genuine photos of the team before launch. Licensed stock photography is the fallback if genuine photos can't be supplied in time.
 
 | File | Used in | Source |
 |---|---|---|
@@ -82,13 +96,26 @@ Only the logo, the shield cut from it, the two badges and the CADS placeholders 
 | `assets/streamline-shield-blue.png`, `assets/streamline-shield-white.png` | Watermarks and brand marks | Cropped by CADS from the two logo files above. No new artwork |
 | `assets/whatsapp-image-2026-07-20-at-12.27.35.jpeg` (Qualsafe registered centre badge) | Concept 1 credentials strip, all footers | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/624ea3d0-f9c6-4379-aca1-455f406240d1/WhatsApp+Image+2026-07-20+at+12.27.35.jpeg |
 | `assets/featured-landscape-purple-medium.png` (Add To Event Featured Supplier badge) | All footers | https://www.addtoevent.co.uk/sites/default/files/badges/featured_landscape_purple_medium.png |
-| `assets/placeholder-*.svg` | See placeholders | Made by CADS. Not client images |
+
+| Photo | Used in | Cropped from | Note |
+|---|---|---|---|
+| `assets/photos/event-medics-festival.jpg` | Event medical cover, homepages, About | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/e63058a6-8081-443c-9dd4-375d98e20f84/medical+cover+patrol.png | Appears AI-generated (garbled logo text on polos) |
+| `assets/photos/team-at-event.jpg` | Homepages, About, Recruitment, CTAs | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/475a0e79-6e42-4dac-8276-625899219649/people+at+event.png | Appears AI-generated (garbled uniform text) |
+| `assets/photos/medic-at-village-fete.jpg` | Event Medical Cover | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/f290b100-02c1-4a34-a3b3-b745d5b58cfb/man+and+village.png | Appears AI-generated |
+| `assets/photos/cpr-training-room.jpg` | Medical Training, homepages | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/70cefefa-3c61-4924-ac94-d60deda71dfa/TRAINING.png | Appears AI-generated |
+| `assets/photos/training-session.jpg` | Medical Training, Career Support | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/8c4d46ae-20ed-45db-b851-22fc69ba65ff/Codex+Image+8+Sept+2026%2C+18_03_40.png | Cropped to the part that looks like a genuine photo. The filename says Codex, so confirm |
+| `assets/photos/cpr-outdoor.jpg` | Career Support, concept 2 | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/c775d5cf-9289-48d5-9f9a-a096ccef4e39/test+3.png | Looks genuine, but low resolution |
+| `assets/photos/event-stall.jpg` | Event Medical Cover, Recruitment, Book | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/fe4bdb21-b650-4dbc-95ab-5decdd2c7203/test+4.png | Appears AI-generated (garbled signs) |
+| `assets/photos/assessor-hi-vis.jpg` | Risk & Needs Consultancy, homepages | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/7847547e-df2b-4acd-8444-fb47d61f300c/risk+and+needs+2.png | Appears AI-generated |
+| `assets/photos/branded-jacket-warehouse.jpg` | Risk & Needs Consultancy | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/de3df2b9-aece-46ad-a2f3-a8208287ef31/WAREHOUSE+AND+SOFT+SHELL.png | Appears AI-generated |
+| `assets/photos/office-phone.jpg` | Contact | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/b768590a-cd1d-4bdd-b16d-f4724c10ee1b/tom+and+PC.png | Appears AI-generated |
+| `assets/photos/directors.jpg` | About, homepages (concepts 1 and 2) | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/37d56115-4ea9-4e12-b84c-e6baddecbf70/mobile+me+%26+tom.png | Possibly AI-generated (garbled lanyard text) |
 
 Usage rights to check:
 
 - **Qualsafe badge.** Qualsafe's own logo, so check their brand guidelines for registered centres.
 - **Add To Event badge.** Add To Event's own badge, served from their site and meant to be embedded by suppliers.
-- **The other images in `assets/`.** These come from the client's live site and are kept for reference only. They are publicly visible on GitHub Pages under `/streamlinesms/assets/`. Delete them from the repo if that's a concern.
+- **The client's images.** The photos are the client's own, from their live site. The uncropped originals in `assets/` are kept for reference only. They are publicly visible on GitHub Pages under `/streamlinesms/assets/`. Delete them from the repo if that's a concern.
 
 ## Things on the live site that looked out of date or inconsistent
 
@@ -144,23 +171,23 @@ These are questions only. Nothing here has been added to the designs.
 
 None found. The only phone number anywhere on the site, in the visible text and in the page code, is the landline **01283 358789**.
 
-## Accessibility and build checks (all 24 pages plus the index)
+## Accessibility and build checks (all 27 pages plus the index)
 
 - **Contrast (WCAG AA):** every text/background pair as rendered was measured in Chromium at 375px, 800px and 1440px, with FAQ panels open. All pass.
   - The tightest pairs are green on the pale panel (4.54:1) and green on white or white on green (4.88:1).
-  - Concept 1's highlight is navy on a pale green tint (12.62:1).
+  - Concept 1's highlight is navy on a pale green tint (12.62:1). The automated checker misreads this gradient as black, so it was checked by hand.
   - Green text on navy uses the site's own lighter tint `#82D06E`.
 - **Layout:** no horizontal scrolling at 375px, 800px or 1440px on any page.
-- **Without JavaScript:** the `details` mobile menu works everywhere. Concept 3's homepage tabs show all three service panels stacked. The contact form shows its "concept only" note.
+- **Without JavaScript:** the `details` mobile menu, "Read more" and "Show all questions" work everywhere. Concept 3's homepage tabs show all three service panels stacked. The FAQ search box is hidden. The booking demo shows as one long form. The contact and booking send buttons stay disabled, so nothing can be posted.
 - **Code rules:**
   - Pure ASCII source with HTML entities; one `h1` per page; no skipped heading levels; every `img` has `alt`, `width` and `height`.
   - Every CSS selector is scoped to its section root. Global tokens, buttons and the highlight sit on `.sms-page`, which maps to Elementor Site Settings and global classes.
   - `min-width: 0` is set on every flex and grid child, verified in the browser.
 - **Motion:**
-  - Hover effects only.
-  - Page headlines (the LCP element) animate in with `transform` only.
-  - Scroll reveals sit inside `@supports (animation-timeline: view())` and use entry-only ranges.
-  - `prefers-reduced-motion` sets `animation: none` and `animation-timeline: none`.
+  - Only `transform` and `opacity` are animated.
+  - Page headlines and hero photos (the LCP elements) animate in with `transform` only, so they are never invisible.
+  - Scroll reveals sit inside `@supports (animation-timeline: view())` and use entry-only ranges. The photo parallax and the timeline line sit in the same block; they follow the element while it is on screen, by design. Browsers without support (currently Firefox and Safari) show everything in place, with the hero entrance, floating labels, scrolling strip and hover effects still running.
+  - `prefers-reduced-motion` sets `animation: none` and `animation-timeline: none`, and turns off transitions.
 
 ## Porting notes (WordPress/Elementor)
 
@@ -168,5 +195,8 @@ None found. The only phone number anywhere on the site, in the visible text and 
 - Each `<section class="sms-...">` maps to one Elementor container. Its scoped CSS can go into that container's Custom CSS, or into the theme stylesheet.
 - Prose sits in `div` containers, as Elementor's Text Editor widget outputs it.
 - Concept 3's homepage tabs use a small inline script that builds on HTML which works without it. Elementor's Tabs widget could replace it, but check it falls back as cleanly.
+- The booking demo is for showing what's possible. Rebuild it in the chosen form plugin rather than porting the script; keep the service-specific questions, the conditional fields and the `?service=` preselect.
+- Scroll-driven animations are plain CSS, so they can go into the theme stylesheet or Elementor's Custom CSS. Elementor's own Motion Effects could replace the parallax.
+- Icons are inline SVG line icons drawn by CADS. They could be swapped for an icon set the theme already loads.
 - Shared sections (intro, cards, steps, FAQ, people, links, contact) map naturally to saved Elementor templates or global widgets.
 - Fonts: Montserrat 400/500/600/700 from Google Fonts, matching the live site.
