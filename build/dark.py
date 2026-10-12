@@ -25,6 +25,19 @@ CSS = r"""
   --sms-shadow-lg: 0 30px 70px rgba(0, 0, 0, 0.45);
   --sms-hw: 300;
   --sms-sw: 700;
+  --sms-title: #ffffff;
+  --sms-on-accent: #04121f;
+  --sms-header-bg: rgba(5, 12, 22, 0.72);
+  --sms-card-pale: #0d1c2d;
+  --sms-footer-bg: #03080f;
+  --sms-seg-on-bg: #f2f6f9;
+  --sms-seg-on-fg: #04121f;
+  --sms-btn-line: rgba(233, 239, 245, 0.32);
+  --sms-error: #ff9e96;
+  --sms-warn: #ffcf66;
+  --sms-hair: rgba(255, 255, 255, 0.05);
+  --sms-ring-line: rgba(255, 255, 255, 0.35);
+  --sms-shade: 5, 12, 22;
   font-weight: 300;
   color-scheme: dark;
 }
@@ -39,13 +52,13 @@ CSS = r"""
 
 /* Buttons: bright green pill with navy text (high contrast on dark) */
 .sms-page .sms-btn { font-weight: 600; letter-spacing: 0.01em; }
-.sms-page .sms-btn--primary { border-color: var(--sms-accent); background: var(--sms-accent); color: #04121f; box-shadow: none; transition: transform 0.4s var(--sms-ease), box-shadow 0.6s var(--sms-ease); }
+.sms-page .sms-btn--primary { border-color: var(--sms-accent); background: var(--sms-accent); color: var(--sms-on-accent); box-shadow: none; transition: transform 0.4s var(--sms-ease), box-shadow 0.6s var(--sms-ease); }
 .sms-page .sms-btn--primary:hover { box-shadow: 0 12px 40px var(--sms-glow); }
-.sms-page .sms-btn--outline { border-color: rgba(233, 239, 245, 0.32); color: var(--sms-ink); }
+.sms-page .sms-btn--outline { border-color: var(--sms-btn-line); color: var(--sms-ink); }
 .sms-page .sms-btn--outline:hover { border-color: var(--sms-ink); background: transparent; color: var(--sms-ink); }
 
 /* Header: glass over the page */
-.sms-header { border-bottom: 1px solid var(--sms-line); background: rgba(5, 12, 22, 0.72); }
+.sms-header { border-bottom: 1px solid var(--sms-line); background: var(--sms-header-bg); }
 .sms-header .sms-header__link { color: var(--sms-ink-soft); font-weight: 400; }
 .sms-header .sms-header__link:hover,
 .sms-header .sms-header__link[aria-current="page"] { color: var(--sms-ink); }
@@ -90,7 +103,7 @@ CSS = r"""
 .sms-contact .sms-contact__title,
 .sms-links .sms-links__title,
 .sms-marquee .sms-marquee__title,
-.sms-booking .sms-booking__title { margin-bottom: 1.25rem; font-size: clamp(2rem, 1.3rem + 2.8vw, 3.6rem); font-weight: var(--sms-hw); line-height: 1.08; letter-spacing: -0.03em; color: #ffffff; }
+.sms-booking .sms-booking__title { margin-bottom: 1.25rem; font-size: clamp(2rem, 1.3rem + 2.8vw, 3.6rem); font-weight: var(--sms-hw); line-height: 1.08; letter-spacing: -0.03em; color: var(--sms-title); }
 .sms-feature .sms-feature__lead,
 .sms-cards .sms-cards__lead,
 .sms-steps .sms-steps__lead,
@@ -136,12 +149,12 @@ CSS = r"""
 
 .sms-cards .sms-cards__item,
 .sms-cards.sms-tone-white .sms-cards__item { background: var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line); }
-.sms-cards.sms-tone-pale .sms-cards__item { background: #0d1c2d; }
+.sms-cards.sms-tone-pale .sms-cards__item { background: var(--sms-card-pale); }
 .sms-cards .sms-cards__item:hover { box-shadow: inset 0 0 0 1px var(--sms-line-green), 0 20px 50px rgba(0, 0, 0, 0.35); }
 .sms-cards .sms-cards__icon,
 .sms-cards.sms-tone-white .sms-cards__icon { background: var(--sms-mint); color: var(--sms-accent); }
 .sms-cards .sms-cards__num { color: var(--sms-accent); font-weight: 300; }
-.sms-cards .sms-cards__name { font-weight: 500; color: #ffffff; }
+.sms-cards .sms-cards__name { font-weight: 500; color: var(--sms-title); }
 .sms-cards .sms-cards__meta,
 .sms-cards.sms-tone-white .sms-cards__meta { background: var(--sms-pale-2); color: var(--sms-ink); font-weight: 400; }
 .sms-cards .sms-cards__meta-icon,
@@ -152,8 +165,8 @@ CSS = r"""
 .sms-steps .sms-steps__badge { background: var(--sms-surface); color: var(--sms-accent); box-shadow: 0 0 0 6px var(--sms-bg), inset 0 0 0 1px var(--sms-line-green); }
 .sms-steps.sms-tone-pale .sms-steps__badge { box-shadow: 0 0 0 6px var(--sms-pale), inset 0 0 0 1px var(--sms-line-green); }
 .sms-steps .sms-steps__line-fill { background: linear-gradient(90deg, var(--sms-accent), rgba(130, 208, 110, 0.4)); }
-.sms-steps .sms-steps__num { background: var(--sms-accent); color: #04121f; }
-.sms-steps .sms-steps__name { font-weight: 500; color: #ffffff; }
+.sms-steps .sms-steps__num { background: var(--sms-accent); color: var(--sms-on-accent); }
+.sms-steps .sms-steps__name { font-weight: 500; color: var(--sms-title); }
 .sms-steps .sms-steps__note,
 .sms-steps.sms-tone-white .sms-steps__note { background: var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line); }
 
@@ -167,21 +180,21 @@ CSS = r"""
 .sms-faq .sms-faq__item,
 .sms-faq.sms-tone-white .sms-faq__item { background: var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line); }
 .sms-faq .sms-faq__q { font-weight: 400; }
-.sms-faq .sms-faq__q:hover { color: #ffffff; }
+.sms-faq .sms-faq__q:hover { color: var(--sms-title); }
 .sms-faq .sms-faq__q::after { background: var(--sms-mint); color: var(--sms-accent); }
 .sms-faq .sms-faq__a a { color: var(--sms-accent); }
-.sms-faq .sms-faq__all-toggle { border-color: rgba(233, 239, 245, 0.32); font-weight: 500; }
+.sms-faq .sms-faq__all-toggle { border-color: var(--sms-btn-line); font-weight: 500; }
 .sms-faq .sms-faq__search-label { font-weight: 500; }
 
 .sms-quotes .sms-quotes__item { background: var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line); }
 .sms-quotes .sms-quotes__icon { background: var(--sms-mint); color: var(--sms-accent); }
 .sms-quotes .sms-quotes__label { color: var(--sms-accent); font-weight: 500; }
-.sms-quotes .sms-quotes__text { font-weight: 300; color: #ffffff; }
+.sms-quotes .sms-quotes__text { font-weight: 300; color: var(--sms-title); }
 
 .sms-people .sms-people__person,
 .sms-people.sms-tone-white .sms-people__person { background: var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line); }
 .sms-people .sms-people__role { background: var(--sms-mint); color: var(--sms-ink); font-weight: 500; }
-.sms-people .sms-people__name { font-weight: 500; color: #ffffff; }
+.sms-people .sms-people__name { font-weight: 500; color: var(--sms-title); }
 .sms-people .sms-people__tags { color: var(--sms-accent); font-weight: 400; }
 .sms-people .sms-people__shared { background: linear-gradient(135deg, rgba(130, 208, 110, 0.12), rgba(130, 208, 110, 0.02)); box-shadow: inset 0 0 0 1px var(--sms-line-green); color: var(--sms-ink); }
 .sms-people .sms-people__shared-label { color: var(--sms-accent); font-weight: 500; }
@@ -198,7 +211,7 @@ CSS = r"""
 
 .sms-claim .sms-claim__icon,
 .sms-claim.sms-tone-pale .sms-claim__icon { background: var(--sms-mint); color: var(--sms-accent); }
-.sms-claim .sms-claim__text { font-weight: 300; color: #ffffff; }
+.sms-claim .sms-claim__text { font-weight: 300; color: var(--sms-title); }
 
 .sms-marquee .sms-marquee__item,
 .sms-marquee.sms-tone-white .sms-marquee__item { background: var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line); font-weight: 400; }
@@ -206,7 +219,7 @@ CSS = r"""
 
 .sms-contact .sms-contact__detail { background: var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line); }
 .sms-contact .sms-contact__icon { background: var(--sms-mint); color: var(--sms-accent); }
-.sms-contact .sms-contact__value { color: #ffffff; font-weight: 500; }
+.sms-contact .sms-contact__value { color: var(--sms-title); font-weight: 500; }
 .sms-contact .sms-contact__value:hover { color: var(--sms-accent); }
 .sms-contact .sms-contact__label { font-weight: 500; }
 .sms-contact .sms-contact__form { background: var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line), var(--sms-shadow-lg); }
@@ -217,20 +230,20 @@ CSS = r"""
 .sms-contact .sms-contact__status { color: var(--sms-accent); }
 
 /* Booking demo */
-.sms-booking .sms-booking__step-title { color: #ffffff; font-weight: 300; letter-spacing: -0.02em; }
+.sms-booking .sms-booking__step-title { color: var(--sms-title); font-weight: 300; letter-spacing: -0.02em; }
 .sms-booking .sms-booking__summary-title,
 .sms-booking .sms-booking__help-title { font-weight: 500; }
 .sms-booking .sms-booking__summary { background: linear-gradient(160deg, rgba(130, 208, 110, 0.12), rgba(130, 208, 110, 0.02)); box-shadow: inset 0 0 0 1px var(--sms-line-green); color: var(--sms-ink); }
 .sms-booking .sms-booking__summary-icon,
 .sms-booking .sms-booking__summary-list dt { color: var(--sms-accent); }
-.sms-booking .sms-booking__input.is-invalid { border-color: #ff8a80; box-shadow: 0 0 0 3px rgba(255, 138, 128, 0.16); }
-.sms-booking .sms-booking__error { color: #ff9e96; }
+.sms-booking .sms-booking__input.is-invalid { border-color: var(--sms-error); box-shadow: 0 0 0 3px rgba(255, 138, 128, 0.16); }
+.sms-booking .sms-booking__error { color: var(--sms-error); }
 .sms-booking .sms-booking__soon { background: rgba(255, 200, 90, 0.1); box-shadow: inset 0 0 0 1px rgba(255, 200, 90, 0.3); }
-.sms-booking .sms-booking__soon-icon { color: #ffcf66; }
-.sms-booking .sms-booking__soon a { color: #ffcf66; }
+.sms-booking .sms-booking__soon-icon { color: var(--sms-warn); }
+.sms-booking .sms-booking__soon a { color: var(--sms-warn); }
 
 /* Footer */
-.sms-footer { border-top: 1px solid var(--sms-line); background: #03080f; color: var(--sms-ink-soft); }
+.sms-footer { border-top: 1px solid var(--sms-line); background: var(--sms-footer-bg); color: var(--sms-ink-soft); }
 .sms-footer .sms-footer__heading { color: var(--sms-ink); font-weight: 600; letter-spacing: 0.22em; }
 .sms-footer .sms-footer__tag { color: var(--sms-ink); font-weight: 400; }
 .sms-footer .sms-footer__link { color: var(--sms-ink-soft); }
@@ -250,7 +263,7 @@ CSS = r"""
 /* Segmented control built from radio inputs (works without JavaScript) */
 .sms-page .sms-seg { display: inline-flex; flex-wrap: wrap; gap: 0.25rem; min-width: 0; margin: 0 0 1rem; padding: 0.3rem; border-radius: 999px; background: var(--sms-pale-2); box-shadow: inset 0 0 0 1px var(--sms-line); }
 .sms-page .sms-seg__label { display: inline-flex; align-items: center; min-width: 0; padding: 0.55rem 1.1rem; border-radius: 999px; color: var(--sms-ink-soft); cursor: pointer; font-size: var(--sms-step--1); font-weight: 500; transition: background-color 0.3s, color 0.3s; }
-.sms-page .sms-seg__label:hover { color: #ffffff; }
+.sms-page .sms-seg__label:hover { color: var(--sms-title); }
 .sms-page .sms-seg__radio { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 """
 
@@ -275,7 +288,7 @@ def seg_css(root, name, n, panel=None, show="display: block;", hide="display: no
     out = []
     for i in range(n):
         r = "%s .sms-%s__r%d" % (root, name, i)
-        out.append("%s:checked ~ * .sms-%s__l%d,\n%s:checked ~ .sms-seg .sms-%s__l%d { background: #f2f6f9; color: #04121f; }" % (r, name, i, r, name, i))
+        out.append("%s:checked ~ * .sms-%s__l%d,\n%s:checked ~ .sms-seg .sms-%s__l%d { background: var(--sms-seg-on-bg); color: var(--sms-seg-on-fg); }" % (r, name, i, r, name, i))
         out.append("%s:focus-visible ~ * .sms-%s__l%d,\n%s:focus-visible ~ .sms-seg .sms-%s__l%d { outline: 3px solid var(--sms-accent); outline-offset: 2px; }" % (r, name, i, r, name, i))
         if panel:
             out.append("%s:checked ~ * .%s%d,\n%s:checked ~ .%s%d { %s }" % (r, panel, i, r, panel, i, show))

@@ -34,7 +34,7 @@ def _choose_css():
     out = ".sms-choose .sms-choose__panel { display: none; }\n"
     for i in range(len(CHOICES)):
         r = ".sms-choose .sms-choose__r%d" % i
-        out += "%s:checked ~ * .sms-choose__opt--%d { background: var(--sms-mint); box-shadow: inset 0 0 0 1.5px var(--sms-accent); color: #ffffff; }\n" % (r, i)
+        out += "%s:checked ~ * .sms-choose__opt--%d { background: var(--sms-mint); box-shadow: inset 0 0 0 1.5px var(--sms-accent); color: var(--sms-title); }\n" % (r, i)
         out += "%s:checked ~ * .sms-choose__opt--%d .sms-choose__tick { opacity: 1; transform: none; }\n" % (r, i)
         out += "%s:focus-visible ~ * .sms-choose__opt--%d { outline: 3px solid var(--sms-accent); outline-offset: 3px; }\n" % (r, i)
         out += "%s:checked ~ * .sms-choose__panel--%d { display: block; }\n" % (r, i)
@@ -59,6 +59,7 @@ CSS = r"""
   --sms-font: "Outfit", "Montserrat", Arial, sans-serif;
   --sms-radius: 1.5rem;
   --sms-hw: 300;
+  --sms-header-bg: rgba(4, 16, 29, 0.78);
   background: radial-gradient(90rem 50rem at 85% -10%, rgba(64, 127, 54, 0.16), transparent 60%), var(--sms-bg);
 }
 .sms-page .sms-mark { background: linear-gradient(90deg, #86d673, #c6f2b8); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: inherit; }
@@ -71,7 +72,7 @@ CSS = r"""
 .sms-topbar .sms-topbar__text { color: var(--sms-ink-soft); font-weight: 400; letter-spacing: 0.06em; }
 .sms-topbar .sms-topbar__link { color: var(--sms-ink); font-weight: 400; }
 .sms-topbar .sms-topbar__icon { color: var(--sms-accent); }
-.sms-header { background: rgba(4, 16, 29, 0.78); }
+.sms-header { background: var(--sms-header-bg); }
 
 /* Heartbeat line (draws itself with transforms only) */
 .sms-page .sms-ecg { position: relative; overflow: hidden; height: clamp(3.5rem, 2.5rem + 4vw, 6rem); pointer-events: none; }
@@ -89,7 +90,7 @@ CSS = r"""
 .sms-phero6 .sms-phero6__copy { min-width: 0; }
 .sms-phero6 .sms-phero6__crumb { margin-bottom: 1.5rem; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-phero6 .sms-phero6__crumb-link { color: var(--sms-ink); }
-.sms-phero6 .sms-phero6__title { margin: 0 0 1.5rem; color: #ffffff; font-size: clamp(2.4rem, 1.4rem + 4vw, 4.8rem); font-weight: 300; line-height: 1.04; letter-spacing: -0.035em; }
+.sms-phero6 .sms-phero6__title { margin: 0 0 1.5rem; color: var(--sms-title); font-size: clamp(2.4rem, 1.4rem + 4vw, 4.8rem); font-weight: 300; line-height: 1.04; letter-spacing: -0.035em; }
 .sms-phero6 .sms-phero6__sub { margin-bottom: 0.6rem; color: var(--sms-accent); font-weight: 500; }
 .sms-phero6 .sms-phero6__lead { max-width: 36rem; color: var(--sms-ink); font-size: var(--sms-step-1); font-weight: 300; line-height: 1.65; }
 .sms-phero6 .sms-phero6__lead p { margin: 0 0 0.75rem; }
@@ -98,8 +99,8 @@ CSS = r"""
 .sms-phero6 .sms-phero6__frame { aspect-ratio: 4 / 3.2; border-radius: var(--sms-radius); box-shadow: 0 0 0 1px var(--sms-line-green), 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(64, 127, 54, 0.25); }
 .sms-phero6 .sms-phero6__frame .sms-photo__img { animation: sms-zoom 2s var(--sms-ease) both; }
 .sms-phero6 .sms-phero6__badges { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.sms-phero6 .sms-phero6__badge { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.5rem 0.9rem 0.5rem 0.55rem; border-radius: 999px; background: rgba(4, 16, 29, 0.78); box-shadow: inset 0 0 0 1px var(--sms-line); color: #ffffff; font-size: var(--sms-step--1); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-.sms-phero6 .sms-phero6__badge-icon { width: 1.6rem; height: 1.6rem; padding: 0.3rem; border-radius: 50%; background: var(--sms-accent); color: #04121f; }
+.sms-phero6 .sms-phero6__badge { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.5rem 0.9rem 0.5rem 0.55rem; border-radius: 999px; background: rgba(4, 16, 29, 0.78); box-shadow: inset 0 0 0 1px var(--sms-line); color: var(--sms-title); font-size: var(--sms-step--1); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.sms-phero6 .sms-phero6__badge-icon { width: 1.6rem; height: 1.6rem; padding: 0.3rem; border-radius: 50%; background: var(--sms-accent); color: var(--sms-on-accent); }
 .sms-phero6 .sms-phero6__badge-text { min-width: 0; }
 .sms-phero6 .sms-ecg { margin-top: clamp(1.5rem, 1rem + 2vw, 3rem); }
 @media (min-width: 60em) {
@@ -111,12 +112,12 @@ CSS = r"""
 .sms-pcta .sms-pcta__inner { position: relative; width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-pcta .sms-pcta__box { display: grid; gap: 1.75rem; align-items: center; padding: clamp(2rem, 1.2rem + 3.5vw, 4rem); border-radius: var(--sms-radius); background: radial-gradient(70% 140% at 100% 0%, rgba(64, 127, 54, 0.4), transparent 60%), linear-gradient(160deg, #0b2036, #071526); box-shadow: inset 0 0 0 1px var(--sms-line-green); }
 .sms-pcta .sms-pcta__copy { min-width: 0; }
-.sms-pcta .sms-pcta__title { margin: 0 0 0.9rem; color: #ffffff; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.4rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.03em; }
+.sms-pcta .sms-pcta__title { margin: 0 0 0.9rem; color: var(--sms-title); font-size: clamp(2rem, 1.3rem + 2.6vw, 3.4rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.03em; }
 .sms-pcta .sms-pcta__text { max-width: 36rem; color: var(--sms-ink-soft); }
 .sms-pcta .sms-pcta__text p { margin: 0; }
 .sms-pcta .sms-pcta__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; min-width: 0; }
 .sms-pcta .sms-pcta__call { display: block; margin-top: 0.75rem; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-pcta .sms-pcta__call a { color: #ffffff; text-underline-offset: 4px; }
+.sms-pcta .sms-pcta__call a { color: var(--sms-title); text-underline-offset: 4px; }
 .sms-pcta .sms-pcta__side { min-width: 0; }
 @media (min-width: 60em) {
   .sms-pcta .sms-pcta__box { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
@@ -128,7 +129,7 @@ CSS = r"""
 .sms-pulse { position: relative; overflow: hidden; padding: clamp(3rem, 2rem + 4vw, 6rem) 0 0; }
 .sms-pulse .sms-pulse__inner { display: grid; gap: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); align-items: center; width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-pulse .sms-pulse__copy { min-width: 0; }
-.sms-pulse .sms-pulse__title { margin: 0 0 1.5rem; color: #ffffff; font-size: clamp(2.6rem, 1.4rem + 4.2vw, 5.1rem); font-weight: 300; line-height: 1; letter-spacing: -0.04em; }
+.sms-pulse .sms-pulse__title { margin: 0 0 1.5rem; color: var(--sms-title); font-size: clamp(2.6rem, 1.4rem + 4.2vw, 5.1rem); font-weight: 300; line-height: 1; letter-spacing: -0.04em; }
 .sms-pulse .sms-pulse__line { display: block; }
 .sms-pulse .sms-pulse__lead { max-width: 34rem; color: var(--sms-ink); font-size: var(--sms-step-1); font-weight: 300; line-height: 1.65; }
 .sms-pulse .sms-pulse__lead p { margin: 0; }
@@ -136,8 +137,8 @@ CSS = r"""
 .sms-pulse .sms-pulse__media { position: relative; min-width: 0; padding: 0 0 3rem 0; }
 .sms-pulse .sms-pulse__main { aspect-ratio: 4 / 3.3; box-shadow: 0 0 0 1px var(--sms-line-green), 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 70px rgba(64, 127, 54, 0.28); }
 .sms-pulse .sms-pulse__small { position: absolute; left: -1rem; bottom: 0; width: 44%; aspect-ratio: 1; border: 5px solid var(--sms-bg); border-radius: 1.25rem; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); animation: sms-bob 7s ease-in-out infinite; }
-.sms-pulse .sms-pulse__chip { position: absolute; right: -0.5rem; top: 1.5rem; display: inline-flex; align-items: center; gap: 0.6rem; max-width: 70%; padding: 0.6rem 1rem 0.6rem 0.6rem; border-radius: 999px; background: rgba(4, 16, 29, 0.82); box-shadow: inset 0 0 0 1px var(--sms-line-green); color: #ffffff; font-size: var(--sms-step--1); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); animation: sms-float 9s ease-in-out infinite; }
-.sms-pulse .sms-pulse__chip-icon { width: 1.9rem; height: 1.9rem; padding: 0.4rem; border-radius: 50%; background: var(--sms-accent); color: #04121f; }
+.sms-pulse .sms-pulse__chip { position: absolute; right: -0.5rem; top: 1.5rem; display: inline-flex; align-items: center; gap: 0.6rem; max-width: 70%; padding: 0.6rem 1rem 0.6rem 0.6rem; border-radius: 999px; background: rgba(4, 16, 29, 0.82); box-shadow: inset 0 0 0 1px var(--sms-line-green); color: var(--sms-title); font-size: var(--sms-step--1); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); animation: sms-float 9s ease-in-out infinite; }
+.sms-pulse .sms-pulse__chip-icon { width: 1.9rem; height: 1.9rem; padding: 0.4rem; border-radius: 50%; background: var(--sms-accent); color: var(--sms-on-accent); }
 .sms-pulse .sms-pulse__chip-text { min-width: 0; }
 .sms-pulse .sms-ecg { margin-top: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
 @media (min-width: 60em) {
@@ -148,7 +149,7 @@ CSS = r"""
 .sms-choose { padding: var(--sms-section) 0; }
 .sms-choose .sms-choose__inner { width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-choose .sms-choose__head { max-width: 44rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem); }
-.sms-choose .sms-choose__title { margin: 0 0 1rem; color: #ffffff; font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
+.sms-choose .sms-choose__title { margin: 0 0 1rem; color: var(--sms-title); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
 .sms-choose .sms-choose__intro { color: var(--sms-ink-soft); }
 .sms-choose .sms-choose__intro p { margin: 0; }
 .sms-choose .sms-choose__grid { display: grid; gap: 1.5rem; align-items: start; }
@@ -158,10 +159,10 @@ CSS = r"""
 .sms-choose .sms-choose__opt:hover { transform: translateX(4px); }
 .sms-choose .sms-choose__opt-icon { width: 2.6rem; height: 2.6rem; padding: 0.6rem; border-radius: 0.8rem; background: var(--sms-mint); color: var(--sms-accent); }
 .sms-choose .sms-choose__opt-text { min-width: 0; }
-.sms-choose .sms-choose__tick { position: absolute; right: 1rem; top: 50%; width: 1.5rem; height: 1.5rem; margin-top: -0.75rem; padding: 0.25rem; border-radius: 50%; background: var(--sms-accent); color: #04121f; opacity: 0; transform: scale(0.4); transition: opacity 0.3s, transform 0.3s var(--sms-ease); }
+.sms-choose .sms-choose__tick { position: absolute; right: 1rem; top: 50%; width: 1.5rem; height: 1.5rem; margin-top: -0.75rem; padding: 0.25rem; border-radius: 50%; background: var(--sms-accent); color: var(--sms-on-accent); opacity: 0; transform: scale(0.4); transition: opacity 0.3s, transform 0.3s var(--sms-ease); }
 .sms-choose .sms-choose__panel { min-width: 0; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: radial-gradient(80% 120% at 100% 0%, rgba(64, 127, 54, 0.22), transparent 60%), var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line-green); animation: sms-fade-up 0.5s var(--sms-ease) both; }
 .sms-choose .sms-choose__label { margin-bottom: 0.75rem; color: var(--sms-accent); font-size: var(--sms-step--1); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
-.sms-choose .sms-choose__name { margin: 0 0 0.75rem; color: #ffffff; font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; }
+.sms-choose .sms-choose__name { margin: 0 0 0.75rem; color: var(--sms-title); font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; }
 .sms-choose .sms-choose__text { color: var(--sms-ink-soft); }
 .sms-choose .sms-choose__text p { margin: 0 0 1.25rem; }
 .sms-choose .sms-choose__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
@@ -175,13 +176,13 @@ CSS = r"""
 .sms-rail { padding: var(--sms-section) 0; background: var(--sms-pale); }
 .sms-rail .sms-rail__inner { width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-rail .sms-rail__head { display: grid; gap: 1.25rem; align-items: end; margin-bottom: clamp(1.75rem, 1.25rem + 2vw, 2.75rem); }
-.sms-rail .sms-rail__title { min-width: 0; margin: 0 0 1rem; color: #ffffff; font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
+.sms-rail .sms-rail__title { min-width: 0; margin: 0 0 1rem; color: var(--sms-title); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
 .sms-rail .sms-rail__intro { max-width: 34rem; min-width: 0; color: var(--sms-ink-soft); }
 .sms-rail .sms-rail__intro p { margin: 0; }
 .sms-rail .sms-rail__nav { display: flex; gap: 0.5rem; min-width: 0; }
 .sms-rail .sms-rail__nav[hidden] { display: none; }
-.sms-rail .sms-rail__btn { display: grid; place-items: center; width: 3rem; height: 3rem; border: 0; border-radius: 50%; background: transparent; box-shadow: inset 0 0 0 1px rgba(234, 241, 246, 0.35); color: #ffffff; cursor: pointer; transition: transform 0.3s var(--sms-ease), background-color 0.3s; }
-.sms-rail .sms-rail__btn:hover { background: var(--sms-accent); color: #04121f; }
+.sms-rail .sms-rail__btn { display: grid; place-items: center; width: 3rem; height: 3rem; border: 0; border-radius: 50%; background: transparent; box-shadow: inset 0 0 0 1px var(--sms-ring-line); color: var(--sms-title); cursor: pointer; transition: transform 0.3s var(--sms-ease), background-color 0.3s; }
+.sms-rail .sms-rail__btn:hover { background: var(--sms-accent); color: var(--sms-on-accent); }
 .sms-rail .sms-rail__btn-icon { width: 1.2rem; height: 1.2rem; }
 .sms-rail .sms-rail__btn--prev .sms-rail__btn-icon { transform: rotate(180deg); }
 .sms-rail .sms-rail__track { display: grid; grid-auto-columns: minmax(16rem, 78%); grid-auto-flow: column; gap: 1rem; margin: 0; padding: 0.25rem 0 1.25rem; overflow-x: auto; list-style: none; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: rgba(134, 214, 115, 0.5) transparent; }
@@ -189,7 +190,7 @@ CSS = r"""
 .sms-rail .sms-rail__card::before { content: ""; position: absolute; right: -4rem; top: -4rem; width: 14rem; height: 14rem; border-radius: 50%; background: radial-gradient(closest-side, rgba(134, 214, 115, 0.2), transparent); }
 .sms-rail .sms-rail__num { position: relative; color: var(--sms-ink-soft); font-size: 0.8125rem; letter-spacing: 0.2em; }
 .sms-rail .sms-rail__icon { position: relative; width: 4rem; height: 4rem; margin: 1.5rem 0 auto; padding: 0.9rem; border-radius: 1.2rem; background: var(--sms-mint); box-shadow: inset 0 0 0 1px var(--sms-line-green); color: var(--sms-accent); }
-.sms-rail .sms-rail__name { position: relative; margin: 2rem 0 0.4rem; color: #ffffff; font-size: var(--sms-step-1); font-weight: 400; }
+.sms-rail .sms-rail__name { position: relative; margin: 2rem 0 0.4rem; color: var(--sms-title); font-size: var(--sms-step-1); font-weight: 400; }
 .sms-rail .sms-rail__text { position: relative; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-rail .sms-rail__text p { margin: 0; }
 .sms-rail .sms-rail__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1rem; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
@@ -205,11 +206,11 @@ CSS = r"""
 .sms-stack { padding: var(--sms-section) 0; }
 .sms-stack .sms-stack__inner { display: grid; gap: clamp(2rem, 1.5rem + 3vw, 4rem); width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-stack .sms-stack__copy { min-width: 0; }
-.sms-stack .sms-stack__title { margin: 0 0 1.25rem; color: #ffffff; font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
+.sms-stack .sms-stack__title { margin: 0 0 1.25rem; color: var(--sms-title); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
 .sms-stack .sms-stack__text { max-width: 32rem; color: var(--sms-ink-soft); }
 .sms-stack .sms-stack__text p { margin: 0 0 1rem; }
 .sms-stack .sms-stack__claim { display: flex; gap: 0.9rem; align-items: center; max-width: 32rem; margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: 1.1rem; background: var(--sms-mint); box-shadow: inset 0 0 0 1px var(--sms-line-green); color: var(--sms-ink); }
-.sms-stack .sms-stack__claim-icon { width: 2.4rem; height: 2.4rem; padding: 0.55rem; border-radius: 50%; background: var(--sms-accent); color: #04121f; }
+.sms-stack .sms-stack__claim-icon { width: 2.4rem; height: 2.4rem; padding: 0.55rem; border-radius: 50%; background: var(--sms-accent); color: var(--sms-on-accent); }
 .sms-stack .sms-stack__claim-text { min-width: 0; }
 .sms-stack .sms-stack__list { display: grid; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
 .sms-stack .sms-stack__card { position: sticky; display: grid; gap: 1rem; min-width: 0; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: linear-gradient(160deg, #0f2740, #0a1a2c); box-shadow: inset 0 0 0 1px var(--sms-line), 0 -20px 50px rgba(0, 0, 0, 0.35); }
@@ -220,7 +221,7 @@ CSS = r"""
 .sms-stack .sms-stack__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .sms-stack .sms-stack__icon { width: 3.25rem; height: 3.25rem; padding: 0.75rem; border-radius: 1rem; background: var(--sms-mint); box-shadow: inset 0 0 0 1px var(--sms-line-green); color: var(--sms-accent); }
 .sms-stack .sms-stack__num { color: var(--sms-ink-soft); font-size: 0.8125rem; letter-spacing: 0.2em; }
-.sms-stack .sms-stack__name { margin: 0; color: #ffffff; font-size: clamp(1.5rem, 1.25rem + 1vw, 2.1rem); font-weight: 300; line-height: 1.15; }
+.sms-stack .sms-stack__name { margin: 0; color: var(--sms-title); font-size: clamp(1.5rem, 1.25rem + 1vw, 2.1rem); font-weight: 300; line-height: 1.15; }
 .sms-stack .sms-stack__desc { color: var(--sms-ink-soft); }
 .sms-stack .sms-stack__desc p { margin: 0; }
 @media (min-width: 60em) {
@@ -233,7 +234,7 @@ CSS = r"""
 .sms-valid { padding: var(--sms-section) 0; background: var(--sms-pale); }
 .sms-valid .sms-valid__inner { display: grid; gap: clamp(2.5rem, 1.5rem + 4vw, 5rem); align-items: center; width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-valid .sms-valid__copy { min-width: 0; }
-.sms-valid .sms-valid__title { margin: 0 0 1.25rem; color: #ffffff; font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
+.sms-valid .sms-valid__title { margin: 0 0 1.25rem; color: var(--sms-title); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
 .sms-valid .sms-valid__text { max-width: 32rem; color: var(--sms-ink-soft); }
 .sms-valid .sms-valid__text p { margin: 0 0 1rem; }
 .sms-valid .sms-valid__panel { min-width: 0; padding: clamp(1.25rem, 0.8rem + 2vw, 2.25rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: inset 0 0 0 1px var(--sms-line), var(--sms-shadow-lg); }
@@ -285,7 +286,7 @@ CSS = r"""
 .sms-path { padding: var(--sms-section) 0; view-timeline-name: --sms-path; }
 .sms-path .sms-path__inner { width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-path .sms-path__head { display: grid; gap: 1.25rem; align-items: end; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.25rem); }
-.sms-path .sms-path__title { min-width: 0; margin: 0; color: #ffffff; font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
+.sms-path .sms-path__title { min-width: 0; margin: 0; color: var(--sms-title); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.035em; }
 .sms-path .sms-path__intro { max-width: 30rem; min-width: 0; color: var(--sms-ink-soft); }
 .sms-path .sms-path__intro p { margin: 0 0 1rem; }
 .sms-path .sms-path__track { position: relative; }
@@ -295,7 +296,7 @@ CSS = r"""
 .sms-path .sms-path__step { display: grid; grid-template-columns: 2.8rem minmax(0, 1fr); gap: 1rem; align-items: center; min-width: 0; }
 .sms-path .sms-path__dot { display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border-radius: 50%; background: var(--sms-bg); box-shadow: inset 0 0 0 1.5px var(--sms-accent), 0 0 0 6px var(--sms-bg); color: var(--sms-accent); }
 .sms-path .sms-path__dot-icon { width: 1.2rem; height: 1.2rem; }
-.sms-path .sms-path__name { min-width: 0; margin: 0; color: #ffffff; font-size: var(--sms-step-0); font-weight: 400; line-height: 1.35; }
+.sms-path .sms-path__name { min-width: 0; margin: 0; color: var(--sms-title); font-size: var(--sms-step-0); font-weight: 400; line-height: 1.35; }
 @media (min-width: 60em) {
   .sms-path .sms-path__head { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
   .sms-path .sms-path__line { left: 1.4rem; right: 1.4rem; top: 1.4rem; bottom: auto; width: auto; height: 2px; }
@@ -330,8 +331,8 @@ def ecg(cls=""):
     path = "M0,70 " + " ".join("L" + p for p in pts) + " L1200,70"
     return """<div class="sms-ecg%s" aria-hidden="true">
   <div class="sms-ecg__wipe"><div class="sms-ecg__inner"><svg class="sms-ecg__svg" viewBox="0 0 1200 120" preserveAspectRatio="none" focusable="false" xmlns="http://www.w3.org/2000/svg">
-    <path d="%s" fill="none" stroke="rgba(134,214,115,0.25)" stroke-width="6" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
-    <path d="%s" fill="none" stroke="#86d673" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+    <path class="sms-ecg__glow" d="%s" fill="none" stroke="rgba(134,214,115,0.25)" stroke-width="6" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+    <path class="sms-ecg__line" d="%s" fill="none" stroke="#86d673" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
   </svg></div></div>
   <span class="sms-ecg__scan"></span>
 </div>""" % ((" " + cls) if cls else "", path, path)

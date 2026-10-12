@@ -19,7 +19,7 @@ import dark  # noqa: E402
 import importlib  # noqa: E402
 
 CONCEPTS = {}
-for _n in (1, 2, 3, 4, 5, 6):
+for _n in (1, 2, 3, 4, 5, 6, 7, 8, 9):
     try:
         CONCEPTS[_n] = importlib.import_module("concept%d" % _n)
     except ImportError:
@@ -28,7 +28,7 @@ for _n in (1, 2, 3, 4, 5, 6):
 
 def render(n, mod, slug):
     ctx = K.Ctx(n, slug)
-    is_dark = getattr(mod, "DARK", False)
+    is_dark = getattr(mod, "DARK", False) or getattr(mod, "CINE", False)
     theme = dark.CSS if is_dark else ""
     trans = mod.TRANS + booking.TRANS + (dark.TRANS if is_dark else [])
     css = K.BASE_CSS + booking.CSS + theme + mod.CSS + K.motion_css(mod.REVEAL, mod.RISE, mod.ENTRANCE, mod.LOOP, trans, booking.ANIM + getattr(mod, 'OPEN', []))
@@ -91,6 +91,9 @@ INDEX_DESC = {
     3: ("Bold brand", "The most branded option. Green top bar, split photo heroes with boxed navy and green headlines, angled brand shapes, booking panels and tabbed services with photos."),
     4: ("Night shift", "Dark and cinematic. Move an inspection light across the hero photo, switch an event site from unassessed to assessed, and scroll through the services while a pinned photo changes."),
     5: ("Graphite", "Dark and refined. A big centred headline over a photo comparison that sweeps itself, service tiles that tilt towards the pointer, a course-length picker and tabbed diagrams."),
+    7: ("Spotlight", "Concept 4's layouts and motion in Streamline's own colours: white and pale green with navy photo heroes. Move a light across the hero, flip the site diagram, and scroll the services past a pinned photo."),
+    8: ("Studio", "Concept 5's layouts and motion in Streamline's own colours. A big centred headline over a self-sweeping photo comparison, tilting service tiles, a course-length picker and navy diagram panels."),
+    9: ("Heartbeat", "Concept 6's layouts and motion in Streamline's own colours, with the green top bar. A green heartbeat line, the which-service chooser, a navy rail of event types and stacking navy cards."),
     6: ("Pulse", "Dark navy with green light. A heartbeat line across the hero, a which-service-do-you-need chooser, a swipeable rail of event types and cards that stack as you scroll."),
 }
 
@@ -152,7 +155,7 @@ def build_index():
   <div class="sms-index__inner">
     <img class="sms-index__logo" src="assets/streamline-s-m-sol-logo-blue-long.png" alt="Streamline Safety &amp; Medical Solutions" width="2500" height="443">
     <h1 class="sms-index__title">Website concepts</h1>
-    <div class="sms-index__intro"><p>Six directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo, colours and wording are the same in all six; the layout, mood and how strongly the brand comes through are what change.</p><p>Concepts 1 to 3 are light and friendly. Concepts 4 to 6 are dark and cinematic, built around interactive pieces you can try: move a light, flip a diagram, drag a comparison, pick a course.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
+    <div class="sms-index__intro"><p>Nine directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo and wording are the same throughout; the layout, mood and how strongly the brand comes through are what change.</p><p>Concepts 1 to 3 are light and friendly. Concepts 4 to 6 are dark and cinematic, built around interactive pieces you can try: move a light, flip a diagram, drag a comparison, pick a course. Concepts 7 to 9 keep those layouts and interactive pieces in Streamline&rsquo;s own colour scheme.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
     <ul class="sms-index__list">%s</ul>
     <div class="sms-index__note"><p>Pitch concepts by CADS. Not for indexing.</p></div>
   </div>

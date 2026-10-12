@@ -47,6 +47,8 @@ CSS = r"""
   --sms-radius: 1.75rem;
   --sms-radius-sm: 1rem;
   --sms-hw: 200;
+  --sms-header-bg: rgba(20, 24, 29, 0.76);
+  --sms-hair: rgba(255, 255, 255, 0.04);
   font-size: clamp(1.03rem, 0.98rem + 0.22vw, 1.1rem);
 }
 .sms-page .sms-mark { color: var(--sms-accent); font-style: italic; font-weight: inherit; }
@@ -64,11 +66,11 @@ CSS = r"""
 
 /* Floating glass header */
 .sms-header { padding-top: 0.75rem; border-bottom: 0; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
-.sms-header .sms-header__inner { width: calc(100% - 2 * var(--sms-gutter)); min-height: 4rem; padding: 0.4rem 0.45rem 0.4rem 1.25rem; border-radius: 999px; background: rgba(20, 24, 29, 0.76); box-shadow: inset 0 0 0 1px var(--sms-line), 0 18px 50px rgba(0, 0, 0, 0.35); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.sms-header .sms-header__inner { width: calc(100% - 2 * var(--sms-gutter)); min-height: 4rem; padding: 0.4rem 0.45rem 0.4rem 1.25rem; border-radius: 999px; background: var(--sms-header-bg); box-shadow: inset 0 0 0 1px var(--sms-line), 0 18px 50px rgba(0, 0, 0, 0.35); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
 .sms-header .sms-header__logo-img { width: clamp(9.5rem, 8rem + 5vw, 12rem); }
 .sms-header .sms-header__summary { background: transparent; box-shadow: none; }
 .sms-header .sms-header__link::after { display: none; }
-.sms-header .sms-header__link[aria-current="page"] { color: #ffffff; text-decoration: underline; text-decoration-color: var(--sms-accent); text-underline-offset: 0.5em; }
+.sms-header .sms-header__link[aria-current="page"] { color: var(--sms-title); text-decoration: underline; text-decoration-color: var(--sms-accent); text-underline-offset: 0.5em; }
 .sms-header .sms-header__cta { padding: 0.8rem 1.25rem; }
 
 /* ---------- Page hero (inner pages): centred, then a wide photo ---------- */
@@ -78,7 +80,7 @@ CSS = r"""
 .sms-ghero .sms-ghero__crumb { margin-bottom: 1.75rem; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-ghero .sms-ghero__crumb-link { color: var(--sms-ink); }
 .sms-ghero .sms-kicker { justify-content: center; }
-.sms-ghero .sms-ghero__title { max-width: 14em; margin: 0 auto 1.5rem; color: #ffffff; font-size: clamp(2.6rem, 1.3rem + 5.4vw, 6rem); font-weight: 200; line-height: 1.02; letter-spacing: -0.04em; }
+.sms-ghero .sms-ghero__title { max-width: 14em; margin: 0 auto 1.5rem; color: var(--sms-title); font-size: clamp(2.6rem, 1.3rem + 5.4vw, 6rem); font-weight: 200; line-height: 1.02; letter-spacing: -0.04em; }
 .sms-ghero .sms-ghero__sub { margin-bottom: 0.6rem; color: var(--sms-accent); font-weight: 500; }
 .sms-ghero .sms-ghero__lead { max-width: 40rem; margin: 0 auto; color: var(--sms-ink); font-size: var(--sms-step-1); font-weight: 300; line-height: 1.65; }
 .sms-ghero .sms-ghero__lead p { margin: 0 0 0.75rem; }
@@ -93,13 +95,13 @@ CSS = r"""
 .sms-gcta .sms-gcta__inner { width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-gcta .sms-gcta__box { display: grid; gap: 2rem; align-items: center; padding: clamp(2rem, 1.2rem + 3.5vw, 4.5rem); border-radius: var(--sms-radius); background: radial-gradient(55% 140% at 25% 120%, rgba(110, 130, 150, 0.3), transparent 70%), #13171c; box-shadow: inset 0 0 0 1px var(--sms-line); }
 .sms-gcta .sms-gcta__copy { min-width: 0; }
-.sms-gcta .sms-gcta__title { margin: 0 0 1rem; color: #ffffff; font-size: clamp(2.1rem, 1.3rem + 3vw, 3.8rem); font-weight: 200; line-height: 1.06; letter-spacing: -0.035em; }
+.sms-gcta .sms-gcta__title { margin: 0 0 1rem; color: var(--sms-title); font-size: clamp(2.1rem, 1.3rem + 3vw, 3.8rem); font-weight: 200; line-height: 1.06; letter-spacing: -0.035em; }
 .sms-gcta .sms-gcta__text { max-width: 36rem; color: var(--sms-ink-soft); }
 .sms-gcta .sms-gcta__text p { margin: 0; }
 .sms-gcta .sms-gcta__side { display: grid; gap: 1rem; justify-items: start; min-width: 0; }
 .sms-gcta .sms-gcta__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; min-width: 0; }
 .sms-gcta .sms-gcta__call { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-gcta .sms-gcta__call a { color: #ffffff; text-underline-offset: 4px; }
+.sms-gcta .sms-gcta__call a { color: var(--sms-title); text-underline-offset: 4px; }
 @media (min-width: 60em) {
   .sms-gcta .sms-gcta__box { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
   .sms-gcta .sms-gcta__side { justify-items: end; text-align: right; }
@@ -110,7 +112,7 @@ CSS = r"""
 .sms-ghome::before { content: ""; position: absolute; z-index: -1; left: 50%; top: -20rem; width: 80rem; height: 46rem; margin-left: -40rem; border-radius: 50%; background: radial-gradient(closest-side, rgba(120, 140, 160, 0.2), transparent); pointer-events: none; }
 .sms-ghome .sms-ghome__inner { width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-ghome .sms-kicker { justify-content: center; }
-.sms-ghome .sms-ghome__title { max-width: 13em; margin: 0 auto 1.75rem; color: #ffffff; font-size: clamp(2.8rem, 1.2rem + 6.6vw, 7.2rem); font-weight: 200; line-height: 1; letter-spacing: -0.045em; }
+.sms-ghome .sms-ghome__title { max-width: 13em; margin: 0 auto 1.75rem; color: var(--sms-title); font-size: clamp(2.8rem, 1.2rem + 6.6vw, 7.2rem); font-weight: 200; line-height: 1; letter-spacing: -0.045em; }
 .sms-ghome .sms-ghome__lead { max-width: 38rem; margin: 0 auto; color: var(--sms-ink); font-size: var(--sms-step-1); font-weight: 300; line-height: 1.65; }
 .sms-ghome .sms-ghome__lead p { margin: 0; }
 .sms-ghome .sms-ghome__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
@@ -137,7 +139,7 @@ CSS = r"""
 .sms-tiles { padding: var(--sms-section) 0; }
 .sms-tiles .sms-tiles__inner { width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-tiles .sms-tiles__head { display: grid; gap: 1.25rem; align-items: end; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.25rem); }
-.sms-tiles .sms-tiles__title { min-width: 0; margin: 0; color: #ffffff; font-size: clamp(2.3rem, 1.3rem + 3.6vw, 4.4rem); font-weight: 200; line-height: 1.04; letter-spacing: -0.04em; }
+.sms-tiles .sms-tiles__title { min-width: 0; margin: 0; color: var(--sms-title); font-size: clamp(2.3rem, 1.3rem + 3.6vw, 4.4rem); font-weight: 200; line-height: 1.04; letter-spacing: -0.04em; }
 .sms-tiles .sms-tiles__intro { max-width: 26rem; min-width: 0; color: var(--sms-ink-soft); }
 .sms-tiles .sms-tiles__intro p { margin: 0; }
 .sms-tiles .sms-tiles__grid { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; perspective: 1000px; }
@@ -154,7 +156,7 @@ CSS = r"""
 .sms-tiles .sms-tiles__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
 .sms-tiles .sms-tiles__label { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-tiles .sms-tiles__icon { width: 2.6rem; height: 2.6rem; padding: 0.6rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-accent); }
-.sms-tiles .sms-tiles__name { margin: 0 0 0.4rem; color: #ffffff; font-size: clamp(1.5rem, 1.25rem + 1vw, 2.1rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; }
+.sms-tiles .sms-tiles__name { margin: 0 0 0.4rem; color: var(--sms-title); font-size: clamp(1.5rem, 1.25rem + 1vw, 2.1rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; }
 .sms-tiles .sms-tiles__text { color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-tiles .sms-tiles__text p { margin: 0; }
 .sms-tiles .sms-tiles__item--big .sms-tiles__link { min-height: 22rem; }
@@ -178,7 +180,7 @@ CSS = r"""
 .sms-course { padding: var(--sms-section) 0; background: var(--sms-pale); }
 .sms-course .sms-course__inner { display: grid; gap: clamp(2.5rem, 1.5rem + 4vw, 5rem); align-items: center; width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-course .sms-course__copy { min-width: 0; }
-.sms-course .sms-course__title { margin: 0 0 1.5rem; color: #ffffff; font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 200; line-height: 1.05; letter-spacing: -0.04em; }
+.sms-course .sms-course__title { margin: 0 0 1.5rem; color: var(--sms-title); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 200; line-height: 1.05; letter-spacing: -0.04em; }
 .sms-course .sms-course__text { max-width: 30rem; color: var(--sms-ink-soft); }
 .sms-course .sms-course__text p { margin: 0 0 1rem; }
 .sms-course .sms-course__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
@@ -186,12 +188,12 @@ CSS = r"""
 .sms-course .sms-seg { border-radius: 1.4rem; }
 .sms-course .sms-course__label { margin: 1.25rem 0 0.9rem; color: var(--sms-ink-soft); font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; }
 .sms-course .sms-course__days { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
-.sms-course .sms-course__day { display: grid; justify-items: center; gap: 0.6rem; min-width: 0; padding: 1rem 0.25rem 0.85rem; border-radius: 1rem; background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 0 0 1px var(--sms-line); color: var(--sms-ink-soft); font-size: 0.8125rem; opacity: 0.45; transform: scale(0.94); transition: opacity 0.45s var(--sms-ease), transform 0.45s var(--sms-ease); }
+.sms-course .sms-course__day { display: grid; justify-items: center; gap: 0.6rem; min-width: 0; padding: 1rem 0.25rem 0.85rem; border-radius: 1rem; background: var(--sms-hair); box-shadow: inset 0 0 0 1px var(--sms-line); color: var(--sms-ink-soft); font-size: 0.8125rem; opacity: 0.45; transform: scale(0.94); transition: opacity 0.45s var(--sms-ease), transform 0.45s var(--sms-ease); }
 .sms-course .sms-course__dot { min-width: 0; width: 0.85rem; height: 0.85rem; border-radius: 50%; background: rgba(255, 255, 255, 0.18); }
 .sms-course .sms-course__out { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--sms-line); animation: sms-fade-up 0.5s var(--sms-ease) both; }
-.sms-course .sms-course__big { color: #ffffff; font-size: clamp(2.6rem, 2rem + 2.2vw, 3.6rem); font-weight: 200; line-height: 1; letter-spacing: -0.03em; }
+.sms-course .sms-course__big { color: var(--sms-title); font-size: clamp(2.6rem, 2rem + 2.2vw, 3.6rem); font-weight: 200; line-height: 1; letter-spacing: -0.03em; }
 .sms-course .sms-course__unit { color: var(--sms-ink-soft); font-size: 0.4em; font-weight: 300; letter-spacing: 0; }
-.sms-course .sms-course__name { margin: 0.6rem 0 0.2rem; color: #ffffff; font-weight: 500; }
+.sms-course .sms-course__name { margin: 0.6rem 0 0.2rem; color: var(--sms-title); font-weight: 500; }
 .sms-course .sms-course__meta { color: var(--sms-accent); }
 .sms-course .sms-course__note { margin-top: 1.25rem; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-course .sms-course__note p { margin: 0; }
@@ -204,10 +206,10 @@ CSS = r"""
 .sms-spr { padding: var(--sms-section) 0; }
 .sms-spr .sms-spr__inner { display: grid; gap: clamp(2.5rem, 1.5rem + 4vw, 5rem); align-items: start; width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-spr .sms-spr__copy { min-width: 0; }
-.sms-spr .sms-spr__title { margin: 0 0 1.5rem; color: #ffffff; font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 200; line-height: 1.05; letter-spacing: -0.04em; }
+.sms-spr .sms-spr__title { margin: 0 0 1.5rem; color: var(--sms-title); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 200; line-height: 1.05; letter-spacing: -0.04em; }
 .sms-spr .sms-spr__rows { margin: 1.5rem 0 0; padding: 0; border-top: 1px solid var(--sms-line); list-style: none; }
 .sms-spr .sms-spr__row { padding: 1.1rem 0; border-bottom: 1px solid var(--sms-line); }
-.sms-spr .sms-spr__name { margin: 0 0 0.3rem; color: #ffffff; font-size: var(--sms-step-1); font-weight: 400; }
+.sms-spr .sms-spr__name { margin: 0 0 0.3rem; color: var(--sms-title); font-size: var(--sms-step-1); font-weight: 400; }
 .sms-spr .sms-spr__text { color: var(--sms-ink-soft); }
 .sms-spr .sms-spr__text p { margin: 0; }
 .sms-spr .sms-spr__visual { min-width: 0; }
@@ -227,7 +229,7 @@ CSS = r"""
 .sms-how { padding: var(--sms-section) 0; background: var(--sms-pale); }
 .sms-how .sms-how__inner { display: grid; gap: clamp(2.5rem, 1.5rem + 4vw, 5rem); width: 100%; max-width: var(--sms-max); margin: 0 auto; padding: 0 var(--sms-gutter); }
 .sms-how .sms-how__copy { min-width: 0; }
-.sms-how .sms-how__title { margin: 0 0 1.5rem; color: #ffffff; font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 200; line-height: 1.05; letter-spacing: -0.04em; }
+.sms-how .sms-how__title { margin: 0 0 1.5rem; color: var(--sms-title); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); font-weight: 200; line-height: 1.05; letter-spacing: -0.04em; }
 .sms-how .sms-how__text { max-width: 30rem; color: var(--sms-ink-soft); }
 .sms-how .sms-how__text p { margin: 0 0 1.25rem; }
 .sms-how .sms-how__track { position: relative; min-width: 0; }
@@ -237,7 +239,7 @@ CSS = r"""
 .sms-how .sms-how__step { position: relative; padding: 0 0 2.25rem 3rem; }
 .sms-how .sms-how__step:last-child { padding-bottom: 0; }
 .sms-how .sms-how__ring { position: absolute; left: 0; top: 0.3rem; width: 1.15rem; height: 1.15rem; border-radius: 50%; background: var(--sms-pale); box-shadow: inset 0 0 0 2px var(--sms-accent); }
-.sms-how .sms-how__name { margin: 0 0 0.35rem; color: #ffffff; font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.8rem); font-weight: 300; line-height: 1.2; letter-spacing: -0.015em; }
+.sms-how .sms-how__name { margin: 0 0 0.35rem; color: var(--sms-title); font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.8rem); font-weight: 300; line-height: 1.2; letter-spacing: -0.015em; }
 .sms-how .sms-how__desc { color: var(--sms-ink-soft); }
 .sms-how .sms-how__desc p { margin: 0; }
 @media (min-width: 60em) {
