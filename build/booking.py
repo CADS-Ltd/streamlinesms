@@ -255,17 +255,17 @@ def render(ctx, d):
 CSS = r"""
 /* ---------- Booking wizard ---------- */
 .sms-booking .sms-booking__inner { display: grid; gap: clamp(1.5rem, 1rem + 2vw, 2.5rem); align-items: start; }
-.sms-booking .sms-booking__form { position: relative; min-width: 0; padding: clamp(1.25rem, 0.8rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow-lg); }
+.sms-booking .sms-booking__form { position: relative; min-width: 0; padding: clamp(1.25rem, 0.8rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow-lg); }
 .sms-booking .sms-booking__top { min-width: 0; margin-bottom: 2rem; }
 .sms-booking .sms-booking__top[hidden] { display: none; }
 .sms-booking .sms-booking__progress { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
 .sms-booking .sms-booking__progress-step { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); font-weight: 600; text-align: center; }
-.sms-booking .sms-booking__progress-dot { position: relative; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 2px solid var(--sms-line); border-radius: 50%; background: var(--sms-white); color: var(--sms-ink-soft); font-weight: 700; transition: transform 0.3s var(--sms-ease); }
+.sms-booking .sms-booking__progress-dot { position: relative; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 2px solid var(--sms-line); border-radius: 50%; background: var(--sms-surface); color: var(--sms-ink-soft); font-weight: 700; transition: transform 0.3s var(--sms-ease); }
 .sms-booking .sms-booking__progress-tick { display: none; width: 1.2rem; height: 1.2rem; }
 .sms-booking .sms-booking__progress-num { min-width: 0; }
 .sms-booking .sms-booking__progress-label { min-width: 0; }
-.sms-booking .sms-booking__progress-step.is-current { color: var(--sms-navy); }
-.sms-booking .sms-booking__progress-step.is-current .sms-booking__progress-dot { border-color: var(--sms-green); color: var(--sms-green); transform: scale(1.12); }
+.sms-booking .sms-booking__progress-step.is-current { color: var(--sms-ink); }
+.sms-booking .sms-booking__progress-step.is-current .sms-booking__progress-dot { border-color: var(--sms-green); color: var(--sms-accent); transform: scale(1.12); }
 .sms-booking .sms-booking__progress-step.is-done .sms-booking__progress-dot { border-color: var(--sms-green); background: var(--sms-green); color: var(--sms-white); }
 .sms-booking .sms-booking__progress-step.is-done .sms-booking__progress-tick { display: block; }
 .sms-booking .sms-booking__progress-step.is-done .sms-booking__progress-num { display: none; }
@@ -279,9 +279,9 @@ CSS = r"""
 .sms-booking .sms-booking__services { display: grid; gap: 0.85rem; }
 .sms-booking .sms-booking__service { position: relative; display: block; min-width: 0; cursor: pointer; }
 .sms-booking .sms-booking__service-input { position: absolute; opacity: 0; pointer-events: none; }
-.sms-booking .sms-booking__service-card { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.25rem 1rem; align-items: center; height: 100%; padding: 1.25rem 3rem 1.25rem 1.25rem; border: 2px solid var(--sms-line); border-radius: var(--sms-radius); background: var(--sms-white); transition: transform 0.25s var(--sms-ease); }
+.sms-booking .sms-booking__service-card { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.25rem 1rem; align-items: center; height: 100%; padding: 1.25rem 3rem 1.25rem 1.25rem; border: 2px solid var(--sms-line); border-radius: var(--sms-radius); background: var(--sms-surface); transition: transform 0.25s var(--sms-ease); }
 .sms-booking .sms-booking__service:hover .sms-booking__service-card { transform: translateY(-3px); border-color: var(--sms-green); }
-.sms-booking .sms-booking__service-icon { grid-row: span 2; width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-green); }
+.sms-booking .sms-booking__service-icon { grid-row: span 2; width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-accent); }
 .sms-booking .sms-booking__service-name { min-width: 0; font-weight: 700; }
 .sms-booking .sms-booking__service-text { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); line-height: 1.45; }
 .sms-booking .sms-booking__service-tick { position: absolute; right: 1rem; top: 1rem; width: 1.5rem; height: 1.5rem; padding: 0.2rem; border-radius: 50%; background: var(--sms-green); color: var(--sms-white); opacity: 0; transform: scale(0.4); transition: transform 0.3s var(--sms-ease), opacity 0.3s var(--sms-ease); }
@@ -293,7 +293,7 @@ CSS = r"""
 .sms-booking .sms-booking__grid .sms-booking__field { margin-bottom: 0; }
 .sms-booking .sms-booking__label { min-width: 0; padding: 0; font-size: var(--sms-step--1); font-weight: 700; }
 .sms-booking .sms-booking__hint { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-booking .sms-booking__input { width: 100%; min-width: 0; padding: 0.85rem 1rem; border: 1px solid #8a99a6; border-radius: var(--sms-radius-sm); background: var(--sms-white); color: var(--sms-navy); font: inherit; }
+.sms-booking .sms-booking__input { width: 100%; min-width: 0; padding: 0.85rem 1rem; border: 1px solid var(--sms-field-line); border-radius: var(--sms-radius-sm); background: var(--sms-field); color: var(--sms-ink); font: inherit; }
 .sms-booking .sms-booking__input--area { min-height: 6.5rem; resize: vertical; }
 .sms-booking .sms-booking__input.is-invalid { border-color: #b3261e; box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.12); }
 .sms-booking .sms-booking__error { display: block; min-width: 0; min-height: 0; color: #b3261e; font-size: var(--sms-step--1); font-weight: 600; }
@@ -302,7 +302,7 @@ CSS = r"""
 .sms-booking .sms-booking__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .sms-booking .sms-booking__chip { position: relative; min-width: 0; cursor: pointer; }
 .sms-booking .sms-booking__chip-input { position: absolute; opacity: 0; pointer-events: none; }
-.sms-booking .sms-booking__chip-text { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.55rem 0.95rem; border: 2px solid var(--sms-line); border-radius: 999px; background: var(--sms-white); font-size: var(--sms-step--1); font-weight: 600; transition: transform 0.2s var(--sms-ease); }
+.sms-booking .sms-booking__chip-text { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.55rem 0.95rem; border: 2px solid var(--sms-line); border-radius: 999px; background: var(--sms-surface); font-size: var(--sms-step--1); font-weight: 600; transition: transform 0.2s var(--sms-ease); }
 .sms-booking .sms-booking__chip:hover .sms-booking__chip-text { transform: translateY(-2px); }
 .sms-booking .sms-booking__chip-icon { display: none; width: 1rem; height: 1rem; }
 .sms-booking .sms-booking__chip-input:checked + .sms-booking__chip-text { border-color: var(--sms-green); background: var(--sms-green); color: var(--sms-white); }
@@ -312,26 +312,26 @@ CSS = r"""
 .sms-booking .sms-booking__toggle-opt { position: relative; min-width: 0; cursor: pointer; }
 .sms-booking .sms-booking__toggle-opt input { position: absolute; opacity: 0; pointer-events: none; }
 .sms-booking .sms-booking__toggle-opt span { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.55rem 1rem; border-radius: 999px; font-size: var(--sms-step--1); font-weight: 700; }
-.sms-booking .sms-booking__toggle-opt input:checked + span { background: var(--sms-white); color: var(--sms-green); box-shadow: 0 4px 12px rgba(6, 30, 53, 0.1); }
+.sms-booking .sms-booking__toggle-opt input:checked + span { background: var(--sms-surface); color: var(--sms-accent); box-shadow: 0 4px 12px rgba(6, 30, 53, 0.1); }
 .sms-booking .sms-booking__toggle-opt input:focus-visible + span { outline: 3px solid var(--sms-green); outline-offset: 2px; }
 .sms-booking .sms-booking__toggle-icon { width: 1rem; height: 1rem; }
-.sms-booking .sms-booking__output { color: var(--sms-green); font-weight: 700; }
+.sms-booking .sms-booking__output { color: var(--sms-accent); font-weight: 700; }
 .sms-booking .sms-booking__range { width: 100%; min-width: 0; accent-color: var(--sms-green); }
 .sms-booking .sms-booking__range-scale { display: flex; justify-content: space-between; color: var(--sms-ink-soft); font-size: 0.75rem; }
-.sms-booking .sms-booking__stepper { display: flex; align-items: stretch; min-width: 0; border: 1px solid #8a99a6; border-radius: var(--sms-radius-sm); overflow: hidden; }
-.sms-booking .sms-booking__step-btn { display: grid; place-items: center; min-width: 0; width: 3rem; border: 0; background: var(--sms-pale-2); color: var(--sms-green); cursor: pointer; }
+.sms-booking .sms-booking__stepper { display: flex; align-items: stretch; min-width: 0; border: 1px solid var(--sms-field-line); border-radius: var(--sms-radius-sm); overflow: hidden; }
+.sms-booking .sms-booking__step-btn { display: grid; place-items: center; min-width: 0; width: 3rem; border: 0; background: var(--sms-pale-2); color: var(--sms-accent); cursor: pointer; }
 .sms-booking .sms-booking__step-btn[hidden] { display: none; }
 .sms-booking .sms-booking__input--num { border: 0; border-radius: 0; text-align: center; -moz-appearance: textfield; }
-.sms-booking .sms-booking__soon { display: flex; gap: 0.75rem; min-width: 0; margin: 0 0 1.25rem; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: #fff6e0; color: var(--sms-navy); font-size: var(--sms-step--1); }
+.sms-booking .sms-booking__soon { display: flex; gap: 0.75rem; min-width: 0; margin: 0 0 1.25rem; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: #fff6e0; color: var(--sms-ink); font-size: var(--sms-step--1); }
 .sms-booking .sms-booking__soon[hidden] { display: none; }
 .sms-booking .sms-booking__soon:not([hidden]) { animation: sms-drop 0.4s var(--sms-ease) both; }
 .sms-booking .sms-booking__soon-icon { color: #8a5a00; }
 .sms-booking .sms-booking__soon-text { min-width: 0; }
-.sms-booking .sms-booking__soon-text a { color: var(--sms-navy); font-weight: 700; }
+.sms-booking .sms-booking__soon-text a { color: var(--sms-ink); font-weight: 700; }
 .sms-booking .sms-booking__reveal[hidden] { display: none; }
 .sms-booking .sms-booking__reveal:not([hidden]) { animation: sms-drop 0.4s var(--sms-ease) both; }
 .sms-booking .sms-booking__aside-note { display: flex; gap: 0.6rem; margin: 0.5rem 0 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-booking .sms-booking__note-icon { color: var(--sms-green); }
+.sms-booking .sms-booking__note-icon { color: var(--sms-accent); }
 .sms-booking .sms-booking__review { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 0; margin: 0 0 1.5rem; border-radius: var(--sms-radius-sm); background: var(--sms-pale); overflow: hidden; }
 .sms-booking .sms-booking__review[hidden] { display: none; }
 .sms-booking .sms-booking__review dt,
@@ -366,11 +366,11 @@ CSS = r"""
 .sms-booking .sms-booking__help-title,
 .sms-booking .sms-booking__progress-dot,
 .sms-booking .sms-booking__demo > span { min-width: 0; }
-.sms-booking .sms-booking__help-link { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; color: var(--sms-navy); font-size: var(--sms-step--1); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
-.sms-booking .sms-booking__help-link:hover { color: var(--sms-green); }
-.sms-booking .sms-booking__help-icon { color: var(--sms-green); }
+.sms-booking .sms-booking__help-link { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; color: var(--sms-ink); font-size: var(--sms-step--1); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+.sms-booking .sms-booking__help-link:hover { color: var(--sms-accent); }
+.sms-booking .sms-booking__help-icon { color: var(--sms-accent); }
 .sms-booking .sms-booking__demo { display: flex; gap: 0.5rem; min-width: 0; padding: 0 0.5rem; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-booking .sms-booking__demo-icon { color: var(--sms-green); }
+.sms-booking .sms-booking__demo-icon { color: var(--sms-accent); }
 @media (min-width: 40em) {
   .sms-booking .sms-booking__services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sms-booking .sms-booking__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

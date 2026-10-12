@@ -15,10 +15,11 @@ sys.path.insert(0, HERE)
 import common as K  # noqa: E402
 import content as C  # noqa: E402
 import booking  # noqa: E402
+import dark  # noqa: E402
 import importlib  # noqa: E402
 
 CONCEPTS = {}
-for _n in (1, 2, 3):
+for _n in (1, 2, 3, 4, 5, 6):
     try:
         CONCEPTS[_n] = importlib.import_module("concept%d" % _n)
     except ImportError:
@@ -27,7 +28,10 @@ for _n in (1, 2, 3):
 
 def render(n, mod, slug):
     ctx = K.Ctx(n, slug)
-    css = K.BASE_CSS + booking.CSS + mod.CSS + K.motion_css(mod.REVEAL, mod.RISE, mod.ENTRANCE, mod.LOOP, mod.TRANS + booking.TRANS, booking.ANIM + getattr(mod, 'OPEN', []))
+    is_dark = getattr(mod, "DARK", False)
+    theme = dark.CSS if is_dark else ""
+    trans = mod.TRANS + booking.TRANS + (dark.TRANS if is_dark else [])
+    css = K.BASE_CSS + booking.CSS + theme + mod.CSS + K.motion_css(mod.REVEAL, mod.RISE, mod.ENTRANCE, mod.LOOP, trans, booking.ANIM + getattr(mod, 'OPEN', []))
     if slug == "home":
         title = "Streamline Safety & Medical Solutions | Concept %d" % n
         desc = "Clinician-led event medical cover, first aid training and safety consultancy, based in Swadlincote and working across Derbyshire, Nottinghamshire, Leicestershire, Staffordshire and beyond"
@@ -37,7 +41,11 @@ def render(n, mod, slug):
         title = "%s | Streamline Safety & Medical Solutions | Concept %d" % (page["doc"], n)
         desc = page["desc"]
         main = mod.page_hero(ctx, page["hero"])
-        for kind, data in page["sections"]:
+        main += getattr(mod, "inner_extra", lambda c, s: "")(ctx, slug)
+        skip = getattr(mod, "SKIP", {}).get(slug, [])
+        for i, (kind, data) in enumerate(page["sections"]):
+            if i in skip:
+                continue
             main += booking.render(ctx, data) if kind == "booking" else K.SHARED_RENDERERS[kind](ctx, data)
         if page.get("cta"):
             main += mod.cta(ctx, page["cta"])
@@ -56,7 +64,7 @@ def render(n, mod, slug):
         body += booking.JS
     body += getattr(mod, "scripts", lambda c, m: "")(ctx, main)
     body += "</body>\n</html>\n"
-    doc = K.head(ctx, title, desc, css) + body
+    doc = K.head(ctx, title, desc, css, getattr(mod, "FONTS", None)) + body
     doc = doc.replace("%%COMMENT%%", K.comment(n, mod.NAME, slug, ctx))
     return K.ascii_html(doc)
 
@@ -81,6 +89,9 @@ INDEX_DESC = {
     1: ("Editorial split", "White and airy with soft mint shapes. Big rounded photos with floating badges, a zig-zag of services with photos, and gentle motion as you scroll."),
     2: ("Centred statement", "Light and friendly. Centred pale-green heroes with a photo collage, photo service cards, rounded everything, green call-to-action bands and a light footer."),
     3: ("Bold brand", "The most branded option. Green top bar, split photo heroes with boxed navy and green headlines, angled brand shapes, booking panels and tabbed services with photos."),
+    4: ("Night shift", "Dark and cinematic. Move an inspection light across the hero photo, switch an event site from unassessed to assessed, and scroll through the services while a pinned photo changes."),
+    5: ("Graphite", "Dark and refined. A big centred headline over a photo comparison that sweeps itself, service tiles that tilt towards the pointer, a course-length picker and tabbed diagrams."),
+    6: ("Pulse", "Dark navy with green light. A heartbeat line across the hero, a which-service-do-you-need chooser, a swipeable rail of event types and cards that stack as you scroll."),
 }
 
 
@@ -141,7 +152,7 @@ def build_index():
   <div class="sms-index__inner">
     <img class="sms-index__logo" src="assets/streamline-s-m-sol-logo-blue-long.png" alt="Streamline Safety &amp; Medical Solutions" width="2500" height="443">
     <h1 class="sms-index__title">Website concepts</h1>
-    <div class="sms-index__intro"><p>Three directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo, colours and wording are the same in all three; the layout and how strongly the brand comes through are what change.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
+    <div class="sms-index__intro"><p>Six directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo, colours and wording are the same in all six; the layout, mood and how strongly the brand comes through are what change.</p><p>Concepts 1 to 3 are light and friendly. Concepts 4 to 6 are dark and cinematic, built around interactive pieces you can try: move a light, flip a diagram, drag a comparison, pick a course.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
     <ul class="sms-index__list">%s</ul>
     <div class="sms-index__note"><p>Pitch concepts by CADS. Not for indexing.</p></div>
   </div>

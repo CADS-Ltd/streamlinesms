@@ -52,9 +52,15 @@
   --sms-shadow: 0 18px 40px rgba(6, 30, 53, 0.08);
   --sms-shadow-lg: 0 24px 60px rgba(6, 30, 53, 0.14);
   --sms-ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --sms-ink: var(--sms-navy);
+  --sms-bg: var(--sms-white);
+  --sms-surface: var(--sms-white);
+  --sms-accent: var(--sms-green);
+  --sms-field: var(--sms-white);
+  --sms-field-line: #8a99a6;
   margin: 0;
-  background: var(--sms-white);
-  color: var(--sms-navy);
+  background: var(--sms-bg);
+  color: var(--sms-ink);
   font-family: var(--sms-font);
   font-size: var(--sms-step-0);
   line-height: 1.65;
@@ -79,14 +85,14 @@
 .sms-page .sms-btn:hover { transform: translateY(-3px); }
 .sms-page .sms-btn:active { transform: translateY(0) scale(0.98); }
 .sms-page .sms-btn--primary { border-color: var(--sms-green); background: var(--sms-green); color: var(--sms-white); box-shadow: 0 10px 22px rgba(64, 127, 54, 0.28); }
-.sms-page .sms-btn--outline { border-color: var(--sms-navy); background: transparent; color: var(--sms-navy); }
-.sms-page .sms-btn--outline:hover { background: var(--sms-navy); color: var(--sms-white); }
+.sms-page .sms-btn--outline { border-color: var(--sms-ink); background: transparent; color: var(--sms-ink); }
+.sms-page .sms-btn--outline:hover { background: var(--sms-ink); color: var(--sms-bg); }
 .sms-page .sms-btn:disabled { box-shadow: none; opacity: 0.55; cursor: not-allowed; transform: none; }
 .sms-page .sms-btn--light { border-color: var(--sms-white); background: var(--sms-white); color: var(--sms-navy); }
 .sms-page .sms-arrow { display: inline-block; transition: transform 0.25s var(--sms-ease); }
 .sms-page a:hover .sms-arrow,
 .sms-page button:hover .sms-arrow { transform: translateX(5px); }
-.sms-page .sms-mark { color: var(--sms-green); }
+.sms-page .sms-mark { color: var(--sms-accent); }
 
 /* Photo frame (with gentle parallax on the image) */
 .sms-page .sms-photo { position: relative; min-width: 0; margin: 0; overflow: hidden; border-radius: var(--sms-radius); background: var(--sms-pale); }
@@ -98,7 +104,7 @@
 .sms-page .sms-more,
 .sms-page .sms-more__label,
 .sms-page .sms-chips { min-width: 0; }
-.sms-page .sms-more__toggle { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0; color: var(--sms-green); cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
+.sms-page .sms-more__toggle { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0; color: var(--sms-accent); cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
 .sms-page .sms-more__toggle::-webkit-details-marker { display: none; }
 .sms-page .sms-more__icon { width: 1.1rem; height: 1.1rem; transition: transform 0.3s var(--sms-ease); }
 .sms-page .sms-more[open] .sms-more__icon { transform: rotate(45deg); }
@@ -111,9 +117,9 @@
 
 /* Icon chips */
 .sms-page .sms-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
-.sms-page .sms-chips__item { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.5rem 0.9rem 0.5rem 0.6rem; border-radius: 999px; background: var(--sms-white); box-shadow: 0 4px 14px rgba(6, 30, 53, 0.06); font-size: var(--sms-step--1); font-weight: 600; line-height: 1.35; transition: transform 0.25s var(--sms-ease); }
+.sms-page .sms-chips__item { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.5rem 0.9rem 0.5rem 0.6rem; border-radius: 999px; background: var(--sms-surface); box-shadow: 0 4px 14px rgba(6, 30, 53, 0.06); font-size: var(--sms-step--1); font-weight: 600; line-height: 1.35; transition: transform 0.25s var(--sms-ease); }
 .sms-page .sms-chips__item:hover { transform: translateY(-2px); }
-.sms-page .sms-chips__icon { width: 1.75rem; height: 1.75rem; padding: 0.35rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-green); }
+.sms-page .sms-chips__icon { width: 1.75rem; height: 1.75rem; padding: 0.35rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-accent); }
 .sms-page .sms-chips__text { min-width: 0; }
 
 /* Shared inner widths */
@@ -162,23 +168,23 @@
 .sms-header .sms-header__nav { display: none; min-width: 0; }
 .sms-header .sms-header__list { display: flex; align-items: center; gap: clamp(0.25rem, 0rem + 0.6vw, 0.75rem); min-width: 0; margin: 0; padding: 0; list-style: none; }
 .sms-header .sms-header__item { min-width: 0; }
-.sms-header .sms-header__link { position: relative; display: block; padding: 0.5rem 0.7rem; border-radius: 999px; color: var(--sms-navy); font-size: var(--sms-step--1); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.sms-header .sms-header__link { position: relative; display: block; padding: 0.5rem 0.7rem; border-radius: 999px; color: var(--sms-ink); font-size: var(--sms-step--1); font-weight: 600; text-decoration: none; white-space: nowrap; }
 .sms-header .sms-header__link::after { content: ""; position: absolute; left: 0.7rem; right: 0.7rem; bottom: 0.2rem; height: 2px; border-radius: 2px; background: var(--sms-green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--sms-ease); }
 .sms-header .sms-header__link:hover::after,
 .sms-header .sms-header__link[aria-current="page"]::after { transform: scaleX(1); }
 .sms-header .sms-header__cta { flex: 0 0 auto; min-width: 0; }
 .sms-header .sms-header__menu { position: relative; min-width: 0; }
-.sms-header .sms-header__summary { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 999px; background: var(--sms-pale-2); color: var(--sms-navy); cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
+.sms-header .sms-header__summary { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 999px; background: var(--sms-pale-2); color: var(--sms-ink); cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
 .sms-header .sms-header__summary::-webkit-details-marker { display: none; }
 .sms-header .sms-header__bars { display: block; min-width: 0; width: 1.1rem; height: 2px; background: currentColor; box-shadow: 0 -5px 0 currentColor, 0 5px 0 currentColor; }
-.sms-header .sms-header__panel { position: absolute; right: 0; top: calc(100% + 0.6rem); z-index: 40; width: min(20rem, calc(100vw - 2rem)); padding: 0.6rem; border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow-lg); }
+.sms-header .sms-header__panel { position: absolute; right: 0; top: calc(100% + 0.6rem); z-index: 40; width: min(20rem, calc(100vw - 2rem)); padding: 0.6rem; border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow-lg); }
 .sms-header .sms-header__menu[open] .sms-header__panel { animation: sms-pop 0.3s var(--sms-ease) both; }
 .sms-header .sms-header__panel-list { margin: 0; padding: 0; list-style: none; }
 .sms-header .sms-header__panel-item { min-width: 0; }
-.sms-header .sms-header__panel-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 0.8rem; border-radius: var(--sms-radius-sm); color: var(--sms-navy); font-weight: 600; text-decoration: none; }
+.sms-header .sms-header__panel-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 0.8rem; border-radius: var(--sms-radius-sm); color: var(--sms-ink); font-weight: 600; text-decoration: none; }
 .sms-header .sms-header__panel-link:hover { background: var(--sms-pale); }
 .sms-header .sms-header__panel-link[aria-current="page"] { background: var(--sms-pale-2); }
-.sms-header .sms-header__panel-icon { width: 1.25rem; height: 1.25rem; color: var(--sms-green); }
+.sms-header .sms-header__panel-icon { width: 1.25rem; height: 1.25rem; color: var(--sms-accent); }
 .sms-header .sms-header__panel-sep { height: 1px; margin: 0.4rem 0.8rem; background: var(--sms-line); }
 @media (min-width: 72em) {
   .sms-header .sms-header__nav { display: flex; align-items: center; gap: 1.25rem; }
@@ -201,7 +207,7 @@
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.9rem;
-  color: var(--sms-green);
+  color: var(--sms-accent);
   font-size: var(--sms-step--1);
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -296,10 +302,10 @@
 .sms-feature .sms-feature__frame { aspect-ratio: 4 / 3.4; box-shadow: var(--sms-shadow-lg); }
 .sms-feature .sms-feature__blob { position: absolute; z-index: -1; right: -6%; bottom: -8%; width: 70%; aspect-ratio: 1; border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%; background: var(--sms-mint); animation: sms-float 9s ease-in-out infinite; }
 .sms-feature .sms-feature__main { min-width: 0; }
-.sms-feature .sms-feature__lead { max-width: 38rem; font-size: var(--sms-step-1); line-height: 1.55; color: var(--sms-navy); }
+.sms-feature .sms-feature__lead { max-width: 38rem; font-size: var(--sms-step-1); line-height: 1.55; color: var(--sms-ink); }
 .sms-feature .sms-feature__lead p { margin: 0; }
-.sms-feature .sms-feature__strap { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.6rem 1rem; border-radius: 999px; background: var(--sms-mint); color: var(--sms-navy); font-weight: 700; }
-.sms-feature .sms-feature__strap-icon { color: var(--sms-green); }
+.sms-feature .sms-feature__strap { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.6rem 1rem; border-radius: 999px; background: var(--sms-mint); color: var(--sms-ink); font-weight: 700; }
+.sms-feature .sms-feature__strap-icon { color: var(--sms-accent); }
 .sms-feature .sms-feature__chips-title { margin: 1.75rem 0 0.75rem; font-size: var(--sms-step-0); font-weight: 700; }
 .sms-feature .sms-feature__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
 .sms-feature.sms-tone-white .sms-chips__item { background: var(--sms-pale); box-shadow: none; }
@@ -312,26 +318,26 @@
 /* ---------- Cards ---------- */
 .sms-cards .sms-cards__inner { position: relative; }
 .sms-cards .sms-cards__grid { display: grid; gap: clamp(1rem, 0.6rem + 1.5vw, 1.5rem); margin: 0; padding: 0; list-style: none; }
-.sms-cards .sms-cards__item { position: relative; display: flex; flex-direction: column; min-width: 0; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.1rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow); transition: transform 0.35s var(--sms-ease); }
+.sms-cards .sms-cards__item { position: relative; display: flex; flex-direction: column; min-width: 0; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.1rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow); transition: transform 0.35s var(--sms-ease); }
 .sms-cards.sms-tone-white .sms-cards__item { background: var(--sms-pale); box-shadow: none; }
 .sms-cards .sms-cards__item:hover { transform: translateY(-6px); }
 .sms-cards .sms-cards__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-width: 0; margin-bottom: 1.1rem; }
-.sms-cards .sms-cards__icon { width: 3.25rem; height: 3.25rem; padding: 0.75rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-green); transition: transform 0.35s var(--sms-ease); }
-.sms-cards.sms-tone-white .sms-cards__icon { background: var(--sms-white); }
+.sms-cards .sms-cards__icon { width: 3.25rem; height: 3.25rem; padding: 0.75rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-accent); transition: transform 0.35s var(--sms-ease); }
+.sms-cards.sms-tone-white .sms-cards__icon { background: var(--sms-surface); }
 .sms-cards .sms-cards__item:hover .sms-cards__icon { transform: rotate(-8deg) scale(1.08); }
-.sms-cards .sms-cards__num { min-width: 0; color: var(--sms-green); font-size: 2rem; font-weight: 700; line-height: 1; opacity: 1; }
+.sms-cards .sms-cards__num { min-width: 0; color: var(--sms-accent); font-size: 2rem; font-weight: 700; line-height: 1; opacity: 1; }
 .sms-cards .sms-cards__name { min-width: 0; margin: 0 0 0.5rem; font-size: var(--sms-step-1); font-weight: 700; line-height: 1.3; }
-.sms-cards .sms-cards__meta { display: inline-flex; align-self: flex-start; align-items: center; gap: 0.35rem; min-width: 0; margin-bottom: 0.6rem; padding: 0.25rem 0.7rem; border-radius: 999px; background: var(--sms-pale-2); color: var(--sms-navy); font-size: var(--sms-step--1); font-weight: 600; }
-.sms-cards.sms-tone-white .sms-cards__meta { background: var(--sms-white); }
-.sms-cards .sms-cards__meta-icon { width: 1rem; height: 1rem; color: var(--sms-green); }
+.sms-cards .sms-cards__meta { display: inline-flex; align-self: flex-start; align-items: center; gap: 0.35rem; min-width: 0; margin-bottom: 0.6rem; padding: 0.25rem 0.7rem; border-radius: 999px; background: var(--sms-pale-2); color: var(--sms-ink); font-size: var(--sms-step--1); font-weight: 600; }
+.sms-cards.sms-tone-white .sms-cards__meta { background: var(--sms-surface); }
+.sms-cards .sms-cards__meta-icon { width: 1rem; height: 1rem; color: var(--sms-accent); }
 .sms-cards .sms-cards__text { min-width: 0; color: var(--sms-ink-soft); }
 .sms-cards .sms-cards__text p { margin: 0; }
-.sms-cards .sms-cards__list-title { margin: 0.5rem 0 0.4rem; font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sms-navy); }
+.sms-cards .sms-cards__list-title { margin: 0.5rem 0 0.4rem; font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sms-ink); }
 .sms-cards .sms-cards__list { margin: 0; padding: 0; list-style: none; font-size: var(--sms-step--1); }
 .sms-cards .sms-cards__list-item { display: flex; gap: 0.5rem; min-width: 0; padding: 0.35rem 0; }
 .sms-cards .sms-cards__list-item > span { min-width: 0; }
-.sms-cards .sms-cards__check { width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; color: var(--sms-green); }
-.sms-cards .sms-cards__link { align-self: flex-start; min-width: 0; margin-top: auto; padding-top: 1rem; color: var(--sms-green); font-weight: 700; text-decoration: none; }
+.sms-cards .sms-cards__check { width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; color: var(--sms-accent); }
+.sms-cards .sms-cards__link { align-self: flex-start; min-width: 0; margin-top: auto; padding-top: 1rem; color: var(--sms-accent); font-weight: 700; text-decoration: none; }
 @media (min-width: 46em) {
   .sms-cards .sms-cards__grid--2,
   .sms-cards .sms-cards__grid--3,
@@ -349,7 +355,7 @@
 .sms-steps .sms-steps__line-fill { display: block; width: 100%; height: 100%; border-radius: 3px; background: var(--sms-green); transform-origin: top; }
 .sms-steps .sms-steps__list { position: relative; display: grid; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
 .sms-steps .sms-steps__item { position: relative; display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 1rem; min-width: 0; }
-.sms-steps .sms-steps__badge { position: relative; display: grid; place-items: center; min-width: 0; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--sms-green); color: var(--sms-white); box-shadow: 0 0 0 6px var(--sms-white); }
+.sms-steps .sms-steps__badge { position: relative; display: grid; place-items: center; min-width: 0; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--sms-green); color: var(--sms-white); box-shadow: 0 0 0 6px var(--sms-bg); }
 .sms-steps.sms-tone-pale .sms-steps__badge { box-shadow: 0 0 0 6px var(--sms-pale); }
 .sms-steps .sms-steps__badge-icon { width: 1.4rem; height: 1.4rem; }
 .sms-steps .sms-steps__num { position: absolute; right: -0.35rem; top: -0.35rem; display: grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--sms-navy); color: var(--sms-white); font-size: 0.75rem; font-weight: 700; }
@@ -357,9 +363,9 @@
 .sms-steps .sms-steps__name { margin: 0 0 0.25rem; font-size: var(--sms-step-0); font-weight: 700; line-height: 1.35; }
 .sms-steps .sms-steps__text { color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-steps .sms-steps__text p { margin: 0; }
-.sms-steps .sms-steps__note { display: flex; gap: 0.75rem; max-width: 48rem; margin-top: 2rem; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: var(--sms-white); color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
+.sms-steps .sms-steps__note { display: flex; gap: 0.75rem; max-width: 48rem; margin-top: 2rem; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: var(--sms-surface); color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-steps.sms-tone-white .sms-steps__note { background: var(--sms-pale); }
-.sms-steps .sms-steps__note-icon { color: var(--sms-green); }
+.sms-steps .sms-steps__note-icon { color: var(--sms-accent); }
 .sms-steps .sms-steps__note-text { min-width: 0; }
 .sms-steps .sms-steps__note-text p { margin: 0; }
 @media (min-width: 60em) {
@@ -374,18 +380,18 @@
 .sms-checklist .sms-checklist__grid { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
 .sms-checklist .sms-checklist__item { display: flex; align-items: center; gap: 1rem; min-width: 0; padding: 1.25rem 1.5rem; border-radius: var(--sms-radius); background: var(--sms-pale); font-weight: 600; transition: transform 0.3s var(--sms-ease); }
 .sms-checklist .sms-checklist__item:hover { transform: translateY(-4px); }
-.sms-checklist .sms-checklist__icon { width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 50%; background: var(--sms-white); color: var(--sms-green); }
+.sms-checklist .sms-checklist__icon { width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 50%; background: var(--sms-surface); color: var(--sms-accent); }
 .sms-checklist .sms-checklist__text { min-width: 0; }
 @media (min-width: 52em) {
   .sms-checklist .sms-checklist__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 /* ---------- Notice ---------- */
-.sms-notice .sms-notice__box { display: grid; gap: 1.25rem; align-items: center; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow); }
-.sms-notice .sms-notice__badge { display: grid; place-items: center; min-width: 0; width: 4rem; height: 4rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-green); }
+.sms-notice .sms-notice__box { display: grid; gap: 1.25rem; align-items: center; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow); }
+.sms-notice .sms-notice__badge { display: grid; place-items: center; min-width: 0; width: 4rem; height: 4rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-accent); }
 .sms-notice .sms-notice__badge-icon { width: 1.9rem; height: 1.9rem; }
 .sms-notice .sms-notice__body { min-width: 0; }
-.sms-notice .sms-notice__label { color: var(--sms-green); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.sms-notice .sms-notice__label { color: var(--sms-accent); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 .sms-notice .sms-notice__title { margin: 0.25rem 0 0.5rem; font-size: var(--sms-step-1); font-weight: 700; }
 .sms-notice .sms-notice__text { color: var(--sms-ink-soft); }
 .sms-notice .sms-notice__text p { margin: 0; }
@@ -401,23 +407,23 @@
 .sms-faq .sms-faq__search[hidden] { display: none; }
 .sms-faq .sms-faq__search-label { display: block; margin-bottom: 0.4rem; font-size: var(--sms-step--1); font-weight: 700; }
 .sms-faq .sms-faq__search-icon { position: absolute; left: 1rem; bottom: 0.85rem; width: 1.25rem; height: 1.25rem; color: var(--sms-ink-soft); }
-.sms-faq .sms-faq__input { width: 100%; min-width: 0; padding: 0.85rem 1rem 0.85rem 2.9rem; border: 1px solid #8a99a6; border-radius: 999px; background: var(--sms-white); color: var(--sms-navy); font: inherit; }
+.sms-faq .sms-faq__input { width: 100%; min-width: 0; padding: 0.85rem 1rem 0.85rem 2.9rem; border: 1px solid var(--sms-field-line); border-radius: 999px; background: var(--sms-field); color: var(--sms-ink); font: inherit; }
 .sms-faq .sms-faq__list { min-width: 0; }
-.sms-faq .sms-faq__item { margin-bottom: 0.75rem; border-radius: var(--sms-radius-sm); background: var(--sms-white); box-shadow: 0 4px 16px rgba(6, 30, 53, 0.05); }
+.sms-faq .sms-faq__item { margin-bottom: 0.75rem; border-radius: var(--sms-radius-sm); background: var(--sms-surface); box-shadow: 0 4px 16px rgba(6, 30, 53, 0.05); }
 .sms-faq.sms-tone-white .sms-faq__item { background: var(--sms-pale); box-shadow: none; }
 .sms-faq .sms-faq__item[hidden] { display: none; }
 .sms-faq .sms-faq__q { position: relative; padding: 1.1rem 3.5rem 1.1rem 1.25rem; cursor: pointer; font-weight: 600; line-height: 1.4; list-style: none; }
 .sms-faq .sms-faq__q::-webkit-details-marker { display: none; }
-.sms-faq .sms-faq__q::after { content: "+"; position: absolute; right: 1rem; top: 50%; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; margin-top: -0.95rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-green); font-size: 1.3rem; font-weight: 500; line-height: 1; transition: transform 0.3s var(--sms-ease); }
+.sms-faq .sms-faq__q::after { content: "+"; position: absolute; right: 1rem; top: 50%; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; margin-top: -0.95rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-accent); font-size: 1.3rem; font-weight: 500; line-height: 1; transition: transform 0.3s var(--sms-ease); }
 .sms-faq .sms-faq__item[open] .sms-faq__q::after { transform: rotate(45deg); }
-.sms-faq .sms-faq__q:hover { color: var(--sms-green); }
+.sms-faq .sms-faq__q:hover { color: var(--sms-accent); }
 .sms-faq .sms-faq__a { padding: 0 1.25rem 1.25rem; color: var(--sms-ink-soft); }
 .sms-faq .sms-faq__item[open] .sms-faq__a { animation: sms-drop 0.4s var(--sms-ease) both; }
 .sms-faq .sms-faq__a p { margin: 0 0 0.6rem; }
 .sms-faq .sms-faq__a ul { margin: 0 0 0.6rem; padding-left: 1.25rem; }
 .sms-faq .sms-faq__a li { margin-bottom: 0.25rem; }
-.sms-faq .sms-faq__a a { color: var(--sms-green); font-weight: 600; }
-.sms-faq .sms-faq__all-toggle { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0 1rem; padding: 0.7rem 1.2rem; border: 2px solid var(--sms-navy); border-radius: 999px; cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
+.sms-faq .sms-faq__a a { color: var(--sms-accent); font-weight: 600; }
+.sms-faq .sms-faq__all-toggle { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0 1rem; padding: 0.7rem 1.2rem; border: 2px solid var(--sms-ink); border-radius: 999px; cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
 .sms-faq .sms-faq__all-toggle::-webkit-details-marker { display: none; }
 .sms-faq .sms-faq__all[open] > .sms-faq__all-toggle { display: none; }
 .sms-faq .sms-faq__empty { padding: 1rem 0; color: var(--sms-ink-soft); }
@@ -431,8 +437,8 @@
 .sms-quotes .sms-quotes__inner { position: relative; }
 .sms-quotes .sms-quotes__grid { display: grid; gap: clamp(1rem, 0.6rem + 1.5vw, 1.75rem); }
 .sms-quotes .sms-quotes__item { position: relative; min-width: 0; margin: 0; padding: clamp(1.75rem, 1.2rem + 2vw, 2.75rem); border-radius: var(--sms-radius); background: var(--sms-pale); }
-.sms-quotes .sms-quotes__icon { width: 3rem; height: 3rem; margin-bottom: 1rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-white); color: var(--sms-green); }
-.sms-quotes .sms-quotes__label { margin-bottom: 0.6rem; color: var(--sms-green); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.sms-quotes .sms-quotes__icon { width: 3rem; height: 3rem; margin-bottom: 1rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-surface); color: var(--sms-accent); }
+.sms-quotes .sms-quotes__label { margin-bottom: 0.6rem; color: var(--sms-accent); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 .sms-quotes .sms-quotes__text { margin: 0; font-size: var(--sms-step-1); font-weight: 600; line-height: 1.5; }
 .sms-quotes .sms-quotes__text p { margin: 0; }
 @media (min-width: 52em) {
@@ -445,11 +451,11 @@
 .sms-people .sms-people__head { min-width: 0; margin-bottom: 0; }
 .sms-people .sms-people__frame { aspect-ratio: 16 / 11; box-shadow: var(--sms-shadow-lg); }
 .sms-people .sms-people__grid { display: grid; gap: clamp(1rem, 0.6rem + 1.5vw, 1.5rem); margin: 0; padding: 0; list-style: none; }
-.sms-people .sms-people__person { min-width: 0; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow); }
+.sms-people .sms-people__person { min-width: 0; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow); }
 .sms-people.sms-tone-white .sms-people__person { background: var(--sms-pale); box-shadow: none; }
-.sms-people .sms-people__role { display: inline-block; margin-bottom: 0.5rem; padding: 0.2rem 0.7rem; border-radius: 999px; background: var(--sms-mint); color: var(--sms-navy); font-size: var(--sms-step--1); font-weight: 700; }
+.sms-people .sms-people__role { display: inline-block; margin-bottom: 0.5rem; padding: 0.2rem 0.7rem; border-radius: 999px; background: var(--sms-mint); color: var(--sms-ink); font-size: var(--sms-step--1); font-weight: 700; }
 .sms-people .sms-people__name { margin: 0 0 0.3rem; font-size: var(--sms-step-1); font-weight: 700; line-height: 1.3; }
-.sms-people .sms-people__tags { margin-bottom: 0.9rem; color: var(--sms-green); font-size: var(--sms-step--1); font-weight: 600; }
+.sms-people .sms-people__tags { margin-bottom: 0.9rem; color: var(--sms-accent); font-size: var(--sms-step--1); font-weight: 600; }
 .sms-people .sms-people__bio { color: var(--sms-ink-soft); }
 .sms-people .sms-people__bio p { margin: 0; }
 .sms-people .sms-people__shared { margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-navy); color: var(--sms-white); }
@@ -467,12 +473,12 @@
 /* ---------- Links ---------- */
 .sms-links .sms-links__grid { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
 .sms-links .sms-links__item { min-width: 0; }
-.sms-links .sms-links__link { display: flex; flex-direction: column; gap: 0.6rem; height: 100%; padding: 1.75rem 1.5rem; border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow); color: var(--sms-navy); text-decoration: none; transition: transform 0.35s var(--sms-ease); }
+.sms-links .sms-links__link { display: flex; flex-direction: column; gap: 0.6rem; height: 100%; padding: 1.75rem 1.5rem; border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow); color: var(--sms-ink); text-decoration: none; transition: transform 0.35s var(--sms-ease); }
 .sms-links .sms-links__link:hover { transform: translateY(-6px); }
-.sms-links .sms-links__icon { width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-green); }
+.sms-links .sms-links__icon { width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-accent); }
 .sms-links .sms-links__name { min-width: 0; font-size: var(--sms-step-1); font-weight: 700; }
 .sms-links .sms-links__text { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-links .sms-links__go { min-width: 0; margin-top: auto; color: var(--sms-green); font-size: var(--sms-step--1); font-weight: 700; }
+.sms-links .sms-links__go { min-width: 0; margin-top: auto; color: var(--sms-accent); font-size: var(--sms-step--1); font-weight: 700; }
 @media (min-width: 46em) {
   .sms-links .sms-links__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -482,8 +488,8 @@
 
 /* ---------- Claim ---------- */
 .sms-claim .sms-claim__inner { position: relative; text-align: center; }
-.sms-claim .sms-claim__icon { width: 3.5rem; height: 3.5rem; margin-bottom: 1.25rem; padding: 0.8rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-green); }
-.sms-claim.sms-tone-pale .sms-claim__icon { background: var(--sms-white); }
+.sms-claim .sms-claim__icon { width: 3.5rem; height: 3.5rem; margin-bottom: 1.25rem; padding: 0.8rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-accent); }
+.sms-claim.sms-tone-pale .sms-claim__icon { background: var(--sms-surface); }
 .sms-claim .sms-claim__text { max-width: 48rem; margin: 0 auto; font-size: var(--sms-step-2); font-weight: 700; line-height: 1.3; }
 .sms-claim .sms-claim__text p { margin: 0; }
 
@@ -492,9 +498,9 @@
 .sms-marquee .sms-marquee__viewport { overflow: hidden; margin-top: 1.5rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .sms-marquee .sms-marquee__track { display: flex; width: max-content; gap: 0.75rem; margin: 0; padding: 0.5rem 0; list-style: none; animation: sms-marquee 40s linear infinite; }
 .sms-marquee .sms-marquee__viewport:hover .sms-marquee__track { animation-play-state: paused; }
-.sms-marquee .sms-marquee__item { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.7rem 1.2rem; border-radius: 999px; background: var(--sms-white); box-shadow: 0 4px 14px rgba(6, 30, 53, 0.06); font-weight: 600; white-space: nowrap; }
+.sms-marquee .sms-marquee__item { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.7rem 1.2rem; border-radius: 999px; background: var(--sms-surface); box-shadow: 0 4px 14px rgba(6, 30, 53, 0.06); font-weight: 600; white-space: nowrap; }
 .sms-marquee.sms-tone-white .sms-marquee__item { background: var(--sms-pale); box-shadow: none; }
-.sms-marquee .sms-marquee__icon { width: 1.1rem; height: 1.1rem; color: var(--sms-green); }
+.sms-marquee .sms-marquee__icon { width: 1.1rem; height: 1.1rem; color: var(--sms-accent); }
 
 /* ---------- Contact ---------- */
 .sms-contact .sms-contact__inner { display: grid; gap: clamp(2rem, 1.5rem + 3vw, 4rem); }
@@ -504,27 +510,27 @@
 .sms-contact .sms-contact__details { display: grid; gap: 0.75rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
 .sms-contact .sms-contact__detail { display: flex; gap: 1rem; align-items: flex-start; min-width: 0; padding: 1.1rem 1.25rem; border-radius: var(--sms-radius); background: var(--sms-pale); transition: transform 0.3s var(--sms-ease); }
 .sms-contact .sms-contact__detail:hover { transform: translateX(4px); }
-.sms-contact .sms-contact__icon { width: 2.75rem; height: 2.75rem; padding: 0.65rem; border-radius: 50%; background: var(--sms-white); color: var(--sms-green); }
+.sms-contact .sms-contact__icon { width: 2.75rem; height: 2.75rem; padding: 0.65rem; border-radius: 50%; background: var(--sms-surface); color: var(--sms-accent); }
 .sms-contact .sms-contact__detail-body { min-width: 0; }
 .sms-contact .sms-contact__label { color: var(--sms-ink-soft); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-.sms-contact .sms-contact__value { color: var(--sms-navy); font-size: var(--sms-step-1); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
-.sms-contact .sms-contact__value:hover { color: var(--sms-green); }
+.sms-contact .sms-contact__value { color: var(--sms-ink); font-size: var(--sms-step-1); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+.sms-contact .sms-contact__value:hover { color: var(--sms-accent); }
 .sms-contact .sms-contact__small { color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-contact .sms-contact__small p { margin: 0 0 0.4rem; }
-.sms-contact .sms-contact__form { display: grid; gap: 1rem; align-content: start; min-width: 0; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow-lg); }
+.sms-contact .sms-contact__form { display: grid; gap: 1rem; align-content: start; min-width: 0; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow-lg); }
 .sms-contact .sms-contact__form-title { min-width: 0; margin: 0; font-size: var(--sms-step-1); font-weight: 700; }
 .sms-contact .sms-contact__booklink { min-width: 0; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: var(--sms-mint); font-size: var(--sms-step--1); }
 .sms-contact .sms-contact__booklink p { margin: 0; }
-.sms-contact .sms-contact__booklink a { color: var(--sms-navy); font-weight: 700; }
+.sms-contact .sms-contact__booklink a { color: var(--sms-ink); font-weight: 700; }
 .sms-contact .sms-contact__field { display: grid; gap: 0.35rem; min-width: 0; }
 .sms-contact .sms-contact__field-label { min-width: 0; font-size: var(--sms-step--1); font-weight: 600; }
-.sms-contact .sms-contact__input { width: 100%; min-width: 0; padding: 0.85rem 1rem; border: 1px solid #8a99a6; border-radius: var(--sms-radius-sm); background: var(--sms-white); color: var(--sms-navy); font: inherit; }
+.sms-contact .sms-contact__input { width: 100%; min-width: 0; padding: 0.85rem 1rem; border: 1px solid var(--sms-field-line); border-radius: var(--sms-radius-sm); background: var(--sms-field); color: var(--sms-ink); font: inherit; }
 .sms-contact .sms-contact__input--area { min-height: 8rem; resize: vertical; }
 .sms-contact .sms-contact__row { display: grid; gap: 1rem; min-width: 0; }
 .sms-contact .sms-contact__note { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-contact .sms-contact__note p { margin: 0; }
 .sms-contact .sms-contact__submit { justify-self: start; cursor: pointer; font: inherit; font-size: var(--sms-step--1); font-weight: 700; }
-.sms-contact .sms-contact__status { min-width: 0; color: var(--sms-green); font-weight: 600; }
+.sms-contact .sms-contact__status { min-width: 0; color: var(--sms-accent); font-weight: 600; }
 @media (min-width: 40em) {
   .sms-contact .sms-contact__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -576,17 +582,17 @@
 
 /* ---------- Booking wizard ---------- */
 .sms-booking .sms-booking__inner { display: grid; gap: clamp(1.5rem, 1rem + 2vw, 2.5rem); align-items: start; }
-.sms-booking .sms-booking__form { position: relative; min-width: 0; padding: clamp(1.25rem, 0.8rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow-lg); }
+.sms-booking .sms-booking__form { position: relative; min-width: 0; padding: clamp(1.25rem, 0.8rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow-lg); }
 .sms-booking .sms-booking__top { min-width: 0; margin-bottom: 2rem; }
 .sms-booking .sms-booking__top[hidden] { display: none; }
 .sms-booking .sms-booking__progress { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
 .sms-booking .sms-booking__progress-step { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); font-weight: 600; text-align: center; }
-.sms-booking .sms-booking__progress-dot { position: relative; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 2px solid var(--sms-line); border-radius: 50%; background: var(--sms-white); color: var(--sms-ink-soft); font-weight: 700; transition: transform 0.3s var(--sms-ease); }
+.sms-booking .sms-booking__progress-dot { position: relative; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 2px solid var(--sms-line); border-radius: 50%; background: var(--sms-surface); color: var(--sms-ink-soft); font-weight: 700; transition: transform 0.3s var(--sms-ease); }
 .sms-booking .sms-booking__progress-tick { display: none; width: 1.2rem; height: 1.2rem; }
 .sms-booking .sms-booking__progress-num { min-width: 0; }
 .sms-booking .sms-booking__progress-label { min-width: 0; }
-.sms-booking .sms-booking__progress-step.is-current { color: var(--sms-navy); }
-.sms-booking .sms-booking__progress-step.is-current .sms-booking__progress-dot { border-color: var(--sms-green); color: var(--sms-green); transform: scale(1.12); }
+.sms-booking .sms-booking__progress-step.is-current { color: var(--sms-ink); }
+.sms-booking .sms-booking__progress-step.is-current .sms-booking__progress-dot { border-color: var(--sms-green); color: var(--sms-accent); transform: scale(1.12); }
 .sms-booking .sms-booking__progress-step.is-done .sms-booking__progress-dot { border-color: var(--sms-green); background: var(--sms-green); color: var(--sms-white); }
 .sms-booking .sms-booking__progress-step.is-done .sms-booking__progress-tick { display: block; }
 .sms-booking .sms-booking__progress-step.is-done .sms-booking__progress-num { display: none; }
@@ -600,9 +606,9 @@
 .sms-booking .sms-booking__services { display: grid; gap: 0.85rem; }
 .sms-booking .sms-booking__service { position: relative; display: block; min-width: 0; cursor: pointer; }
 .sms-booking .sms-booking__service-input { position: absolute; opacity: 0; pointer-events: none; }
-.sms-booking .sms-booking__service-card { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.25rem 1rem; align-items: center; height: 100%; padding: 1.25rem 3rem 1.25rem 1.25rem; border: 2px solid var(--sms-line); border-radius: var(--sms-radius); background: var(--sms-white); transition: transform 0.25s var(--sms-ease); }
+.sms-booking .sms-booking__service-card { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.25rem 1rem; align-items: center; height: 100%; padding: 1.25rem 3rem 1.25rem 1.25rem; border: 2px solid var(--sms-line); border-radius: var(--sms-radius); background: var(--sms-surface); transition: transform 0.25s var(--sms-ease); }
 .sms-booking .sms-booking__service:hover .sms-booking__service-card { transform: translateY(-3px); border-color: var(--sms-green); }
-.sms-booking .sms-booking__service-icon { grid-row: span 2; width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-green); }
+.sms-booking .sms-booking__service-icon { grid-row: span 2; width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-accent); }
 .sms-booking .sms-booking__service-name { min-width: 0; font-weight: 700; }
 .sms-booking .sms-booking__service-text { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); line-height: 1.45; }
 .sms-booking .sms-booking__service-tick { position: absolute; right: 1rem; top: 1rem; width: 1.5rem; height: 1.5rem; padding: 0.2rem; border-radius: 50%; background: var(--sms-green); color: var(--sms-white); opacity: 0; transform: scale(0.4); transition: transform 0.3s var(--sms-ease), opacity 0.3s var(--sms-ease); }
@@ -614,7 +620,7 @@
 .sms-booking .sms-booking__grid .sms-booking__field { margin-bottom: 0; }
 .sms-booking .sms-booking__label { min-width: 0; padding: 0; font-size: var(--sms-step--1); font-weight: 700; }
 .sms-booking .sms-booking__hint { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-booking .sms-booking__input { width: 100%; min-width: 0; padding: 0.85rem 1rem; border: 1px solid #8a99a6; border-radius: var(--sms-radius-sm); background: var(--sms-white); color: var(--sms-navy); font: inherit; }
+.sms-booking .sms-booking__input { width: 100%; min-width: 0; padding: 0.85rem 1rem; border: 1px solid var(--sms-field-line); border-radius: var(--sms-radius-sm); background: var(--sms-field); color: var(--sms-ink); font: inherit; }
 .sms-booking .sms-booking__input--area { min-height: 6.5rem; resize: vertical; }
 .sms-booking .sms-booking__input.is-invalid { border-color: #b3261e; box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.12); }
 .sms-booking .sms-booking__error { display: block; min-width: 0; min-height: 0; color: #b3261e; font-size: var(--sms-step--1); font-weight: 600; }
@@ -623,7 +629,7 @@
 .sms-booking .sms-booking__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .sms-booking .sms-booking__chip { position: relative; min-width: 0; cursor: pointer; }
 .sms-booking .sms-booking__chip-input { position: absolute; opacity: 0; pointer-events: none; }
-.sms-booking .sms-booking__chip-text { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.55rem 0.95rem; border: 2px solid var(--sms-line); border-radius: 999px; background: var(--sms-white); font-size: var(--sms-step--1); font-weight: 600; transition: transform 0.2s var(--sms-ease); }
+.sms-booking .sms-booking__chip-text { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.55rem 0.95rem; border: 2px solid var(--sms-line); border-radius: 999px; background: var(--sms-surface); font-size: var(--sms-step--1); font-weight: 600; transition: transform 0.2s var(--sms-ease); }
 .sms-booking .sms-booking__chip:hover .sms-booking__chip-text { transform: translateY(-2px); }
 .sms-booking .sms-booking__chip-icon { display: none; width: 1rem; height: 1rem; }
 .sms-booking .sms-booking__chip-input:checked + .sms-booking__chip-text { border-color: var(--sms-green); background: var(--sms-green); color: var(--sms-white); }
@@ -633,26 +639,26 @@
 .sms-booking .sms-booking__toggle-opt { position: relative; min-width: 0; cursor: pointer; }
 .sms-booking .sms-booking__toggle-opt input { position: absolute; opacity: 0; pointer-events: none; }
 .sms-booking .sms-booking__toggle-opt span { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.55rem 1rem; border-radius: 999px; font-size: var(--sms-step--1); font-weight: 700; }
-.sms-booking .sms-booking__toggle-opt input:checked + span { background: var(--sms-white); color: var(--sms-green); box-shadow: 0 4px 12px rgba(6, 30, 53, 0.1); }
+.sms-booking .sms-booking__toggle-opt input:checked + span { background: var(--sms-surface); color: var(--sms-accent); box-shadow: 0 4px 12px rgba(6, 30, 53, 0.1); }
 .sms-booking .sms-booking__toggle-opt input:focus-visible + span { outline: 3px solid var(--sms-green); outline-offset: 2px; }
 .sms-booking .sms-booking__toggle-icon { width: 1rem; height: 1rem; }
-.sms-booking .sms-booking__output { color: var(--sms-green); font-weight: 700; }
+.sms-booking .sms-booking__output { color: var(--sms-accent); font-weight: 700; }
 .sms-booking .sms-booking__range { width: 100%; min-width: 0; accent-color: var(--sms-green); }
 .sms-booking .sms-booking__range-scale { display: flex; justify-content: space-between; color: var(--sms-ink-soft); font-size: 0.75rem; }
-.sms-booking .sms-booking__stepper { display: flex; align-items: stretch; min-width: 0; border: 1px solid #8a99a6; border-radius: var(--sms-radius-sm); overflow: hidden; }
-.sms-booking .sms-booking__step-btn { display: grid; place-items: center; min-width: 0; width: 3rem; border: 0; background: var(--sms-pale-2); color: var(--sms-green); cursor: pointer; }
+.sms-booking .sms-booking__stepper { display: flex; align-items: stretch; min-width: 0; border: 1px solid var(--sms-field-line); border-radius: var(--sms-radius-sm); overflow: hidden; }
+.sms-booking .sms-booking__step-btn { display: grid; place-items: center; min-width: 0; width: 3rem; border: 0; background: var(--sms-pale-2); color: var(--sms-accent); cursor: pointer; }
 .sms-booking .sms-booking__step-btn[hidden] { display: none; }
 .sms-booking .sms-booking__input--num { border: 0; border-radius: 0; text-align: center; -moz-appearance: textfield; }
-.sms-booking .sms-booking__soon { display: flex; gap: 0.75rem; min-width: 0; margin: 0 0 1.25rem; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: #fff6e0; color: var(--sms-navy); font-size: var(--sms-step--1); }
+.sms-booking .sms-booking__soon { display: flex; gap: 0.75rem; min-width: 0; margin: 0 0 1.25rem; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: #fff6e0; color: var(--sms-ink); font-size: var(--sms-step--1); }
 .sms-booking .sms-booking__soon[hidden] { display: none; }
 .sms-booking .sms-booking__soon:not([hidden]) { animation: sms-drop 0.4s var(--sms-ease) both; }
 .sms-booking .sms-booking__soon-icon { color: #8a5a00; }
 .sms-booking .sms-booking__soon-text { min-width: 0; }
-.sms-booking .sms-booking__soon-text a { color: var(--sms-navy); font-weight: 700; }
+.sms-booking .sms-booking__soon-text a { color: var(--sms-ink); font-weight: 700; }
 .sms-booking .sms-booking__reveal[hidden] { display: none; }
 .sms-booking .sms-booking__reveal:not([hidden]) { animation: sms-drop 0.4s var(--sms-ease) both; }
 .sms-booking .sms-booking__aside-note { display: flex; gap: 0.6rem; margin: 0.5rem 0 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-booking .sms-booking__note-icon { color: var(--sms-green); }
+.sms-booking .sms-booking__note-icon { color: var(--sms-accent); }
 .sms-booking .sms-booking__review { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 0; margin: 0 0 1.5rem; border-radius: var(--sms-radius-sm); background: var(--sms-pale); overflow: hidden; }
 .sms-booking .sms-booking__review[hidden] { display: none; }
 .sms-booking .sms-booking__review dt,
@@ -687,11 +693,11 @@
 .sms-booking .sms-booking__help-title,
 .sms-booking .sms-booking__progress-dot,
 .sms-booking .sms-booking__demo > span { min-width: 0; }
-.sms-booking .sms-booking__help-link { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; color: var(--sms-navy); font-size: var(--sms-step--1); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
-.sms-booking .sms-booking__help-link:hover { color: var(--sms-green); }
-.sms-booking .sms-booking__help-icon { color: var(--sms-green); }
+.sms-booking .sms-booking__help-link { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; color: var(--sms-ink); font-size: var(--sms-step--1); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+.sms-booking .sms-booking__help-link:hover { color: var(--sms-accent); }
+.sms-booking .sms-booking__help-icon { color: var(--sms-accent); }
 .sms-booking .sms-booking__demo { display: flex; gap: 0.5rem; min-width: 0; padding: 0 0.5rem; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-booking .sms-booking__demo-icon { color: var(--sms-green); }
+.sms-booking .sms-booking__demo-icon { color: var(--sms-accent); }
 @media (min-width: 40em) {
   .sms-booking .sms-booking__services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sms-booking .sms-booking__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

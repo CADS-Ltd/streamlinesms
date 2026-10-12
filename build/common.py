@@ -140,6 +140,14 @@ def photo(ctx, key, cls="", lazy=True, parallax=True, figcls=""):
         ctx.asset("photos/" + f), attr(alt), w, h, focus, ' loading="lazy"' if lazy else ' fetchpriority="high"')
 
 
+def photo_img(ctx, key, cls, lazy=True, decorative=False):
+    """A bare <img> for one of the client's photos (no figure wrapper)."""
+    f, w, h, focus, alt = C.PHOTOS[key]
+    ctx.photos.append("assets/photos/" + f)
+    return '<img class="%s" src="%s" alt="%s" width="%d" height="%d" style="object-position: %s"%s>' % (
+        cls, ctx.asset("photos/" + f), "" if decorative else attr(alt), w, h, focus, ' loading="lazy"' if lazy else ' fetchpriority="high"')
+
+
 def link(ctx, target):
     """target: page slug, 'book', 'book:<service>', 'tel', 'mail' or absolute URL."""
     if target == "tel":
@@ -231,9 +239,15 @@ BASE_CSS = r"""
   --sms-shadow: 0 18px 40px rgba(6, 30, 53, 0.08);
   --sms-shadow-lg: 0 24px 60px rgba(6, 30, 53, 0.14);
   --sms-ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --sms-ink: var(--sms-navy);
+  --sms-bg: var(--sms-white);
+  --sms-surface: var(--sms-white);
+  --sms-accent: var(--sms-green);
+  --sms-field: var(--sms-white);
+  --sms-field-line: #8a99a6;
   margin: 0;
-  background: var(--sms-white);
-  color: var(--sms-navy);
+  background: var(--sms-bg);
+  color: var(--sms-ink);
   font-family: var(--sms-font);
   font-size: var(--sms-step-0);
   line-height: 1.65;
@@ -258,14 +272,14 @@ BASE_CSS = r"""
 .sms-page .sms-btn:hover { transform: translateY(-3px); }
 .sms-page .sms-btn:active { transform: translateY(0) scale(0.98); }
 .sms-page .sms-btn--primary { border-color: var(--sms-green); background: var(--sms-green); color: var(--sms-white); box-shadow: 0 10px 22px rgba(64, 127, 54, 0.28); }
-.sms-page .sms-btn--outline { border-color: var(--sms-navy); background: transparent; color: var(--sms-navy); }
-.sms-page .sms-btn--outline:hover { background: var(--sms-navy); color: var(--sms-white); }
+.sms-page .sms-btn--outline { border-color: var(--sms-ink); background: transparent; color: var(--sms-ink); }
+.sms-page .sms-btn--outline:hover { background: var(--sms-ink); color: var(--sms-bg); }
 .sms-page .sms-btn:disabled { box-shadow: none; opacity: 0.55; cursor: not-allowed; transform: none; }
 .sms-page .sms-btn--light { border-color: var(--sms-white); background: var(--sms-white); color: var(--sms-navy); }
 .sms-page .sms-arrow { display: inline-block; transition: transform 0.25s var(--sms-ease); }
 .sms-page a:hover .sms-arrow,
 .sms-page button:hover .sms-arrow { transform: translateX(5px); }
-.sms-page .sms-mark { color: var(--sms-green); }
+.sms-page .sms-mark { color: var(--sms-accent); }
 
 /* Photo frame (with gentle parallax on the image) */
 .sms-page .sms-photo { position: relative; min-width: 0; margin: 0; overflow: hidden; border-radius: var(--sms-radius); background: var(--sms-pale); }
@@ -277,7 +291,7 @@ BASE_CSS = r"""
 .sms-page .sms-more,
 .sms-page .sms-more__label,
 .sms-page .sms-chips { min-width: 0; }
-.sms-page .sms-more__toggle { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0; color: var(--sms-green); cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
+.sms-page .sms-more__toggle { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0; color: var(--sms-accent); cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
 .sms-page .sms-more__toggle::-webkit-details-marker { display: none; }
 .sms-page .sms-more__icon { width: 1.1rem; height: 1.1rem; transition: transform 0.3s var(--sms-ease); }
 .sms-page .sms-more[open] .sms-more__icon { transform: rotate(45deg); }
@@ -290,9 +304,9 @@ BASE_CSS = r"""
 
 /* Icon chips */
 .sms-page .sms-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
-.sms-page .sms-chips__item { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.5rem 0.9rem 0.5rem 0.6rem; border-radius: 999px; background: var(--sms-white); box-shadow: 0 4px 14px rgba(6, 30, 53, 0.06); font-size: var(--sms-step--1); font-weight: 600; line-height: 1.35; transition: transform 0.25s var(--sms-ease); }
+.sms-page .sms-chips__item { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.5rem 0.9rem 0.5rem 0.6rem; border-radius: 999px; background: var(--sms-surface); box-shadow: 0 4px 14px rgba(6, 30, 53, 0.06); font-size: var(--sms-step--1); font-weight: 600; line-height: 1.35; transition: transform 0.25s var(--sms-ease); }
 .sms-page .sms-chips__item:hover { transform: translateY(-2px); }
-.sms-page .sms-chips__icon { width: 1.75rem; height: 1.75rem; padding: 0.35rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-green); }
+.sms-page .sms-chips__icon { width: 1.75rem; height: 1.75rem; padding: 0.35rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-accent); }
 .sms-page .sms-chips__text { min-width: 0; }
 
 /* Shared inner widths */
@@ -341,23 +355,23 @@ BASE_CSS = r"""
 .sms-header .sms-header__nav { display: none; min-width: 0; }
 .sms-header .sms-header__list { display: flex; align-items: center; gap: clamp(0.25rem, 0rem + 0.6vw, 0.75rem); min-width: 0; margin: 0; padding: 0; list-style: none; }
 .sms-header .sms-header__item { min-width: 0; }
-.sms-header .sms-header__link { position: relative; display: block; padding: 0.5rem 0.7rem; border-radius: 999px; color: var(--sms-navy); font-size: var(--sms-step--1); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.sms-header .sms-header__link { position: relative; display: block; padding: 0.5rem 0.7rem; border-radius: 999px; color: var(--sms-ink); font-size: var(--sms-step--1); font-weight: 600; text-decoration: none; white-space: nowrap; }
 .sms-header .sms-header__link::after { content: ""; position: absolute; left: 0.7rem; right: 0.7rem; bottom: 0.2rem; height: 2px; border-radius: 2px; background: var(--sms-green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--sms-ease); }
 .sms-header .sms-header__link:hover::after,
 .sms-header .sms-header__link[aria-current="page"]::after { transform: scaleX(1); }
 .sms-header .sms-header__cta { flex: 0 0 auto; min-width: 0; }
 .sms-header .sms-header__menu { position: relative; min-width: 0; }
-.sms-header .sms-header__summary { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 999px; background: var(--sms-pale-2); color: var(--sms-navy); cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
+.sms-header .sms-header__summary { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 999px; background: var(--sms-pale-2); color: var(--sms-ink); cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
 .sms-header .sms-header__summary::-webkit-details-marker { display: none; }
 .sms-header .sms-header__bars { display: block; min-width: 0; width: 1.1rem; height: 2px; background: currentColor; box-shadow: 0 -5px 0 currentColor, 0 5px 0 currentColor; }
-.sms-header .sms-header__panel { position: absolute; right: 0; top: calc(100% + 0.6rem); z-index: 40; width: min(20rem, calc(100vw - 2rem)); padding: 0.6rem; border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow-lg); }
+.sms-header .sms-header__panel { position: absolute; right: 0; top: calc(100% + 0.6rem); z-index: 40; width: min(20rem, calc(100vw - 2rem)); padding: 0.6rem; border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow-lg); }
 .sms-header .sms-header__menu[open] .sms-header__panel { animation: sms-pop 0.3s var(--sms-ease) both; }
 .sms-header .sms-header__panel-list { margin: 0; padding: 0; list-style: none; }
 .sms-header .sms-header__panel-item { min-width: 0; }
-.sms-header .sms-header__panel-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 0.8rem; border-radius: var(--sms-radius-sm); color: var(--sms-navy); font-weight: 600; text-decoration: none; }
+.sms-header .sms-header__panel-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 0.8rem; border-radius: var(--sms-radius-sm); color: var(--sms-ink); font-weight: 600; text-decoration: none; }
 .sms-header .sms-header__panel-link:hover { background: var(--sms-pale); }
 .sms-header .sms-header__panel-link[aria-current="page"] { background: var(--sms-pale-2); }
-.sms-header .sms-header__panel-icon { width: 1.25rem; height: 1.25rem; color: var(--sms-green); }
+.sms-header .sms-header__panel-icon { width: 1.25rem; height: 1.25rem; color: var(--sms-accent); }
 .sms-header .sms-header__panel-sep { height: 1px; margin: 0.4rem 0.8rem; background: var(--sms-line); }
 @media (min-width: 72em) {
   .sms-header .sms-header__nav { display: flex; align-items: center; gap: 1.25rem; }
@@ -380,7 +394,7 @@ BASE_CSS = r"""
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.9rem;
-  color: var(--sms-green);
+  color: var(--sms-accent);
   font-size: var(--sms-step--1);
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -475,10 +489,10 @@ BASE_CSS = r"""
 .sms-feature .sms-feature__frame { aspect-ratio: 4 / 3.4; box-shadow: var(--sms-shadow-lg); }
 .sms-feature .sms-feature__blob { position: absolute; z-index: -1; right: -6%; bottom: -8%; width: 70%; aspect-ratio: 1; border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%; background: var(--sms-mint); animation: sms-float 9s ease-in-out infinite; }
 .sms-feature .sms-feature__main { min-width: 0; }
-.sms-feature .sms-feature__lead { max-width: 38rem; font-size: var(--sms-step-1); line-height: 1.55; color: var(--sms-navy); }
+.sms-feature .sms-feature__lead { max-width: 38rem; font-size: var(--sms-step-1); line-height: 1.55; color: var(--sms-ink); }
 .sms-feature .sms-feature__lead p { margin: 0; }
-.sms-feature .sms-feature__strap { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.6rem 1rem; border-radius: 999px; background: var(--sms-mint); color: var(--sms-navy); font-weight: 700; }
-.sms-feature .sms-feature__strap-icon { color: var(--sms-green); }
+.sms-feature .sms-feature__strap { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.6rem 1rem; border-radius: 999px; background: var(--sms-mint); color: var(--sms-ink); font-weight: 700; }
+.sms-feature .sms-feature__strap-icon { color: var(--sms-accent); }
 .sms-feature .sms-feature__chips-title { margin: 1.75rem 0 0.75rem; font-size: var(--sms-step-0); font-weight: 700; }
 .sms-feature .sms-feature__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
 .sms-feature.sms-tone-white .sms-chips__item { background: var(--sms-pale); box-shadow: none; }
@@ -491,26 +505,26 @@ BASE_CSS = r"""
 /* ---------- Cards ---------- */
 .sms-cards .sms-cards__inner { position: relative; }
 .sms-cards .sms-cards__grid { display: grid; gap: clamp(1rem, 0.6rem + 1.5vw, 1.5rem); margin: 0; padding: 0; list-style: none; }
-.sms-cards .sms-cards__item { position: relative; display: flex; flex-direction: column; min-width: 0; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.1rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow); transition: transform 0.35s var(--sms-ease); }
+.sms-cards .sms-cards__item { position: relative; display: flex; flex-direction: column; min-width: 0; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.1rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow); transition: transform 0.35s var(--sms-ease); }
 .sms-cards.sms-tone-white .sms-cards__item { background: var(--sms-pale); box-shadow: none; }
 .sms-cards .sms-cards__item:hover { transform: translateY(-6px); }
 .sms-cards .sms-cards__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-width: 0; margin-bottom: 1.1rem; }
-.sms-cards .sms-cards__icon { width: 3.25rem; height: 3.25rem; padding: 0.75rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-green); transition: transform 0.35s var(--sms-ease); }
-.sms-cards.sms-tone-white .sms-cards__icon { background: var(--sms-white); }
+.sms-cards .sms-cards__icon { width: 3.25rem; height: 3.25rem; padding: 0.75rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-accent); transition: transform 0.35s var(--sms-ease); }
+.sms-cards.sms-tone-white .sms-cards__icon { background: var(--sms-surface); }
 .sms-cards .sms-cards__item:hover .sms-cards__icon { transform: rotate(-8deg) scale(1.08); }
-.sms-cards .sms-cards__num { min-width: 0; color: var(--sms-green); font-size: 2rem; font-weight: 700; line-height: 1; opacity: 1; }
+.sms-cards .sms-cards__num { min-width: 0; color: var(--sms-accent); font-size: 2rem; font-weight: 700; line-height: 1; opacity: 1; }
 .sms-cards .sms-cards__name { min-width: 0; margin: 0 0 0.5rem; font-size: var(--sms-step-1); font-weight: 700; line-height: 1.3; }
-.sms-cards .sms-cards__meta { display: inline-flex; align-self: flex-start; align-items: center; gap: 0.35rem; min-width: 0; margin-bottom: 0.6rem; padding: 0.25rem 0.7rem; border-radius: 999px; background: var(--sms-pale-2); color: var(--sms-navy); font-size: var(--sms-step--1); font-weight: 600; }
-.sms-cards.sms-tone-white .sms-cards__meta { background: var(--sms-white); }
-.sms-cards .sms-cards__meta-icon { width: 1rem; height: 1rem; color: var(--sms-green); }
+.sms-cards .sms-cards__meta { display: inline-flex; align-self: flex-start; align-items: center; gap: 0.35rem; min-width: 0; margin-bottom: 0.6rem; padding: 0.25rem 0.7rem; border-radius: 999px; background: var(--sms-pale-2); color: var(--sms-ink); font-size: var(--sms-step--1); font-weight: 600; }
+.sms-cards.sms-tone-white .sms-cards__meta { background: var(--sms-surface); }
+.sms-cards .sms-cards__meta-icon { width: 1rem; height: 1rem; color: var(--sms-accent); }
 .sms-cards .sms-cards__text { min-width: 0; color: var(--sms-ink-soft); }
 .sms-cards .sms-cards__text p { margin: 0; }
-.sms-cards .sms-cards__list-title { margin: 0.5rem 0 0.4rem; font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sms-navy); }
+.sms-cards .sms-cards__list-title { margin: 0.5rem 0 0.4rem; font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sms-ink); }
 .sms-cards .sms-cards__list { margin: 0; padding: 0; list-style: none; font-size: var(--sms-step--1); }
 .sms-cards .sms-cards__list-item { display: flex; gap: 0.5rem; min-width: 0; padding: 0.35rem 0; }
 .sms-cards .sms-cards__list-item > span { min-width: 0; }
-.sms-cards .sms-cards__check { width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; color: var(--sms-green); }
-.sms-cards .sms-cards__link { align-self: flex-start; min-width: 0; margin-top: auto; padding-top: 1rem; color: var(--sms-green); font-weight: 700; text-decoration: none; }
+.sms-cards .sms-cards__check { width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; color: var(--sms-accent); }
+.sms-cards .sms-cards__link { align-self: flex-start; min-width: 0; margin-top: auto; padding-top: 1rem; color: var(--sms-accent); font-weight: 700; text-decoration: none; }
 @media (min-width: 46em) {
   .sms-cards .sms-cards__grid--2,
   .sms-cards .sms-cards__grid--3,
@@ -528,7 +542,7 @@ BASE_CSS = r"""
 .sms-steps .sms-steps__line-fill { display: block; width: 100%; height: 100%; border-radius: 3px; background: var(--sms-green); transform-origin: top; }
 .sms-steps .sms-steps__list { position: relative; display: grid; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
 .sms-steps .sms-steps__item { position: relative; display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 1rem; min-width: 0; }
-.sms-steps .sms-steps__badge { position: relative; display: grid; place-items: center; min-width: 0; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--sms-green); color: var(--sms-white); box-shadow: 0 0 0 6px var(--sms-white); }
+.sms-steps .sms-steps__badge { position: relative; display: grid; place-items: center; min-width: 0; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--sms-green); color: var(--sms-white); box-shadow: 0 0 0 6px var(--sms-bg); }
 .sms-steps.sms-tone-pale .sms-steps__badge { box-shadow: 0 0 0 6px var(--sms-pale); }
 .sms-steps .sms-steps__badge-icon { width: 1.4rem; height: 1.4rem; }
 .sms-steps .sms-steps__num { position: absolute; right: -0.35rem; top: -0.35rem; display: grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--sms-navy); color: var(--sms-white); font-size: 0.75rem; font-weight: 700; }
@@ -536,9 +550,9 @@ BASE_CSS = r"""
 .sms-steps .sms-steps__name { margin: 0 0 0.25rem; font-size: var(--sms-step-0); font-weight: 700; line-height: 1.35; }
 .sms-steps .sms-steps__text { color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-steps .sms-steps__text p { margin: 0; }
-.sms-steps .sms-steps__note { display: flex; gap: 0.75rem; max-width: 48rem; margin-top: 2rem; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: var(--sms-white); color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
+.sms-steps .sms-steps__note { display: flex; gap: 0.75rem; max-width: 48rem; margin-top: 2rem; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: var(--sms-surface); color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-steps.sms-tone-white .sms-steps__note { background: var(--sms-pale); }
-.sms-steps .sms-steps__note-icon { color: var(--sms-green); }
+.sms-steps .sms-steps__note-icon { color: var(--sms-accent); }
 .sms-steps .sms-steps__note-text { min-width: 0; }
 .sms-steps .sms-steps__note-text p { margin: 0; }
 @media (min-width: 60em) {
@@ -553,18 +567,18 @@ BASE_CSS = r"""
 .sms-checklist .sms-checklist__grid { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
 .sms-checklist .sms-checklist__item { display: flex; align-items: center; gap: 1rem; min-width: 0; padding: 1.25rem 1.5rem; border-radius: var(--sms-radius); background: var(--sms-pale); font-weight: 600; transition: transform 0.3s var(--sms-ease); }
 .sms-checklist .sms-checklist__item:hover { transform: translateY(-4px); }
-.sms-checklist .sms-checklist__icon { width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 50%; background: var(--sms-white); color: var(--sms-green); }
+.sms-checklist .sms-checklist__icon { width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 50%; background: var(--sms-surface); color: var(--sms-accent); }
 .sms-checklist .sms-checklist__text { min-width: 0; }
 @media (min-width: 52em) {
   .sms-checklist .sms-checklist__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 /* ---------- Notice ---------- */
-.sms-notice .sms-notice__box { display: grid; gap: 1.25rem; align-items: center; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow); }
-.sms-notice .sms-notice__badge { display: grid; place-items: center; min-width: 0; width: 4rem; height: 4rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-green); }
+.sms-notice .sms-notice__box { display: grid; gap: 1.25rem; align-items: center; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow); }
+.sms-notice .sms-notice__badge { display: grid; place-items: center; min-width: 0; width: 4rem; height: 4rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-accent); }
 .sms-notice .sms-notice__badge-icon { width: 1.9rem; height: 1.9rem; }
 .sms-notice .sms-notice__body { min-width: 0; }
-.sms-notice .sms-notice__label { color: var(--sms-green); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.sms-notice .sms-notice__label { color: var(--sms-accent); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 .sms-notice .sms-notice__title { margin: 0.25rem 0 0.5rem; font-size: var(--sms-step-1); font-weight: 700; }
 .sms-notice .sms-notice__text { color: var(--sms-ink-soft); }
 .sms-notice .sms-notice__text p { margin: 0; }
@@ -580,23 +594,23 @@ BASE_CSS = r"""
 .sms-faq .sms-faq__search[hidden] { display: none; }
 .sms-faq .sms-faq__search-label { display: block; margin-bottom: 0.4rem; font-size: var(--sms-step--1); font-weight: 700; }
 .sms-faq .sms-faq__search-icon { position: absolute; left: 1rem; bottom: 0.85rem; width: 1.25rem; height: 1.25rem; color: var(--sms-ink-soft); }
-.sms-faq .sms-faq__input { width: 100%; min-width: 0; padding: 0.85rem 1rem 0.85rem 2.9rem; border: 1px solid #8a99a6; border-radius: 999px; background: var(--sms-white); color: var(--sms-navy); font: inherit; }
+.sms-faq .sms-faq__input { width: 100%; min-width: 0; padding: 0.85rem 1rem 0.85rem 2.9rem; border: 1px solid var(--sms-field-line); border-radius: 999px; background: var(--sms-field); color: var(--sms-ink); font: inherit; }
 .sms-faq .sms-faq__list { min-width: 0; }
-.sms-faq .sms-faq__item { margin-bottom: 0.75rem; border-radius: var(--sms-radius-sm); background: var(--sms-white); box-shadow: 0 4px 16px rgba(6, 30, 53, 0.05); }
+.sms-faq .sms-faq__item { margin-bottom: 0.75rem; border-radius: var(--sms-radius-sm); background: var(--sms-surface); box-shadow: 0 4px 16px rgba(6, 30, 53, 0.05); }
 .sms-faq.sms-tone-white .sms-faq__item { background: var(--sms-pale); box-shadow: none; }
 .sms-faq .sms-faq__item[hidden] { display: none; }
 .sms-faq .sms-faq__q { position: relative; padding: 1.1rem 3.5rem 1.1rem 1.25rem; cursor: pointer; font-weight: 600; line-height: 1.4; list-style: none; }
 .sms-faq .sms-faq__q::-webkit-details-marker { display: none; }
-.sms-faq .sms-faq__q::after { content: "+"; position: absolute; right: 1rem; top: 50%; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; margin-top: -0.95rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-green); font-size: 1.3rem; font-weight: 500; line-height: 1; transition: transform 0.3s var(--sms-ease); }
+.sms-faq .sms-faq__q::after { content: "+"; position: absolute; right: 1rem; top: 50%; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; margin-top: -0.95rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-accent); font-size: 1.3rem; font-weight: 500; line-height: 1; transition: transform 0.3s var(--sms-ease); }
 .sms-faq .sms-faq__item[open] .sms-faq__q::after { transform: rotate(45deg); }
-.sms-faq .sms-faq__q:hover { color: var(--sms-green); }
+.sms-faq .sms-faq__q:hover { color: var(--sms-accent); }
 .sms-faq .sms-faq__a { padding: 0 1.25rem 1.25rem; color: var(--sms-ink-soft); }
 .sms-faq .sms-faq__item[open] .sms-faq__a { animation: sms-drop 0.4s var(--sms-ease) both; }
 .sms-faq .sms-faq__a p { margin: 0 0 0.6rem; }
 .sms-faq .sms-faq__a ul { margin: 0 0 0.6rem; padding-left: 1.25rem; }
 .sms-faq .sms-faq__a li { margin-bottom: 0.25rem; }
-.sms-faq .sms-faq__a a { color: var(--sms-green); font-weight: 600; }
-.sms-faq .sms-faq__all-toggle { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0 1rem; padding: 0.7rem 1.2rem; border: 2px solid var(--sms-navy); border-radius: 999px; cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
+.sms-faq .sms-faq__a a { color: var(--sms-accent); font-weight: 600; }
+.sms-faq .sms-faq__all-toggle { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0 1rem; padding: 0.7rem 1.2rem; border: 2px solid var(--sms-ink); border-radius: 999px; cursor: pointer; font-size: var(--sms-step--1); font-weight: 700; list-style: none; }
 .sms-faq .sms-faq__all-toggle::-webkit-details-marker { display: none; }
 .sms-faq .sms-faq__all[open] > .sms-faq__all-toggle { display: none; }
 .sms-faq .sms-faq__empty { padding: 1rem 0; color: var(--sms-ink-soft); }
@@ -610,8 +624,8 @@ BASE_CSS = r"""
 .sms-quotes .sms-quotes__inner { position: relative; }
 .sms-quotes .sms-quotes__grid { display: grid; gap: clamp(1rem, 0.6rem + 1.5vw, 1.75rem); }
 .sms-quotes .sms-quotes__item { position: relative; min-width: 0; margin: 0; padding: clamp(1.75rem, 1.2rem + 2vw, 2.75rem); border-radius: var(--sms-radius); background: var(--sms-pale); }
-.sms-quotes .sms-quotes__icon { width: 3rem; height: 3rem; margin-bottom: 1rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-white); color: var(--sms-green); }
-.sms-quotes .sms-quotes__label { margin-bottom: 0.6rem; color: var(--sms-green); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.sms-quotes .sms-quotes__icon { width: 3rem; height: 3rem; margin-bottom: 1rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-surface); color: var(--sms-accent); }
+.sms-quotes .sms-quotes__label { margin-bottom: 0.6rem; color: var(--sms-accent); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 .sms-quotes .sms-quotes__text { margin: 0; font-size: var(--sms-step-1); font-weight: 600; line-height: 1.5; }
 .sms-quotes .sms-quotes__text p { margin: 0; }
 @media (min-width: 52em) {
@@ -624,11 +638,11 @@ BASE_CSS = r"""
 .sms-people .sms-people__head { min-width: 0; margin-bottom: 0; }
 .sms-people .sms-people__frame { aspect-ratio: 16 / 11; box-shadow: var(--sms-shadow-lg); }
 .sms-people .sms-people__grid { display: grid; gap: clamp(1rem, 0.6rem + 1.5vw, 1.5rem); margin: 0; padding: 0; list-style: none; }
-.sms-people .sms-people__person { min-width: 0; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow); }
+.sms-people .sms-people__person { min-width: 0; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow); }
 .sms-people.sms-tone-white .sms-people__person { background: var(--sms-pale); box-shadow: none; }
-.sms-people .sms-people__role { display: inline-block; margin-bottom: 0.5rem; padding: 0.2rem 0.7rem; border-radius: 999px; background: var(--sms-mint); color: var(--sms-navy); font-size: var(--sms-step--1); font-weight: 700; }
+.sms-people .sms-people__role { display: inline-block; margin-bottom: 0.5rem; padding: 0.2rem 0.7rem; border-radius: 999px; background: var(--sms-mint); color: var(--sms-ink); font-size: var(--sms-step--1); font-weight: 700; }
 .sms-people .sms-people__name { margin: 0 0 0.3rem; font-size: var(--sms-step-1); font-weight: 700; line-height: 1.3; }
-.sms-people .sms-people__tags { margin-bottom: 0.9rem; color: var(--sms-green); font-size: var(--sms-step--1); font-weight: 600; }
+.sms-people .sms-people__tags { margin-bottom: 0.9rem; color: var(--sms-accent); font-size: var(--sms-step--1); font-weight: 600; }
 .sms-people .sms-people__bio { color: var(--sms-ink-soft); }
 .sms-people .sms-people__bio p { margin: 0; }
 .sms-people .sms-people__shared { margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-navy); color: var(--sms-white); }
@@ -646,12 +660,12 @@ BASE_CSS = r"""
 /* ---------- Links ---------- */
 .sms-links .sms-links__grid { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
 .sms-links .sms-links__item { min-width: 0; }
-.sms-links .sms-links__link { display: flex; flex-direction: column; gap: 0.6rem; height: 100%; padding: 1.75rem 1.5rem; border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow); color: var(--sms-navy); text-decoration: none; transition: transform 0.35s var(--sms-ease); }
+.sms-links .sms-links__link { display: flex; flex-direction: column; gap: 0.6rem; height: 100%; padding: 1.75rem 1.5rem; border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow); color: var(--sms-ink); text-decoration: none; transition: transform 0.35s var(--sms-ease); }
 .sms-links .sms-links__link:hover { transform: translateY(-6px); }
-.sms-links .sms-links__icon { width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-green); }
+.sms-links .sms-links__icon { width: 3rem; height: 3rem; padding: 0.7rem; border-radius: 1rem; background: var(--sms-mint); color: var(--sms-accent); }
 .sms-links .sms-links__name { min-width: 0; font-size: var(--sms-step-1); font-weight: 700; }
 .sms-links .sms-links__text { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
-.sms-links .sms-links__go { min-width: 0; margin-top: auto; color: var(--sms-green); font-size: var(--sms-step--1); font-weight: 700; }
+.sms-links .sms-links__go { min-width: 0; margin-top: auto; color: var(--sms-accent); font-size: var(--sms-step--1); font-weight: 700; }
 @media (min-width: 46em) {
   .sms-links .sms-links__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -661,8 +675,8 @@ BASE_CSS = r"""
 
 /* ---------- Claim ---------- */
 .sms-claim .sms-claim__inner { position: relative; text-align: center; }
-.sms-claim .sms-claim__icon { width: 3.5rem; height: 3.5rem; margin-bottom: 1.25rem; padding: 0.8rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-green); }
-.sms-claim.sms-tone-pale .sms-claim__icon { background: var(--sms-white); }
+.sms-claim .sms-claim__icon { width: 3.5rem; height: 3.5rem; margin-bottom: 1.25rem; padding: 0.8rem; border-radius: 50%; background: var(--sms-mint); color: var(--sms-accent); }
+.sms-claim.sms-tone-pale .sms-claim__icon { background: var(--sms-surface); }
 .sms-claim .sms-claim__text { max-width: 48rem; margin: 0 auto; font-size: var(--sms-step-2); font-weight: 700; line-height: 1.3; }
 .sms-claim .sms-claim__text p { margin: 0; }
 
@@ -671,9 +685,9 @@ BASE_CSS = r"""
 .sms-marquee .sms-marquee__viewport { overflow: hidden; margin-top: 1.5rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .sms-marquee .sms-marquee__track { display: flex; width: max-content; gap: 0.75rem; margin: 0; padding: 0.5rem 0; list-style: none; animation: sms-marquee 40s linear infinite; }
 .sms-marquee .sms-marquee__viewport:hover .sms-marquee__track { animation-play-state: paused; }
-.sms-marquee .sms-marquee__item { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.7rem 1.2rem; border-radius: 999px; background: var(--sms-white); box-shadow: 0 4px 14px rgba(6, 30, 53, 0.06); font-weight: 600; white-space: nowrap; }
+.sms-marquee .sms-marquee__item { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; padding: 0.7rem 1.2rem; border-radius: 999px; background: var(--sms-surface); box-shadow: 0 4px 14px rgba(6, 30, 53, 0.06); font-weight: 600; white-space: nowrap; }
 .sms-marquee.sms-tone-white .sms-marquee__item { background: var(--sms-pale); box-shadow: none; }
-.sms-marquee .sms-marquee__icon { width: 1.1rem; height: 1.1rem; color: var(--sms-green); }
+.sms-marquee .sms-marquee__icon { width: 1.1rem; height: 1.1rem; color: var(--sms-accent); }
 
 /* ---------- Contact ---------- */
 .sms-contact .sms-contact__inner { display: grid; gap: clamp(2rem, 1.5rem + 3vw, 4rem); }
@@ -683,27 +697,27 @@ BASE_CSS = r"""
 .sms-contact .sms-contact__details { display: grid; gap: 0.75rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
 .sms-contact .sms-contact__detail { display: flex; gap: 1rem; align-items: flex-start; min-width: 0; padding: 1.1rem 1.25rem; border-radius: var(--sms-radius); background: var(--sms-pale); transition: transform 0.3s var(--sms-ease); }
 .sms-contact .sms-contact__detail:hover { transform: translateX(4px); }
-.sms-contact .sms-contact__icon { width: 2.75rem; height: 2.75rem; padding: 0.65rem; border-radius: 50%; background: var(--sms-white); color: var(--sms-green); }
+.sms-contact .sms-contact__icon { width: 2.75rem; height: 2.75rem; padding: 0.65rem; border-radius: 50%; background: var(--sms-surface); color: var(--sms-accent); }
 .sms-contact .sms-contact__detail-body { min-width: 0; }
 .sms-contact .sms-contact__label { color: var(--sms-ink-soft); font-size: var(--sms-step--1); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-.sms-contact .sms-contact__value { color: var(--sms-navy); font-size: var(--sms-step-1); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
-.sms-contact .sms-contact__value:hover { color: var(--sms-green); }
+.sms-contact .sms-contact__value { color: var(--sms-ink); font-size: var(--sms-step-1); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+.sms-contact .sms-contact__value:hover { color: var(--sms-accent); }
 .sms-contact .sms-contact__small { color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-contact .sms-contact__small p { margin: 0 0 0.4rem; }
-.sms-contact .sms-contact__form { display: grid; gap: 1rem; align-content: start; min-width: 0; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-white); box-shadow: var(--sms-shadow-lg); }
+.sms-contact .sms-contact__form { display: grid; gap: 1rem; align-content: start; min-width: 0; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--sms-radius); background: var(--sms-surface); box-shadow: var(--sms-shadow-lg); }
 .sms-contact .sms-contact__form-title { min-width: 0; margin: 0; font-size: var(--sms-step-1); font-weight: 700; }
 .sms-contact .sms-contact__booklink { min-width: 0; padding: 1rem 1.25rem; border-radius: var(--sms-radius-sm); background: var(--sms-mint); font-size: var(--sms-step--1); }
 .sms-contact .sms-contact__booklink p { margin: 0; }
-.sms-contact .sms-contact__booklink a { color: var(--sms-navy); font-weight: 700; }
+.sms-contact .sms-contact__booklink a { color: var(--sms-ink); font-weight: 700; }
 .sms-contact .sms-contact__field { display: grid; gap: 0.35rem; min-width: 0; }
 .sms-contact .sms-contact__field-label { min-width: 0; font-size: var(--sms-step--1); font-weight: 600; }
-.sms-contact .sms-contact__input { width: 100%; min-width: 0; padding: 0.85rem 1rem; border: 1px solid #8a99a6; border-radius: var(--sms-radius-sm); background: var(--sms-white); color: var(--sms-navy); font: inherit; }
+.sms-contact .sms-contact__input { width: 100%; min-width: 0; padding: 0.85rem 1rem; border: 1px solid var(--sms-field-line); border-radius: var(--sms-radius-sm); background: var(--sms-field); color: var(--sms-ink); font: inherit; }
 .sms-contact .sms-contact__input--area { min-height: 8rem; resize: vertical; }
 .sms-contact .sms-contact__row { display: grid; gap: 1rem; min-width: 0; }
 .sms-contact .sms-contact__note { min-width: 0; color: var(--sms-ink-soft); font-size: var(--sms-step--1); }
 .sms-contact .sms-contact__note p { margin: 0; }
 .sms-contact .sms-contact__submit { justify-self: start; cursor: pointer; font: inherit; font-size: var(--sms-step--1); font-weight: 700; }
-.sms-contact .sms-contact__status { min-width: 0; color: var(--sms-green); font-weight: 600; }
+.sms-contact .sms-contact__status { min-width: 0; color: var(--sms-accent); font-weight: 600; }
 @media (min-width: 40em) {
   .sms-contact .sms-contact__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -814,7 +828,10 @@ def motion_css(reveal_extra, rise_selectors, entrance_selectors, loop_extra, tra
 # Page shell
 # ---------------------------------------------------------------------------
 
-def head(ctx, title, description, css):
+FONT_DEFAULT = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+
+
+def head(ctx, title, description, css, fonts=None):
     return """<!doctype html>
 %%COMMENT%%
 <html lang="en-GB">
@@ -826,7 +843,7 @@ def head(ctx, title, description, css):
 <meta name="description" content=\"""" + attr(description) + """\">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href=\"""" + html.escape(fonts or FONT_DEFAULT, quote=True) + """\">
 <style>""" + css + """</style>
 </head>
 """
