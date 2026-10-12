@@ -1,59 +1,94 @@
-# Streamline Safety & Medical Solutions: homepage concepts, handover notes
+# Streamline Safety & Medical Solutions: website concepts, handover notes
 
-These are pitch concepts by CADS for a first meeting with Streamline Safety & Medical Solutions Ltd (https://www.streamlinesms.co.uk). They are not production code, but are built to port to WordPress/Elementor.
+These are pitch concepts by CADS for Streamline Safety & Medical Solutions Ltd (https://www.streamlinesms.co.uk). They are not production code, but are built to port to WordPress/Elementor.
 
-- `index.html`: links to the three concepts
-- `concept-1.html`, `concept-2.html`, `concept-3.html`: each a standalone homepage, with its CSS and JS inline
+- `index.html`: links to the three concepts and every page in each
+- `concept-1.html`, `concept-2.html`, `concept-3.html`: the homepages
+- `concept-N/`: the seven inner pages for each concept: `event-medical-cover`, `medical-training`, `risk-needs-consultancy`, `pre-hospital-career-support`, `recruitment`, `about` and `contact`
+- `build/`: the generator. All 24 pages are built from one content file, so the wording is identical in every concept
 - `reference/`: raw HTML of the live site, its CSS, `brand.md`, `content.md` and `images.md`
-- `assets/`: logo, badges, the two photo placeholders, and every image downloaded from the live site (most are reference only and not used; see below)
+- `assets/`: logo, logo shield, badges, photo placeholders, and every image downloaded from the live site (most are reference only and not used; see below)
+
+## Editing and rebuilding
+
+Every page is standalone, with its own inline CSS and JS, and is pure ASCII. Don't edit the HTML by hand. Edit the source files and rebuild:
+
+```
+python3 build/build.py
+```
+
+| File | Holds |
+|---|---|
+| `build/content.py` | All page copy, taken from the live site. FAQs are read straight from the saved pages in `reference/` |
+| `build/common.py` | Header, footer, shared sections (intro, cards, steps, FAQ, people, contact form and others), base CSS and motion rules |
+| `build/concept1.py`, `concept2.py`, `concept3.py` | Each concept's theme: colours and highlight style, page hero, call-to-action band, footer colours and homepage layout |
+
+## Round 2: changes from Mathew's feedback (12 October)
+
+Mathew asked for a site that is lighter, warmer and less corporate, with the Streamline branding obvious at first glance (his example was nexusmedical.co.uk), and with the three main services immediately clear without overwhelming visitors.
+
+- **More brand colour.** Each concept now highlights key words in brand green, in a different style per concept. The shield from the logo appears as a watermark and as a brand mark. Concept 3 adds a green top bar and angled green edges. The shield was cut from the official logo file (`assets/streamline-shield-blue.png` and `-white.png`).
+- **Three main services first.** Event Medical Cover, Medical Training and Risk & Needs Consultancy lead every homepage and the main navigation. Pre-Hospital Career Support and Recruitment are still one click away, from a secondary link on the homepages, the mobile menu and the footer.
+- **Lighter.** Concept 2's navy hero is now a pale-green centred hero with a light footer. The only remaining navy blocks are the footers in concepts 1 and 3 and the boxed headlines in concept 3.
+- **Bigger photos.** Hero photo areas are larger. Concept 3's hero is a full-width photo, like Nexus.
+- **Detail is still there, but tidier.** The live site's FAQs are kept word for word in collapsible sections on each service page, so nothing is lost.
 
 ## How the three concepts differ
 
-1. **Concept 1, editorial split.** A split hero puts the headline, copy and three booking links beside a portrait photo. Services follow as a numbered list (01-04), then an about section with the trust points, then the FAQs.
-2. **Concept 2, centred statement.** A full-width navy hero centres the headline and buttons with no image. Below it sit a four-point "why choose" strip, the services as a 2x2 grid of cards with bullet points, and a section on the two directors.
-3. **Concept 3, three paths.** A large left-aligned headline sits over three big booking panels, followed by a wide photo band. Services are in tabs, then comes a "Working With You" section with Mathew's quote and the client types.
+1. **Concept 1, editorial split.** White and airy. Split heroes pair the headline with a large portrait photo, and key words get a soft green highlight underneath. Homepage services are a numbered list, and call-to-action panels are pale green.
+2. **Concept 2, centred statement.** Light and friendly. Pale-green centred heroes have the logo shield behind them and a wide photo overlapping below. Key words are in green, services are cards topped with photos, call-to-action bands are solid green, and the footer is light.
+3. **Concept 3, bold brand.** The most branded option and the closest to Nexus. A green top bar sits above full-width photo heroes with headlines boxed in navy and solid green, plus angled green edges. Three booking panels overlap the hero, and homepage services are in tabs.
 
-All three use the same logo, the same copy from `reference/content.md`, and the site's own navy `#061E35` and green `#407F36`. Neutrals and tints are taken from the live site's own CSS.
+All three use the same logo, the same copy and the site's own navy `#061E35` and green `#407F36`. Neutrals and tints are taken from the live site's own CSS.
 
 ## Placeholders used
 
-No number, statistic or contact placeholders were needed. The real phone number, email and address are used throughout. The only placeholders are photos:
+No number, statistic or contact placeholders were needed. The real phone number, email and address are used throughout. Each page lists its own placeholders in a comment block at the top.
 
-| File | Concept / location | What should go there |
+| Placeholder | Where | What should go there |
 |---|---|---|
-| `assets/placeholder-portrait.svg` | Concept 1, hero (right column) | A genuine photo of Mathew and Tom, or of the team at work |
-| `assets/placeholder-portrait.svg` | Concept 2, Meet The Directors (Mathew Stones) | A genuine portrait of Mathew |
-| `assets/placeholder-portrait.svg` | Concept 2, Meet The Directors (Thomas Wilkes) | A genuine portrait of Tom |
-| `assets/placeholder-wide.svg` | Concept 3, photo band under the hero | A genuine landscape photo of the team at an event or training session |
-
-Each file also lists its placeholders in a comment block at the top.
+| `assets/placeholder-portrait.svg` | Concept 1 page heroes (all pages except Contact). About page director portraits in all three concepts. Concept 2 homepage directors | Genuine photos: directors in uniform, team at events, training, assessments, interview practice. Each page's comment says which |
+| `assets/placeholder-wide.svg` | Concept 2 page heroes (all pages except Contact) | Wide genuine photo matching the page topic |
+| `assets/placeholder-landscape.svg` | Concept 2 homepage service cards (x3) | One genuine photo per service |
+| `assets/placeholder-hero.svg` | Concept 3 page heroes (all pages except Contact) | Full-width genuine hero photo matching the page topic |
+| Contact form | Contact page, all three concepts | Not connected. Shows a "concept only" message. To be wired to a WordPress form plugin (for example Gravity Forms or Elementor Forms) |
 
 ### Copy taken from images on the live site
 
-These lines appear on the live site, but only as text inside images, not as live text. Confirm them with the client before going live.
+These lines appear on the live site, but only as text inside images. Confirm them with the client.
 
-- "Mathew and Tom bring over 15 years of ambulance experience between them, with even more expertise across our wider team." Used in all three concepts, as approved.
-- "Clinician-led safety and medical support". Concept 1 hero eyebrow.
-- "Working With You, Not Simply For You." and the two paragraphs under it. Concept 3.
-- Mathew Stones' quote: "We truly care about the people and organisations we support..." Concept 3.
+- "Mathew and Tom bring over 15 years of ambulance experience between them, with even more expertise across our wider team." Used on every homepage and every About page, as approved.
+- "Clinician-led safety and medical support". Hero eyebrow on the concept 1 and 3 homepages.
+- "Working With You, Not Simply For You." and the two paragraphs under it. Concept 3 homepage.
+- Mathew Stones' quote: "We truly care about the people and organisations we support..." Concept 3 homepage.
+- "Book Your Event Medical Cover" heading. Event Medical Cover pages.
+- "Group Bookings" and "Examples of bespoke training" labels. Medical Training pages.
+- "A clear process" heading and the values list Care / Integrity / Teamwork / Safety / Community. Recruitment pages.
+- "Need a Specific Service?" card descriptions. Contact pages.
+
+### Content notes
+
+- **Typo left out:** the Event Medical Cover strapline "Expert medical teams. Precession solutions." is omitted, because it contains the typo. Ask the client whether they want it back, corrected to "Precision".
+- **Links:** buttons that say "book" or "register interest" go to the concept's own Contact page. The training catalogue goes to the client's Google Drive file. The privacy policy and staff portal go to the live site.
 
 ## Images used, with source URLs
 
-Only the logo, the two badges and the CADS placeholders are used. Most of the site's photos look AI-generated or AI-composited, and the rest are graphics with text baked in, so none of them are used. The full assessment of all 51 downloaded images is in `reference/images.md`.
+Only the logo, the shield cut from it, the two badges and the CADS placeholders are used. Most of the site's photos look AI-generated or AI-composited, and the rest are graphics with text baked in, so none of them are used. The full assessment of all 51 downloaded images is in `reference/images.md`.
 
-| File | Used in | Source URL |
+| File | Used in | Source |
 |---|---|---|
-| `assets/streamline-s-m-sol-logo-blue-long.png` | Header (concepts 1 and 3), index | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/1e84c56b-50f3-408b-885a-4058acdc3db5/Streamline+S%26M+Sol+Logo+Blue+Long.png |
-| `assets/streamline-s-m-sol-logo-white-long.png` | Header (concept 2), all footers | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/07b3f2d8-2aa6-48c6-9b1d-8b0055833a83/Streamline+S%26M+Sol+Logo+white+Long.png |
+| `assets/streamline-s-m-sol-logo-blue-long.png` | Headers, light footer (concept 2), index | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/1e84c56b-50f3-408b-885a-4058acdc3db5/Streamline+S%26M+Sol+Logo+Blue+Long.png |
+| `assets/streamline-s-m-sol-logo-white-long.png` | Navy footers (concepts 1 and 3) | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/07b3f2d8-2aa6-48c6-9b1d-8b0055833a83/Streamline+S%26M+Sol+Logo+white+Long.png |
+| `assets/streamline-shield-blue.png`, `assets/streamline-shield-white.png` | Watermarks and brand marks | Cropped by CADS from the two logo files above. No new artwork |
 | `assets/whatsapp-image-2026-07-20-at-12.27.35.jpeg` (Qualsafe registered centre badge) | Concept 1 credentials strip, all footers | https://images.squarespace-cdn.com/content/v1/69fb44d38d058e2a40ee72f8/624ea3d0-f9c6-4379-aca1-455f406240d1/WhatsApp+Image+2026-07-20+at+12.27.35.jpeg |
 | `assets/featured-landscape-purple-medium.png` (Add To Event Featured Supplier badge) | All footers | https://www.addtoevent.co.uk/sites/default/files/badges/featured_landscape_purple_medium.png |
-| `assets/placeholder-portrait.svg`, `assets/placeholder-wide.svg` | See placeholders | Made by CADS for these concepts. Not client images |
+| `assets/placeholder-*.svg` | See placeholders | Made by CADS. Not client images |
 
 Usage rights to check:
 
 - **Qualsafe badge.** Qualsafe's own logo, so check their brand guidelines for registered centres.
 - **Add To Event badge.** Add To Event's own badge, served from their site and meant to be embedded by suppliers.
-- **The other images in `assets/`.** These come from the client's live site and are kept for reference only. They will be publicly visible on GitHub Pages under `/streamlinesms/assets/`. Delete them from the repo if that's a concern.
+- **The other images in `assets/`.** These come from the client's live site and are kept for reference only. They are publicly visible on GitHub Pages under `/streamlinesms/assets/`. Delete them from the repo if that's a concern.
 
 ## Things on the live site that looked out of date or inconsistent
 
@@ -109,29 +144,29 @@ These are questions only. Nothing here has been added to the designs.
 
 None found. The only phone number anywhere on the site, in the visible text and in the page code, is the landline **01283 358789**.
 
-## Accessibility and build checks
+## Accessibility and build checks (all 24 pages plus the index)
 
-- **Contrast (WCAG AA):** every text/background pair as rendered was measured in Chromium at 375px and 1440px, with FAQ panels open. All pass. The closest pairs:
-  - green `#407F36` on the pale panel `#F4F8F3`: 4.54:1 (small text, passes AA only just)
-  - green `#407F36` on white: 4.88:1
-  - white on green buttons: 4.88:1
-
-  No colours needed fixing. By design, green text on navy uses the site's own lighter tint `#82D06E` (8.99:1), because the brand green `#407F36` on navy is only 3.46:1 and would fail for small text.
-- **Layout:** checked at 375px, 800px and 1440px with no horizontal scrolling. Concept 3 was also checked with JavaScript off (all four service panels show stacked). The `details` mobile menu was checked opening with JavaScript off on all three concepts.
+- **Contrast (WCAG AA):** every text/background pair as rendered was measured in Chromium at 375px, 800px and 1440px, with FAQ panels open. All pass.
+  - The tightest pairs are green on the pale panel (4.54:1) and green on white or white on green (4.88:1).
+  - Concept 1's highlight is navy on a pale green tint (12.62:1).
+  - Green text on navy uses the site's own lighter tint `#82D06E`.
+- **Layout:** no horizontal scrolling at 375px, 800px or 1440px on any page.
+- **Without JavaScript:** the `details` mobile menu works everywhere. Concept 3's homepage tabs show all three service panels stacked. The contact form shows its "concept only" note.
 - **Code rules:**
   - Pure ASCII source with HTML entities; one `h1` per page; no skipped heading levels; every `img` has `alt`, `width` and `height`.
-  - Every CSS selector is scoped to its section root. Global tokens and base styles sit on `.sms-page` (the `body` class), which maps to Elementor Site Settings.
+  - Every CSS selector is scoped to its section root. Global tokens, buttons and the highlight sit on `.sms-page`, which maps to Elementor Site Settings and global classes.
   - `min-width: 0` is set on every flex and grid child, verified in the browser.
 - **Motion:**
   - Hover effects only.
-  - The hero headline (the LCP element) animates in with `transform` only.
-  - Scroll reveals sit inside `@supports (animation-timeline: view())` and use entry-only ranges (`entry 0% entry 80%`).
+  - Page headlines (the LCP element) animate in with `transform` only.
+  - Scroll reveals sit inside `@supports (animation-timeline: view())` and use entry-only ranges.
   - `prefers-reduced-motion` sets `animation: none` and `animation-timeline: none`.
 
 ## Porting notes (WordPress/Elementor)
 
-- Navigation and service links point at the live site's existing pages. Change them to the new WordPress URLs when porting.
+- Navigation links between the concept's own pages are relative. The privacy policy and staff portal still point at the live site.
 - Each `<section class="sms-...">` maps to one Elementor container. Its scoped CSS can go into that container's Custom CSS, or into the theme stylesheet.
 - Prose sits in `div` containers, as Elementor's Text Editor widget outputs it.
-- Concept 3's tabs use a small inline script that builds on HTML which works without it. Elementor's Tabs widget could replace it, but check it falls back as cleanly.
+- Concept 3's homepage tabs use a small inline script that builds on HTML which works without it. Elementor's Tabs widget could replace it, but check it falls back as cleanly.
+- Shared sections (intro, cards, steps, FAQ, people, links, contact) map naturally to saved Elementor templates or global widgets.
 - Fonts: Montserrat 400/500/600/700 from Google Fonts, matching the live site.
