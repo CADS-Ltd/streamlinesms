@@ -19,7 +19,7 @@ import dark  # noqa: E402
 import importlib  # noqa: E402
 
 CONCEPTS = {}
-for _n in range(1, 13):
+for _n in (1, 2, 3, 10, 11, 12):
     try:
         CONCEPTS[_n] = importlib.import_module("concept%d" % _n)
     except ImportError:
@@ -89,15 +89,9 @@ INDEX_DESC = {
     1: ("Editorial split", "White and airy with soft mint shapes. Big rounded photos with floating badges, a zig-zag of services with photos, and gentle motion as you scroll."),
     2: ("Centred statement", "Light and friendly. Centred pale-green heroes with a photo collage, photo service cards, rounded everything, green call-to-action bands and a light footer."),
     3: ("Bold brand", "The most branded option. Green top bar, split photo heroes with boxed navy and green headlines, angled brand shapes, booking panels and tabbed services with photos."),
-    4: ("Night shift", "Dark and cinematic. Move an inspection light across the hero photo, switch an event site from unassessed to assessed, and scroll through the services while a pinned photo changes."),
-    5: ("Graphite", "Dark and refined. A big centred headline over a photo comparison that sweeps itself, service tiles that tilt towards the pointer, a course-length picker and tabbed diagrams."),
-    7: ("Spotlight", "Concept 4's layouts and motion in Streamline's own colours: white and pale green with navy photo heroes. Move a light across the hero, flip the site diagram, and scroll the services past a pinned photo."),
-    8: ("Studio", "Concept 5's layouts and motion in Streamline's own colours. A big centred headline over a self-sweeping photo comparison, tilting service tiles, a course-length picker and navy diagram panels."),
-    9: ("Heartbeat", "Concept 6's layouts and motion in Streamline's own colours, with the green top bar. A green heartbeat line, the which-service chooser, a navy rail of event types and stacking navy cards."),
-    10: ("Horizon", "New elements with the same calm, cinematic feel, in Streamline's own colours. A slow film strip of photos, a big service list with a photo that follows the pointer, the mission lighting up word by word, a where-we-work map and a booking journey that scrolls sideways."),
-    11: ("Contour", "New elements, same feel, Streamline's own colours. Fanned photo cards that spread out, service panels that open up, flip cards, a bespoke-training topic explorer and a get-your-quote-ready checklist."),
-    12: ("Signal", "New elements, same feel, Streamline's own colours. A calm radar sweep behind the headline, a needs-assessment grid that lights up as you scroll, a five-step consultation stepper and a career journey line."),
-    6: ("Pulse", "Dark navy with green light. A heartbeat line across the hero, a which-service-do-you-need chooser, a swipeable rail of event types and cards that stack as you scroll."),
+    10: ("Horizon", "Calm and cinematic. A slow film strip of photos, a big service list with a photo that follows the pointer, the mission lighting up word by word, a where-we-work map and a booking journey that scrolls sideways."),
+    11: ("Contour", "Layered and tactile. Fanned photo cards that spread out, service panels that open up, flip cards, a bespoke-training topic explorer and a get-your-quote-ready checklist."),
+    12: ("Signal", "Precise and calm. A radar sweep behind the headline, a needs-assessment grid that lights up as you scroll, a five-step consultation stepper and a career journey line."),
 }
 
 
@@ -158,7 +152,7 @@ def build_index():
   <div class="sms-index__inner">
     <img class="sms-index__logo" src="assets/streamline-s-m-sol-logo-blue-long.png" alt="Streamline Safety &amp; Medical Solutions" width="2500" height="443">
     <h1 class="sms-index__title">Website concepts</h1>
-    <div class="sms-index__intro"><p>Twelve directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo and wording are the same throughout; the layout, mood and how strongly the brand comes through are what change.</p><p>Concepts 1 to 3 are light and friendly. Concepts 4 to 6 are dark and cinematic, built around interactive pieces you can try: move a light, flip a diagram, drag a comparison, pick a course. Concepts 7 to 9 keep those layouts and interactive pieces in Streamline&rsquo;s own colour scheme. Concepts 10 to 12 keep the same calm, cinematic feel with all-new interactive pieces, also in Streamline&rsquo;s own colours.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
+    <div class="sms-index__intro"><p>Six directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo, colours and wording are the same throughout; the layout, mood and motion are what change.</p><p>Concepts 1 to 3 are light and friendly. Concepts 10 to 12 have a calmer, more cinematic feel, built around interactive pieces you can try, all in Streamline&rsquo;s own colours.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
     <ul class="sms-index__list">%s</ul>
     <div class="sms-index__note"><p>Pitch concepts by CADS. Not for indexing.</p></div>
   </div>

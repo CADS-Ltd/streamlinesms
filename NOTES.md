@@ -2,10 +2,10 @@
 
 These are pitch concepts by CADS for Streamline Safety & Medical Solutions Ltd (https://www.streamlinesms.co.uk). They are not production code, but are built to port to WordPress/Elementor.
 
-- `index.html`: links to the twelve concepts and every page in each
-- `concept-1.html` to `concept-12.html`: the homepages
+- `index.html`: links to the six concepts and every page in each
+- `concept-1.html`, `concept-2.html`, `concept-3.html`, `concept-10.html`, `concept-11.html`, `concept-12.html`: the homepages. Concepts 4 to 9 were tried and removed; the numbers are kept so existing links to 10 to 12 still work
 - `concept-N/`: the eight inner pages for each concept: `event-medical-cover`, `medical-training`, `risk-needs-consultancy`, `pre-hospital-career-support`, `recruitment`, `about`, `contact` and `book` (the interactive booking demo)
-- `build/`: the generator. All 108 pages are built from one content file, so the wording is identical in every concept
+- `build/`: the generator. All 54 pages are built from one content file, so the wording is identical in every concept
 - `reference/`: raw HTML of the live site, its CSS, `brand.md`, `content.md` and `images.md`
 - `assets/`: logo, logo shield, badges, every image downloaded from the live site, and `assets/photos/` (the crops used in the designs; see below)
 
@@ -22,13 +22,13 @@ python3 build/build.py
 | `build/content.py` | All page copy, taken from the live site. FAQs are read straight from the saved pages in `reference/` |
 | `build/common.py` | Header, footer, shared sections (intro, cards, steps, FAQ, people, contact form and others), icons, base CSS and motion rules |
 | `build/booking.py` | The booking wizard: markup, CSS and script |
-| `build/dark.py` | The shared dark theme for concepts 4 to 6, plus the radio-button switch helpers used by their interactive pieces |
-| `build/light.py` | The light theme for concepts 7 to 9: Streamline's original colours, plus navy "islands" for the photo heroes, panels and footer |
-| `build/concept1.py` to `concept12.py` | Each concept's theme: colours, fonts and highlight style, page hero, call-to-action band, footer colours, homepage layout and any interactive pieces added to inner pages |
+| `build/dark.py` | The shared structure for concepts 10 to 12 (originally written for a dark direction, since removed), plus the radio-button switch helpers used by their interactive pieces |
+| `build/light.py` | The colours for concepts 10 to 12: Streamline's original palette, plus navy "islands" for the photo heroes, panels and footer |
+| `build/concept1.py` to `concept3.py`, `concept10.py` to `concept12.py` | Each concept's theme: colours, fonts and highlight style, page hero, call-to-action band, footer colours, homepage layout and any interactive pieces added to inner pages |
 
-## Round 6: concepts 10, 11 and 12 (same feel, new elements, original colours)
+## Round 6: concepts 10, 11 and 12 (calm, cinematic feel, original colours)
 
-The brief this time: the feel of the Pristine Motors concepts J and K, but not their elements. So these three keep the mood (light display type, generous space, calm and precise motion, explainers you can play with) but none of the round 4 to 5 pieces come back: no inspection light, photo sweep, ring, tilting tiles, course picker, heartbeat line or service chooser. All three use Streamline's original colours, like concepts 7 to 9.
+The brief this time: the feel of the Pristine Motors concepts J and K, but not their elements. So these three keep the mood (light display type, generous space, calm and precise motion, explainers you can play with) with their own new elements. All three use Streamline's original colours.
 
 - **Concept 10, Horizon** (Montserrat):
   - a slow film strip of photos drifting under the hero, which pauses on hover
@@ -52,31 +52,9 @@ The brief this time: the feel of the Pristine Motors concepts J and K, but not t
   - inner pages: Risk & Needs Consultancy gets the grid and stepper (in place of the steps block), and Pre-Hospital Career Support gets the journey (in place of the intro and steps)
 - Short interface labels such as "Turn over", "Your starting point", "Choose a service to open it up" and "Tick off what you already know" are CADS labels, not claims. Maps and diagrams are marked "Illustration, not to scale".
 
-## Round 5: concepts 7, 8 and 9 (round 4 layouts in the original colours)
+## Rounds 4 and 5: removed
 
-The same layouts, motion and interactive pieces as concepts 4, 5 and 6, but in Streamline's original colour scheme: white and pale-green sections, navy `#061E35` text and brand green `#407F36` for buttons and accents. Navy appears where the live site uses it: photo heroes, the diagram screens, call-to-action panels and the footer. Concept 9 adds the green top bar.
-
-- **Concept 7, Spotlight** = concept 4's layout: the inspection-light hero (navy, over the photo), the facts strip, the unassessed / assessed site diagram on a navy screen, the pinned-photo scroll story, a navy Assess / Plan / Protect band and Mathew's message.
-- **Concept 8, Studio** = concept 5's layout: a centred hero on a pale-green wash over the event / training photo comparison, tilting white service tiles (the big tile is navy over the photo), the course-length picker, navy diagram panels and the consultation timeline.
-- **Concept 9, Heartbeat** = concept 6's layout: a green heartbeat line under the heroes, the service chooser, a navy band for the event-types rail, navy stacking cards, the qualification timeline and the recruitment pathway.
-- **Fonts** follow their dark twins: Montserrat for 7, Urbanist for 8 and Outfit for 9. Any of them can switch to Montserrat, the live site's font.
-- **How it is built:** concepts 7 to 9 reuse concepts 4 to 6's markup and scripts. `build/light.py` swaps the colour tokens and turns the chosen sections into navy islands. Concepts 1 to 6 were checked pixel for pixel and are unchanged.
-
-## Round 4: three dark, cinematic concepts (4, 5 and 6)
-
-Three more directions, all dark and cinematic, each built around interactive pieces the client can try. Same logo, same copy, same photos and the site's own navy and green. Each one is a full nine-page site with the booking demo.
-
-- **Note for the pitch:** Mathew's round 2 feedback described the current site as dark and asked for something lighter and warmer. Concepts 4 to 6 go the other way on purpose, as a contrast to concepts 1 to 3. Present them as an alternative mood, not a replacement.
-- **Interactive pieces, all built from real content:**
-  - Concept 4: an inspection light that follows the pointer across the hero photo, with a "Lights on" switch, from the live line "In pre-hospital care, the first step is always to assess for danger". A site diagram that flips from "Unassessed" to "Assessed": hazards ringed, first aid point, emergency access route and site plan, from the consultancy page and the quote FAQ. A scroll story where a pinned photo changes as the five services scroll past. An Assess / Plan / Protect ring that lights up as you scroll, from "Assess the risk. Plan the response. Protect your people."
-  - Concept 5: a photo comparison between an event and a training session that sweeps itself once and can be dragged. Service tiles that tilt towards the pointer. A course-length picker using the exact durations from the FAQ "How long do the courses take?". Tabbed Skilled / Proportionate / Reliable diagrams: the skill levels with FREC 3 marked as the minimum for many events, the six factors every event is assessed on, and first enquiry through to post-event reporting.
-  - Concept 6: a heartbeat line that draws itself across the heroes. A "What would you like help with?" chooser that points to the right service and preselects it on the booking form. A swipeable rail of the five event types. "Why choose Streamline" cards that stack as you scroll. A three-year qualification timeline with annual refreshers, from the FAQ "How long are qualifications valid?". The recruitment pathway fills in as you scroll.
-- **Works without JavaScript:** every switch, tab, picker and chooser is made from radio buttons and CSS, so it works with JavaScript off. JavaScript only adds the light, the photo sweep, the tile tilt, the scroll story's photo swap and the rail buttons. Without it the light and switch are hidden, the comparison rests at the halfway point and the rail scrolls natively.
-- **Fonts:** concept 4 uses Montserrat (the live site's font) in light weights. Concept 5 uses Urbanist and concept 6 uses Outfit, both from Google Fonts, as alternatives. Any of them can swap to Montserrat.
-- **Inner pages:** concept 4 adds the site diagram to Risk & Needs Consultancy. Concept 5 adds the course picker to Medical Training, and replaces the Skilled / Proportionate / Reliable cards on Event Medical Cover with the diagrams (the full card text is kept under "Read more"). Concept 6 adds the qualification timeline to Medical Training, and the service chooser to Contact in place of the "Need a Specific Service?" cards.
-- **About page hero:** concepts 5 and 6 use the team photo, because the directors' white-background cutout looks harsh at full width on a dark page. The directors still appear in the festival photo on that page.
-- **Short UI labels** such as "Move the light", "Unassessed / Assessed", "You need", "Find the right service" and "Illustration, not to scale" are CADS interface labels, not claims.
-- **Image-only copy** used in round 4: the five event types and their one-liners (concept 6), "Working With You, Not Simply For You." and the 15 years line (concepts 4 and 6), Mathew's quote (concept 4), "Clinician-led safety and medical support" (concept 4) and "Speak to our team about the right solution for your organisation." (concept 5). Each page's comment block lists what it uses.
+Concepts 4 to 6 (dark, cinematic) and 7 to 9 (the same layouts in the original colours) were built and then removed at CADS's request. They are in the git history (commits `5a3fe7a` and `25ec156`) if anything from them is wanted later.
 
 ## Round 3: friendlier, photos, motion, less text, booking demo
 
@@ -101,25 +79,17 @@ Mathew asked for a site that is lighter, warmer and less corporate, with the Str
 - **Bigger photos.** Hero photo areas are larger. Concept 3's hero is a full-width photo, like Nexus.
 - **Detail is still there, but tidier.** The live site's FAQs are kept word for word in collapsible sections on each service page, so nothing is lost.
 
-## How the twelve concepts differ
+## How the six concepts differ
 
 1. **Concept 1, editorial split.** White and airy. Split heroes pair the headline with a rounded photo frame on a soft green blob, with floating labels. Key words get a soft green highlight. Homepage services alternate photo and text in a numbered zig-zag. A bobbing green card carries the 15 years line. Call-to-action panels are pale green with three round team photos.
 2. **Concept 2, centred statement.** Light and friendly. Pale-green centred heroes with floating bubbles lead into a wide photo collage, with a round second photo and labels. Key words are in green, a strip of four icon cards explains why to choose Streamline, and services are photo cards that zoom on hover. Call-to-action bands are solid green, and the footer is light.
 3. **Concept 3, bold brand.** The most branded option and the closest to Nexus. A green top bar sits above split heroes with an angled photo, headlines boxed in navy and solid green, and a white intro card. Three "Find out more" panels lead to the services, which sit in tabs with photos. The approach section pairs "Working With You, Not Simply For You" with a festival photo and Mathew's quote.
 
-4. **Concept 4, night shift.** Dark and cinematic. Midnight navy, Montserrat in light weights with one bold phrase per headline. Heroes put the photo under a deep shade. Homepage: the inspection-light hero, a strip of real facts (FREC 3, Qualsafe centre number, free consultation, 15 years), the site diagram, the scroll story, the Assess / Plan / Protect ring and Mathew's message. Glowing call-to-action panel.
-5. **Concept 5, graphite.** Dark and refined. Near-black graphite, Urbanist light with an italic green accent word, a floating glass pill header and white pill buttons. Centred heroes with a wide photo underneath. Homepage: the photo comparison, tilting service tiles, the course-length picker, the tabbed diagrams and a consultation timeline that fills as you scroll.
-6. **Concept 6, pulse.** Dark navy with green light: the most brand-led of the dark three. Outfit font, green gradient accent words and a heartbeat line under every hero and call-to-action. Split heroes with a glowing photo frame. Homepage: the service chooser, the event-types rail, the stacking cards, the qualification timeline, the recruitment pathway and the FAQs.
+4. **Concept 10, Horizon.** Calm and typographic: a film strip of photos, a big service list with a photo that follows the pointer, a word-by-word mission, a pulsing area map and a sideways booking journey.
+5. **Concept 11, Contour.** Layered and tactile: fanned photo cards, service panels that open up, flip cards, a bespoke topic explorer and a quote checklist. Works fully without JavaScript.
+6. **Concept 12, Signal.** Precise and calm: a radar sweep on navy, a needs-assessment grid that scans as you scroll, a consultation stepper and a career journey picker.
 
-7. **Concept 7, Spotlight.** Concept 4 in the original colours: white and pale-green sections with navy photo heroes, a navy diagram screen and a navy approach band.
-8. **Concept 8, Studio.** Concept 5 in the original colours: pale-green and white, green pill buttons, a white floating header and navy diagram and call-to-action panels.
-9. **Concept 9, Heartbeat.** Concept 6 in the original colours: green top bar, white sections, a green heartbeat line, a navy event-types band and navy stacking cards.
-
-10. **Concept 10, Horizon.** Calm and typographic: a film strip of photos, a big service list with a photo that follows the pointer, a word-by-word mission, a pulsing area map and a sideways booking journey.
-11. **Concept 11, Contour.** Layered and tactile: fanned photo cards, service panels that open up, flip cards, a bespoke topic explorer and a quote checklist. Works fully without JavaScript.
-12. **Concept 12, Signal.** Precise and calm: a radar sweep on navy, a needs-assessment grid that scans as you scroll, a consultation stepper and a career journey picker.
-
-All twelve use the same logo, the same copy and the site's own navy `#061E35` and green `#407F36`. On the dark concepts, green text uses the site's lighter tint (`#82D06E` or close to it) for contrast. Neutrals and tints are taken from the live site's own CSS.
+All six use the same logo, the same copy and the site's own navy `#061E35` and green `#407F36`. On navy panels, green text uses the site's lighter tint `#82D06E` for contrast. Neutrals and tints are taken from the live site's own CSS.
 
 ## Placeholders used
 
@@ -237,16 +207,15 @@ These are questions only. Nothing here has been added to the designs.
 
 None found. The only phone number anywhere on the site, in the visible text and in the page code, is the landline **01283 358789**.
 
-## Accessibility and build checks (all 108 pages plus the index)
+## Accessibility and build checks (all 54 pages plus the index)
 
 - **Contrast (WCAG AA):** every text/background pair as rendered was measured in Chromium at 375px, 800px and 1440px, with FAQ panels open. All pass.
   - The tightest pairs are green on the pale panel (4.54:1) and green on white or white on green (4.88:1).
   - Concept 1's highlight is navy on a pale green tint (12.62:1). The automated checker misreads this gradient as black, so it was checked by hand.
   - Green text on navy uses the site's own lighter tint `#82D06E`.
-  - On concepts 4 to 6 the checker also flags text over gradient panels and green gradient text, because it reads the first colour stop as a solid colour. These were worked out by hand at the brightest point of each gradient: the tightest is grey body text on the green glow of the call-to-action panels, at about 5:1.
-  - Concept 4's hero text sits over a dark shade on the photo. When the light or "Lights on" brightens the photo, the shade stays partly on and the text has a soft shadow.
+  - On concepts 10 to 12 the checker also flags text over gradient panels, because it reads the first colour stop as a solid colour. These were worked out by hand at the brightest point of each gradient: the tightest is light grey text on the green glow of the navy call-to-action panels, at about 5:1.
 - **Layout:** no horizontal scrolling at 375px, 800px or 1440px on any page.
-- **Without JavaScript:** the `details` mobile menu, "Read more" and "Show all questions" work everywhere. Concept 3's homepage tabs show all three service panels stacked. Concepts 4 to 6's switches, pickers and chooser still work, because they are radio buttons. The FAQ search box is hidden. The booking demo shows as one long form. The contact and booking send buttons stay disabled, so nothing can be posted.
+- **Without JavaScript:** the `details` mobile menu, "Read more" and "Show all questions" work everywhere. Concept 3's homepage tabs show all three service panels stacked. Concepts 11 and 12's panels, flip cards, explorer, checklist, stepper and career picker still work, because they are radio buttons and checkboxes. The FAQ search box is hidden. The booking demo shows as one long form. The contact and booking send buttons stay disabled, so nothing can be posted.
 - **Code rules:**
   - Pure ASCII source with HTML entities; one `h1` per page; no skipped heading levels; every `img` has `alt`, `width` and `height`.
   - Every CSS selector is scoped to its section root. Global tokens, buttons and the highlight sit on `.sms-page`, which maps to Elementor Site Settings and global classes.
@@ -267,6 +236,6 @@ None found. The only phone number anywhere on the site, in the visible text and 
 - Scroll-driven animations are plain CSS, so they can go into the theme stylesheet or Elementor's Custom CSS. Elementor's own Motion Effects could replace the parallax.
 - Icons are inline SVG line icons drawn by CADS. They could be swapped for an icon set the theme already loads.
 - Shared sections (intro, cards, steps, FAQ, people, links, contact) map naturally to saved Elementor templates or global widgets.
-- Concepts 4 to 6's switches, pickers and chooser are radio buttons with CSS, which Elementor can hold in an HTML widget, or rebuild with its Tabs widget. The light, sweep, tilt and scroll story are short inline scripts.
-- The dark theme works by changing a handful of colour tokens (`--sms-ink`, `--sms-surface`, `--sms-accent` and others) on `.sms-page`. These map to Elementor Global Colours.
-- Fonts: Montserrat from Google Fonts on concepts 1 to 4, matching the live site (concept 4 adds the 200 and 300 weights). Concept 5 uses Urbanist and concept 6 uses Outfit.
+- Concepts 11 and 12's interactive pieces are radio buttons and checkboxes with CSS, which Elementor can hold in an HTML widget, or rebuild with its Tabs and Toggle widgets. Concept 10's pointer-following photo is a short inline script; its sideways booking journey and word-by-word mission are plain CSS.
+- Concepts 10 to 12 set their colours by changing a handful of tokens (`--sms-ink`, `--sms-surface`, `--sms-accent` and others) on `.sms-page`. These map to Elementor Global Colours.
+- Fonts: Montserrat from Google Fonts on concepts 1 to 3 and 10, matching the live site (concept 10 adds the 200 and 300 weights). Concept 11 uses Outfit and concept 12 uses Urbanist. Either can switch to Montserrat.

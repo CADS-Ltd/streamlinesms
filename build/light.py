@@ -1,5 +1,4 @@
-"""Light theme for concepts 7-9: the layouts and motion of concepts 4-6 in
-Streamline's original colour scheme (white and pale-green sections, navy text,
+"""Light theme for concepts 10-12: Streamline's original colour scheme (white and pale-green sections, navy text,
 brand green #407F36), with navy "islands" where the live site uses navy: photo
 heroes, diagram screens, call-to-action panels and the footer.
 

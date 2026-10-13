@@ -1,4 +1,4 @@
-"""Shared dark theme for concepts 4-6 (round 4: the cinematic direction).
+"""Shared cinematic structure for concepts 10-12 (first written for the dark round-4 concepts, since removed).
 
 Restyles the shared sections from common.py through the semantic tokens
 (--sms-ink, --sms-surface, --sms-accent ...). Each dark concept sets its own
@@ -6,7 +6,7 @@ token values and display font on top of this.
 """
 
 CSS = r"""
-/* ===== Dark theme (shared by concepts 4-6) ===== */
+/* ===== Cinematic base (light.py sets the colours for concepts 10-12) ===== */
 .sms-page {
   --sms-bg: #050c16;
   --sms-surface: #0c1929;
