@@ -18,8 +18,11 @@ import booking  # noqa: E402
 import dark  # noqa: E402
 import importlib  # noqa: E402
 
+# SMS_ONLY=4,5 builds just those concepts (and skips the index), so one concept
+# can be worked on without importing the others.
+ONLY = [int(x) for x in os.environ.get("SMS_ONLY", "").split(",") if x.strip()]
 CONCEPTS = {}
-for _n in (1, 2, 3, 10, 11, 12):
+for _n in ONLY or (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12):
     try:
         CONCEPTS[_n] = importlib.import_module("concept%d" % _n)
     except ImportError:
@@ -89,6 +92,12 @@ INDEX_DESC = {
     1: ("Editorial split", "White and airy with soft mint shapes. Big rounded photos with floating badges, a zig-zag of services with photos, and gentle motion as you scroll."),
     2: ("Centred statement", "Light and friendly. Centred pale-green heroes with a photo collage, photo service cards, rounded everything, green call-to-action bands and a light footer."),
     3: ("Bold brand", "The most branded option. Green top bar, split photo heroes with boxed navy and green headlines, angled brand shapes, booking panels and tabbed services with photos."),
+    4: ("Lifeline", "Friendly and precise. A heartbeat line runs through the site: it draws across the hero past three photo beats, the service cards carry live traces, a line fills down the page as you scroll and the booking steps light up along it."),
+    5: ("Bento", "Polished product-page style. The homepage is a grid of tiles that tilt gently towards the pointer, with a course finder you can click through and consultancy services that open up tile by tile."),
+    6: ("Concierge", "Warm and conversational. Visitors finish a sentence (I'm looking for... for...) and the page answers with the right service and a real FAQ, plus a rolling who-we-support line and a contact helper."),
+    7: ("Chapters", "Editorial and refined, with serif headings. The story is told in three chapters, Assess the risk, Plan the response, Protect your people, beside a sticky photo that wipes from one to the next."),
+    8: ("Kinetic", "Bold, moving type. A strip of service names that reacts to how fast you scroll, service cards that stack as you scroll, a light that follows the pointer and a word wall that swells as you pass."),
+    9: ("Blueprint", "Precise and calm, on grid paper. Services as spec sheets, an event site plan that draws itself with numbered points to explore, and a workplace floor plan for the first aid needs assessment."),
     10: ("Horizon", "Calm and cinematic. A slow film strip of photos, a big service list with a photo that follows the pointer, the mission lighting up word by word, a where-we-work map and a booking journey that scrolls sideways."),
     11: ("Contour", "Layered and tactile. Fanned photo cards that spread out, service panels that open up, flip cards, a bespoke-training topic explorer and a get-your-quote-ready checklist."),
     12: ("Signal", "Precise and calm. A radar sweep behind the headline, a needs-assessment grid that lights up as you scroll, a five-step consultation stepper and a career journey line."),
@@ -152,7 +161,7 @@ def build_index():
   <div class="sms-index__inner">
     <img class="sms-index__logo" src="assets/streamline-s-m-sol-logo-blue-long.png" alt="Streamline Safety &amp; Medical Solutions" width="2500" height="443">
     <h1 class="sms-index__title">Website concepts</h1>
-    <div class="sms-index__intro"><p>Six directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo, colours and wording are the same throughout; the layout, mood and motion are what change.</p><p>Concepts 1 to 3 are light and friendly. Concepts 10 to 12 have a calmer, more cinematic feel, built around interactive pieces you can try, all in Streamline&rsquo;s own colours.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
+    <div class="sms-index__intro"><p>Twelve directions for the new Streamline Safety &amp; Medical Solutions website, each shown across all nine pages. The logo, colours and wording are the same throughout; the layout, mood and motion are what change.</p><p>Concepts 1 to 3 are light and friendly. Concepts 4 to 9 are the newest: each is built around one signature interactive idea, from a heartbeat line to an event site plan you can explore. Concepts 10 to 12 have a calmer, more cinematic feel. All twelve use Streamline&rsquo;s own colours.</p><p>Every concept includes an interactive booking form demo (Book Online). Photos are the client&rsquo;s own images from the current site, used for the concepts only.</p></div>
     <ul class="sms-index__list">%s</ul>
     <div class="sms-index__note"><p>Pitch concepts by CADS. Not for indexing.</p></div>
   </div>
@@ -164,5 +173,5 @@ def build_index():
         f.write(K.ascii_html(doc))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and not ONLY:
     build_index()

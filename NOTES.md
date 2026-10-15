@@ -2,10 +2,10 @@
 
 These are pitch concepts by CADS for Streamline Safety & Medical Solutions Ltd (https://www.streamlinesms.co.uk). They are not production code, but are built to port to WordPress/Elementor.
 
-- `index.html`: links to the six concepts and every page in each
-- `concept-1.html`, `concept-2.html`, `concept-3.html`, `concept-10.html`, `concept-11.html`, `concept-12.html`: the homepages. Concepts 4 to 9 were tried and removed; the numbers are kept so existing links to 10 to 12 still work
+- `index.html`: links to the twelve concepts and every page in each
+- `concept-1.html` to `concept-12.html`: the homepages
 - `concept-N/`: the eight inner pages for each concept: `event-medical-cover`, `medical-training`, `risk-needs-consultancy`, `pre-hospital-career-support`, `recruitment`, `about`, `contact` and `book` (the interactive booking demo)
-- `build/`: the generator. All 54 pages are built from one content file, so the wording is identical in every concept
+- `build/`: the generator. All 108 pages are built from one content file, so the wording is identical in every concept
 - `reference/`: raw HTML of the live site, its CSS, `brand.md`, `content.md` and `images.md`
 - `assets/`: logo, logo shield, badges, every image downloaded from the live site, and `assets/photos/` (the crops used in the designs; see below)
 
@@ -17,6 +17,8 @@ Every page is standalone, with its own inline CSS and JS, and is pure ASCII. Don
 python3 build/build.py
 ```
 
+To rebuild just one or two concepts while working on them (the index is skipped): `SMS_ONLY=4,5 python3 build/build.py`.
+
 | File | Holds |
 |---|---|
 | `build/content.py` | All page copy, taken from the live site. FAQs are read straight from the saved pages in `reference/` |
@@ -24,7 +26,48 @@ python3 build/build.py
 | `build/booking.py` | The booking wizard: markup, CSS and script |
 | `build/dark.py` | The shared structure for concepts 10 to 12 (originally written for a dark direction, since removed), plus the radio-button switch helpers used by their interactive pieces |
 | `build/light.py` | The colours for concepts 10 to 12: Streamline's original palette, plus navy "islands" for the photo heroes, panels and footer |
-| `build/concept1.py` to `concept3.py`, `concept10.py` to `concept12.py` | Each concept's theme: colours, fonts and highlight style, page hero, call-to-action band, footer colours, homepage layout and any interactive pieces added to inner pages |
+| `build/concept1.py` to `concept12.py` | Each concept's theme: colours, fonts and highlight style, page hero, call-to-action band, footer colours, homepage layout and any interactive pieces added to inner pages |
+
+## Round 7: concepts 4 to 9 (one signature idea each)
+
+The brief: six more concepts to replace the removed 4 to 9, clearly different from the others, in the same colours, showing as much craft as possible while staying clean and easy to read. Each is built around one signature interactive idea. Everything works without JavaScript, and all motion switches off for visitors who ask for reduced motion.
+
+- **Concept 4, Lifeline** (Plus Jakarta Sans). A heartbeat (ECG) line is the thread of the site:
+  - the hero trace draws itself, then a glowing dot travels along it past three round photo "beats" that link to the three services
+  - a thin line down the side of the homepage fills as you scroll, with a marker at each section (wide screens)
+  - service cards are "monitors" with their own live trace, which quickens on hover or focus
+  - "From enquiry to your event": the four booking-information sentences from the Event Medical Cover page, lighting up along a trace as you scroll
+  - inner pages: the timeline replaces the booking block on Event Medical Cover; the course list becomes readout rows on a navy monitor on Medical Training
+- **Concept 5, Bento** (Manrope). Product-page polish:
+  - the homepage is a grid of tiles of different sizes (services, Qualsafe centre number, where we work, the 15-years line, contact)
+  - tiles tilt gently towards the mouse with a soft glare (not on touch screens), and assemble as you scroll
+  - a course finder: pick a course to see how long it usually takes, then book
+  - inner pages: the course finder replaces the course cards on Medical Training; on Risk & Needs Consultancy the six services are tiles that open to show "What this includes"
+- **Concept 6, Concierge** (Figtree). The page talks to you:
+  - the hero is a sentence to complete, "I'm looking for [service] for [who or what]". The second list changes with the first and comes from the site's own lists (event types, bespoke training examples, industries, career starting points). The answer shows the right service, its list, one real FAQ chosen for that option, and booking buttons
+  - "We support [schools]" rolls through the site's list of who Streamline works with
+  - services as a calm menu that opens to show photo, list and buttons
+  - inner pages: Contact gets a "What can we help with?" helper (in place of the service links); Event Medical Cover gets the sentence builder for event types, with the quote information as a "Have these ready" checklist (nothing is saved or sent)
+- **Concept 7, Chapters** (Fraunces and Inter). Editorial, magazine style:
+  - a serif cover hero with a slow photo drift
+  - the services told as three chapters using the consultancy strapline, Assess the risk / Plan the response / Protect your people, beside a sticky photo that wipes to the next chapter, with a roman numeral and a progress rail (stacked on phones)
+  - a "Contents" list of services where the photo beside it changes to the row you point at
+  - Mathew's quote as a large pull-quote whose words fade in as you scroll
+  - inner pages: the five free-consultation steps become scrolling chapters on Risk & Needs Consultancy; the directors become magazine profile spreads on About
+- **Concept 8, Kinetic** (Bricolage Grotesque, a variable font). Bold, moving type:
+  - a huge line-by-line headline beside a shield shape filled with a photo
+  - a strip of service names that drifts and speeds up or reverses with your scrolling (with a pause button)
+  - service cards that stack on top of each other as you scroll (wide screens)
+  - a navy section where a soft light follows the pointer, and a "who we work with" word wall whose words swell as the pointer passes
+  - buttons that lean slightly towards the pointer
+  - inner pages: the recruitment pathway becomes stacking cards with giant numbers, plus the values as a word row; the course list on Medical Training becomes a big hover list that reveals each course length
+- **Concept 9, Blueprint** (Space Grotesk and IBM Plex Mono). A precise planning look on grid paper:
+  - framed photos with crosshairs, dimension lines and figure captions
+  - services as numbered spec sheets
+  - an event site plan (drawn for the concept) that draws itself as it scrolls in, with numbered points that open the "What information is needed for a quote?" items and two Event Medical Plans items. A numbered list beside it carries the same information
+  - inner pages: the site plan replaces the booking block on Event Medical Cover; Risk & Needs Consultancy gets a workplace floor plan with the eight factors the First Aid Needs Assessment considers
+- **Short labels written by CADS** (none make claims): section and step labels such as "Course finder", "Selected course", "Where we work", "At a glance", "From enquiry to your event", "Your quotation", "Terms to review", "Booking confirmed", "If details change", "How can we help?", "Tap the green words to change them.", "From our FAQs", "Have these ready", "What can we help with?", "Our services, in three chapters", "Chapter I of III", "Contents", "Also from Streamline", "Careers & Recruitment", "Pause motion", "REF 01" to "REF 05", "Fig. 01", "Select a numbered point to explore", and the plan labels (Stage, Arena, Stalls, First aid, Emergency access and so on). Plans and diagrams are marked "Illustration, not to scale".
+- **Shared fix:** photo frames used `overflow: hidden`, which stopped the gentle photo parallax from ever moving (it sat still, slightly zoomed). They now use `overflow: clip`, so the parallax described in round 3 works in every concept.
 
 ## Round 6: concepts 10, 11 and 12 (calm, cinematic feel, original colours)
 
@@ -52,9 +95,9 @@ The brief this time: the feel of the Pristine Motors concepts J and K, but not t
   - inner pages: Risk & Needs Consultancy gets the grid and stepper (in place of the steps block), and Pre-Hospital Career Support gets the journey (in place of the intro and steps)
 - Short interface labels such as "Turn over", "Your starting point", "Choose a service to open it up" and "Tick off what you already know" are CADS labels, not claims. Maps and diagrams are marked "Illustration, not to scale".
 
-## Rounds 4 and 5: removed
+## Rounds 4 and 5: replaced
 
-Concepts 4 to 6 (dark, cinematic) and 7 to 9 (the same layouts in the original colours) were built and then removed at CADS's request. They are in the git history (commits `5a3fe7a` and `25ec156`) if anything from them is wanted later.
+The first concepts 4 to 6 (dark, cinematic) and 7 to 9 (the same layouts in the original colours) were removed at CADS's request, and the numbers were reused in round 7. The old versions are in the git history (commits `5a3fe7a` and `25ec156`) if anything from them is wanted later.
 
 ## Round 3: friendlier, photos, motion, less text, booking demo
 
@@ -79,17 +122,23 @@ Mathew asked for a site that is lighter, warmer and less corporate, with the Str
 - **Bigger photos.** Hero photo areas are larger. Concept 3's hero is a full-width photo, like Nexus.
 - **Detail is still there, but tidier.** The live site's FAQs are kept word for word in collapsible sections on each service page, so nothing is lost.
 
-## How the six concepts differ
+## How the twelve concepts differ
 
 1. **Concept 1, editorial split.** White and airy. Split heroes pair the headline with a rounded photo frame on a soft green blob, with floating labels. Key words get a soft green highlight. Homepage services alternate photo and text in a numbered zig-zag. A bobbing green card carries the 15 years line. Call-to-action panels are pale green with three round team photos.
 2. **Concept 2, centred statement.** Light and friendly. Pale-green centred heroes with floating bubbles lead into a wide photo collage, with a round second photo and labels. Key words are in green, a strip of four icon cards explains why to choose Streamline, and services are photo cards that zoom on hover. Call-to-action bands are solid green, and the footer is light.
 3. **Concept 3, bold brand.** The most branded option and the closest to Nexus. A green top bar sits above split heroes with an angled photo, headlines boxed in navy and solid green, and a white intro card. Three "Find out more" panels lead to the services, which sit in tabs with photos. The approach section pairs "Working With You, Not Simply For You" with a festival photo and Mathew's quote.
 
-4. **Concept 10, Horizon.** Calm and typographic: a film strip of photos, a big service list with a photo that follows the pointer, a word-by-word mission, a pulsing area map and a sideways booking journey.
-5. **Concept 11, Contour.** Layered and tactile: fanned photo cards, service panels that open up, flip cards, a bespoke topic explorer and a quote checklist. Works fully without JavaScript.
-6. **Concept 12, Signal.** Precise and calm: a radar sweep on navy, a needs-assessment grid that scans as you scroll, a consultation stepper and a career journey picker.
+4. **Concept 4, Lifeline.** A heartbeat line drawn through the site: hero trace with photo beats, monitor-style service cards, a scroll-filled line and a booking timeline.
+5. **Concept 5, Bento.** A grid of tiles that tilt towards the pointer, a course finder and consultancy tiles that open up.
+6. **Concept 6, Concierge.** A sentence the visitor completes, answered with the right service and a real FAQ; warm and conversational.
+7. **Concept 7, Chapters.** Editorial serif design; three scrolling chapters beside a sticky photo, a contents list and a big pull-quote.
+8. **Concept 8, Kinetic.** Bold moving type: a scroll-reactive marquee, stacking service cards, a pointer spotlight and a swelling word wall.
+9. **Concept 9, Blueprint.** Grid paper and spec sheets; an event site plan and a workplace floor plan with points to explore.
+10. **Concept 10, Horizon.** Calm and typographic: a film strip of photos, a big service list with a photo that follows the pointer, a word-by-word mission, a pulsing area map and a sideways booking journey.
+11. **Concept 11, Contour.** Layered and tactile: fanned photo cards, service panels that open up, flip cards, a bespoke topic explorer and a quote checklist. Works fully without JavaScript.
+12. **Concept 12, Signal.** Precise and calm: a radar sweep on navy, a needs-assessment grid that scans as you scroll, a consultation stepper and a career journey picker.
 
-All six use the same logo, the same copy and the site's own navy `#061E35` and green `#407F36`. On navy panels, green text uses the site's lighter tint `#82D06E` for contrast. Neutrals and tints are taken from the live site's own CSS.
+All twelve use the same logo, the same copy and the site's own navy `#061E35` and green `#407F36`. On navy panels, green text uses the site's lighter tint `#82D06E` for contrast. Neutrals and tints are taken from the live site's own CSS.
 
 ## Placeholders used
 
